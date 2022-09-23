@@ -15,6 +15,7 @@
     "search": "Search",
     "documents":"Entities of edition"
   },
+  "all": "All",
   "abbreviations": "Abbreviations",
   "archive": "Archive",
   "articles": "Pieces",
@@ -39,6 +40,7 @@
   "keyword": "Keyword",
   "language": "Language",
   "literature": "Literature",
+  "living-reformation": "Living reformation",
   "material": "Material",
   "missing-geo-data":"No geo data available",
   "notes": "Notes",
@@ -50,6 +52,7 @@
   "period": "Period",
   "person": "Person",
   "place": "Place",
+  "project": "Project",
   "pubdate": "Publication Date",
   "regest": "Regest",
   "reset": "Reset",

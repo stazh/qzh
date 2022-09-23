@@ -15,6 +15,7 @@
     "search": "Recherche",
     "documents":"Entités d'édition"
   },
+  "all": "Tous",
   "abbreviations": "Abréviations",
   "archive": "Archives",
   "articles": "Articles",
@@ -39,6 +40,7 @@
   "keyword": "Terme",
   "language": "Langue",
   "literature": "Littérature",
+  "living-reformation": "La réforme vécue",
   "material": "Matériel de support",
   "missing-geo-data":"No geo data available",
   "notes": "Annotations",
@@ -50,6 +52,7 @@
   "period": "Période",
   "person": "Personne",
   "place": "Lieu",
+  "project": "Projet",
   "pubdate": "Date de publication",
   "regest": "Résumé",
   "scribe": "Scribe",

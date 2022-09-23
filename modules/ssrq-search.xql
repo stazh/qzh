@@ -226,7 +226,7 @@ declare function query:filter($hits as element()*) {
         fold-right(request:get-parameter-names()[starts-with(., 'filter-')], $hits, function($filter, $context) {
             let $value := filter(request:get-parameter($filter, ()), function($param) { $param != "" })
             return
-                if (exists($value) and $value != '') then
+                if (exists($value) and $value != '' and $value != 'all') then
                     switch ($filter)
                         case "filter-period-min" return
                             let $dateMin := xs:date($value || "-01-01")
@@ -249,6 +249,13 @@ declare function query:filter($hits as element()*) {
                                 $context[not(ancestor-or-self::tei:TEI//tei:supportDesc/tei:condition)]
                         case "filter-material" return
                             $context[ancestor-or-self::tei:TEI//tei:support/tei:material = $value]
+                        
+                        case "filter-project" return
+                            if ($value = "living-reformation") then
+                                $context[ancestor-or-self::tei:TEI//tei:seriesStmt/tei:title/text() = 'Gelebte Reformation. Zürich 1500-1800']
+                            else
+                                $context (:return all:)
+                        
                         case "filter-seal" return
                             if ($value = "yes") then
                                 $context[ancestor-or-self::tei:TEI//tei:sealDesc/tei:seal]

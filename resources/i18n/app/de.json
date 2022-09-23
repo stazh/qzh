@@ -15,6 +15,7 @@
     "search": "Suche",
     "documents":"Editionseinheiten"
   },
+  "all": "Alle",
   "abbreviations": "Abkürzungen",
   "archive": "Archiv",
   "articles": "Stücke",
@@ -40,6 +41,7 @@
   "keyword": "Schlagwort",
   "language": "Sprache",
   "literature": "Literatur",
+  "living-reformation": "gelebte Reformation",
   "material": "Trägermaterial",
   "missing-geo-data":"Keine Geodaten verfügbar",
   "notes": "Anmerkungen",
@@ -51,6 +53,7 @@
   "period": "Ausgewählter Zeitraum",
   "person": "Person",
   "place": "Ort",
+  "project": "Projekt",
   "pubdate": "Publikationsdatum",
   "regest": "Regest",
   "reset": "Zurücksetzen",
