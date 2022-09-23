@@ -14,7 +14,7 @@ import module namespace pm-config="http://www.tei-c.org/tei-simple/pm-config" at
 import module namespace custom="http://teipublisher.com/api/custom" at "../../custom-api.xql";
 
 declare function capi:list($request as map(*)) {
-    let $path := if ($request?parameters?path) then xmldb:decode($request?parameters?path) else ()
+    let $path := if ($request?parameters?path) then xmldb:decode($request?parameters?path) else () (:path is an optional parameter:)
     let $templatePath := $config:data-root || "/" || $path || "/collection.html"
     let $templateAvail := doc-available($templatePath) or util:binary-doc-available($templatePath)
     let $template := 
