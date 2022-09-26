@@ -41,7 +41,7 @@
   "keyword": "Schlagwort",
   "language": "Sprache",
   "literature": "Literatur",
-  "living-reformation": "gelebte Reformation",
+  "living-reformation": "Gelebte Reformation",
   "material": "Trägermaterial",
   "missing-geo-data":"Keine Geodaten verfügbar",
   "notes": "Anmerkungen",
@@ -109,5 +109,6 @@
   "no-search-results": "Ihre Suche erzielte keinen Treffer.",
   "zitation": "Zitation: ",
   "lizenz": "Lizenz: ",
-  "by": "von"
+  "by": "von",
+  "transcribed-by": "transkribiert von "
 }
