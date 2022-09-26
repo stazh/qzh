@@ -180,18 +180,17 @@ declare %private function model:template-fileDesc11($config as map(*), $node as 
                                 <iron-icon icon="icons:info"/>
                             </span><pb-popover placement="bottom" for="info">
                                     <p>
-                                        {$config?apply-children($config, $node, $params?stmtTitle)}, {$config?apply-children($config, $node, $params?fileDescTitle)},
-                                        <pb-i18n key="by">von</pb-i18n>
-                                        {$config?apply-children($config, $node, $params?fileDescPerson)}
+                                        {$config?apply-children($config, $node, $params?stmtTitle)}, hg. von {$config?apply-children($config, $node, $params?editor)},
+                                        <pb-i18n key="transcribed-by">transkribiert von</pb-i18n>{$config?apply-children($config, $node, $params?transcript)}
                                     </p>
                                     <p>
                                         <pb-i18n key="zitation">Zitation:</pb-i18n>
                                         <a href="{$config?apply-children($config, $node, $params?link)}">{$config?apply-children($config, $node, $params?idno-format)}</a>
                                     </p>
-                                    <p>
+                                    <!--<p>
                                         <pb-i18n key="lizenz">Lizenz:</pb-i18n>
                                         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.de" target="_blank">CC BY-NC-SA</a>
-                                    </p>
+                                    </p>-->
 
                             </pb-popover><span id="credits" style="display: none">{$config?apply-children($config, $node, $params?credits)}</span></t>/*
 };
@@ -708,10 +707,12 @@ declare function model:apply($config as map(*), $input as node()*) {
                                                     "idno-canton": ec:get-canton(seriesStmt/idno),
                                                     "idno-format": ec:format-id(seriesStmt/idno),
                                                     "stmtTitle": seriesStmt/title,
+                                                    "editor": /seriesStmt/respStmt/resp[text() = "Herausgeberschaft"]/preceding-sibling::persName/text(),
+                                                    "transcript": titleStmt/respStmt/resp[@key = "transcript"]/preceding-sibling::persName/text(),
                                                     "fileDescTitle": titleStmt/title,
                                                     "fileDescPerson": ec:persName-list(titleStmt/respStmt[1]/persName),
                                                     "credits": ./publicationStmt/availability/p[@xml:id='facs']/text(),
-                                                    "link": 'https://www.ssrq-sds-fds.ch/online/tei/' || ec:get-canton(seriesStmt/idno) || '/' ,
+                                                    "link": 'http://localhost:8080/exist/apps/rqzh2/' || replace(seriesStmt/idno, '^(.*)_1$', '$1'),
                                                     "content": .
                                                 }
 
