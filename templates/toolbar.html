@@ -2,11 +2,9 @@
 <app-toolbar class="toolbar" sticky="sticky">
     <a href="${app}/search.html" data-template="pages:parse-params" id="browseToParentCollection"> <!-- zuvor: ${app}/start.html?collection=${collection} -->
         <paper-icon-button icon="icons:folder-open"/>
-        <span data-template="app:collection-title"/>
     </a>
     <pb-popover for="browseToParentCollection" theme="light-border">
-        <pb-i18n key="browse.up"/>
-        <span data-template="app:collection-title"/>
+        <pb-i18n key="browse.overview"/>
     </pb-popover>
 
     <pb-toggle-feature class="toolbar-button__label" name="mode" properties-on="{&#34;odd&#34;: &#34;rqzh-norm&#34;}" properties-off="{&#34;odd&#34;: &#34;rqzh&#34;}" default="off" init-from-view="init-from-view" emit="transcription" subscribe="transcription" data-i18n="[title]view-switch" title="">
