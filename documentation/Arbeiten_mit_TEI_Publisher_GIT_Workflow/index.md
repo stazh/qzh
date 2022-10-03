@@ -2,7 +2,6 @@
 
 ## Übersicht
 
-(Für eine vergrösserte Ansicht: siehe separate Datei)
 ![][image-1]
 
 Auf die einzelnen Abschnitte in dieser Übersicht wird in diesem Dokument eingegangen.
@@ -15,9 +14,7 @@ Hinweis: Das Projekt „Rechtsquellen des Kantons Zürich“ besteht aus zwei Re
 
 ### Installationsanleitung
 
-Hier befindet sich eine Installationsanleitung für die eXist-DB und den TEI-Publisher:
-
-[https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation][1]
+Hier befindet sich eine Installationsanleitung für die eXist-DB und den TEI-Publisher: [https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation][1]
 
 Es gibt zwei Wege, die Applikation zu installieren: entweder über Docker oder als Standalone Java Applikation. 
 
@@ -27,9 +24,7 @@ Hinweis - da TEI-Publisher Root-Rechte erfordert, kann er nicht auf dem Arbeitsr
 
 ### Verwendete Java-Version
 
-Es gibt verschiedene Versionen der Java Runtime. Falls auf dem System Java noch nicht installiert ist, kann zum Beispiel die folgende Runtime verwendet werden:
-
-[https://www.java.com/de/download/manual.jsp][2]
+Es gibt verschiedene Versionen der Java Runtime. Falls auf dem System Java noch nicht installiert ist, kann zum Beispiel die folgende Runtime verwendet werden: [https://www.java.com/de/download/manual.jsp][2]
 
 ### Installation von benötigen Hilfs-Packages
 
@@ -210,7 +205,7 @@ Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitLab bereits
 
 ## Weitere Ressourcen
 
-[https://www.youtube.com/watch?v=dyY539HzN6Q][3]
+- [https://www.youtube.com/watch?v=dyY539HzN6Q][3]
 
 In diesem Video werden zwei mögliche Workflows vorgestellt: „Database as Master“ und „Git as Master“. In diesem Dokument ist nur die Version „Git as Master“ beschrieben.
 

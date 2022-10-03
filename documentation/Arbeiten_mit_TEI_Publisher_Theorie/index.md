@@ -11,10 +11,10 @@ Das folgende Dokument soll einen groben Überblick zur Entwicklung mit TEI-Publi
 - Workshop: [https://www.youtube.com/watch?v=QuWrfAS2SWM][3]
 - Workshop Unterlagen: [https://github.com/eeditiones/workshop][4]
 - Demo-Instanz [http://apps5test.existsolutions.com][5]
-	Username: `tei`
-	Password: `simple`
-	Username: `tei-demo`
-	Password: `demo`
+	- Username: `tei`
+	- Password: `simple`
+	- Username: `tei-demo`
+	- Password: `demo`
 - Slack: [https://e-editiones.slack.com][6]
 - Einsatz des TEI Publishers am Beispiel der Alfred Escher Edition: [https://www.youtube.com/watch?v=ZxdeVkwT0DY][7]
 - „Getting started with app development in eXist-db 2.0: [https://www.youtube.com/watch?v=ZxdeVkwT0DY][8] (bezieht sich auf eine ältere Version der eXist-db, der Aufbau ist jedoch fast identisch)
@@ -24,35 +24,29 @@ Das folgende Dokument soll einen groben Überblick zur Entwicklung mit TEI-Publi
 ## Offizielle Dokumentationen
 
 ### TEI Publisher
-[http://apps5test.existsolutions.com/exist/apps/tei-publisher/doc/documentation.xml][11]
-
-Wenn der TEI-Publisher lokal installiert wurde, kann auch die lokale Dokumentation verwendet werden:
-
-[http://localhost:8081/exist/apps/tei-publisher/doc/documentation.xml?odd=docbook.odd][12]
-
-In der Dokumentation gibt es auch ein FAQ-Teil mit häufig gestellten Fragen:
-[https://faq.teipublisher.com/odd/][13]
+- [http://apps5test.existsolutions.com/exist/apps/tei-publisher/doc/documentation.xml][11]
+- Wenn der TEI-Publisher lokal installiert wurde, kann auch die lokale Dokumentation verwendet werden:
+	- [http://localhost:8081/exist/apps/tei-publisher/doc/documentation.xml?odd=docbook.odd][12]
+- In der Dokumentation gibt es auch ein FAQ-Teil mit häufig gestellten Fragen: [https://faq.teipublisher.com/odd/][13]
 
 ### TEI (XML)
-[https://www.tei-c.org/release/doc/tei-p5-doc/en/html/TD.html#TDPMPM][14]
-[https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien][15]
+- [https://www.tei-c.org/release/doc/tei-p5-doc/en/html/TD.html#TDPMPM][14]
+- [https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien][15]
 
 ### Web Components
-Web Components sind HTML-Komponenten, die zum Entwickeln eigener TEI-Publisher Apps eingesetzt werden können. 
+- Web Components sind HTML-Komponenten, die zum Entwickeln eigener TEI-Publisher Apps eingesetzt werden können. 
 
-Dokumentation der Web-Components (Interaktiv):
-[https://unpkg.com/@teipublisher/pb-components@1.38.5/dist/api.html][16]
+- Dokumentation der Web-Components (Interaktiv): [https://unpkg.com/@teipublisher/pb-components@1.38.5/dist/api.html][16]
 
-Hier sind nur die wichtigsten Web-Components aufgeführt und kurz beschrieben:
-[https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=webcomponents-docs][17]
+- Hier sind nur die wichtigsten Web-Components aufgeführt und kurz beschrieben: [https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=webcomponents-docs][17]
 
 ### eXist-DB
-[https://exist-db.org/exist/apps/doc/documentation][18]
+- [https://exist-db.org/exist/apps/doc/documentation][18]
 
 ### eXide
 
-[https://github.com/eXist-db/eXide#readme][19]
-[https://github.com/eXist-db/eXide/blob/develop/docs/docs.md][20]
+- [https://github.com/eXist-db/eXide#readme][19]
+- [https://github.com/eXist-db/eXide/blob/develop/docs/docs.md][20]
 
 ## Glossar: Technologien
 
@@ -76,9 +70,7 @@ Definiert Regeln, um eine TEI-Datei grafisch darzustellen in verschiedenen Forma
 
 ###  XPath
 
-Mit XPath können Informationen aus einer XML-Datei extrahiert werden. 
-
-Beispiele:
+Mit XPath können Informationen aus einer XML-Datei extrahiert werden.  Beispiele:
 - `//child::Buch/Kapitel`: Alle Kapitel aller Bücher.
 - `//child::Buch/Kapitel[1]`: Alle ersten Kapitel aller Bücher. 
 - `//child::Buch[count(./Seite)<=100][count(./Seite)>=10]`: liefert alle Knoten vom Typ „Buch“, die mindestens 10 aber höchstens 100 Kinderemente vom Typ „Seite“ haben.
