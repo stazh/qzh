@@ -1,5 +1,9 @@
 # QZH Readme
 
+## Documentation
+
+- [Arbeiten mit TEI Publisher: Theorie](/documentation/Arbeiten_mit_TEI_Publisher_Theorie/index.md)
+- [Arbeiten mit TEI Publisher: GIT_Workflow](/documentation/Arbeiten_mit_TEI_Publisher_GIT_Workflow/index.md)
 
 ## Build qzh
 * simply run the command `ant` in your terminal in the qzh folder and install the data package (see below).
