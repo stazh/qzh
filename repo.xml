@@ -8,8 +8,8 @@
     <type>application</type>
     <prepare>pre-install.xql</prepare>
     <finish>post-install.xql</finish>
-    <target>rqzh2</target>
-    <permissions user="rqzh" group="tei" mode="rw-r--r--"/>
+    <target>qzh</target>
+    <permissions user="qzh" group="tei" mode="rw-r--r--"/>
     
     <changelog>
         <change version="1.0.0">

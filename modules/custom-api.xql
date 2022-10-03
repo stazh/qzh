@@ -13,8 +13,8 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 (: Add your own module imports here :)
 import module namespace rutil="http://exist-db.org/xquery/router/util";
 import module namespace errors = "http://exist-db.org/xquery/router/errors";
-import module namespace app="http://existsolutions.com/ssrq/app" at "app.xql";
-import module namespace search="http://existsolutions.com/ssrq/search" at "ssrq-search.xql";
+import module namespace app="http://existsolutions.com/qzh/app" at "app.xql";
+import module namespace search="http://existsolutions.com/ssrq/search" at "qzh-search.xql";
 import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace pages="http://www.tei-c.org/tei-simple/pages" at "lib/pages.xql";
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
@@ -105,7 +105,7 @@ declare function api:html($request as map(*)) {
                                 <head>
                                     <meta charset="utf-8"/>
                                     <link rel="stylesheet" type="text/css" href="resources/css/theme.css"/>
-                                    <link rel="stylesheet" type="text/css" href="resources/css/theme-rqzh.css"/>
+                                    <link rel="stylesheet" type="text/css" href="resources/css/theme-qzh.css"/>
                                 </head>
                                 <body class="printPreview">
                                     <paper-button id="closePage" class="hidden-print" onclick="window.close()" title="close this page">

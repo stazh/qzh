@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
   pbEvents.subscribe("pb-update", "transcription", (ev) => {
     document.body.setAttribute(
       "data-view",
-      ev.detail.data.odd === "rqzh-norm.odd" ? "normalized" : "diplomatic"
+      ev.detail.data.odd === "qzh-norm.odd" ? "normalized" : "diplomatic"
       );
       blocks.push(ev.detail.root);
       console.log('blocks: %d', blocks.length);
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const feedback = document.getElementById('feedback-mail');
     const title = ev.detail.root.querySelector(".tei-teiHeader5");
-    const content = `%0a%0a---%0a${title.innerText}%0ahttps://rechtsquellen.sources-online.org/${ev.detail.data.collection}/${ev.detail.data.doc}`;
+    const content = `%0a%0a---%0a${title.innerText}%0ahttps://qzh.sources-online.org/${ev.detail.data.collection}/${ev.detail.data.doc}`;
     feedback.href = `mailto:staatsarchivzh@ji.zh.ch?subject=${ev.detail.data.doc}&body=${content}`;
     blocks.push(ev.detail.root);
     if (blocks.length === 2) {
@@ -151,7 +151,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let docPath = currentPath.replace( /^.*\/([^/]+\/.*)$/, "$1" );
       let urlPart = currentPath.replace( /^(.*)\/[^/]+\/.*$/, "$1" );
       let updatedDocPath = docPath.replace( "/", "%2F" );
-      let newUrl = `${urlPart}/api/document/${updatedDocPath}/html?odd=rqzh-norm.odd`;
+      let newUrl = `${urlPart}/api/document/${updatedDocPath}/html?odd=qzh-norm.odd`;
       //console.log( newUrl );
       window.open( newUrl );
     } )

@@ -2,7 +2,7 @@
   "dependencies": {
     "@teipublisher/pb-components": "git+https://github.com/eeditiones/tei-publisher-components.git#master"
   },
-  "name": "rqzh2",
+  "name": "qzh",
   "version": "1.1.22",
   "description": "Quellen zur Zürcher Geschichte",
   "devDependencies": {

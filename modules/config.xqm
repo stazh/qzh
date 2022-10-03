@@ -294,11 +294,11 @@ declare variable $config:context-path :=
 (:~
  : The root of the collection hierarchy containing data.
  :)
-declare variable $config:data-root := "/db/apps/rqzh-data";
+declare variable $config:data-root := "/db/apps/qzh-data";
 
-declare variable $config:temp-root := "/db/apps/rqzh-data/temp";
+declare variable $config:temp-root := "/db/apps/qzh-data/temp";
 
-(: Storage file for external metadata "Register" /db/apps/rqzh-data/register-data.xml :)
+(: Storage file for external metadata "Register" /db/apps/qzh-data/register-data.xml :)
 declare variable $config:person-id-file-name := 'person-Id-data.xml';
 declare variable $config:key-id-file-name := 'key-Id-data.xml';
 declare variable $config:place-id-file-name := 'place-Id-data.xml';
@@ -324,7 +324,7 @@ declare variable $config:data-exclude := (
     collection($config:data-root || "/SG/SG_III_4/latest")/tei:TEI
 );
 
-declare variable $config:default-odd :="rqzh.odd";
+declare variable $config:default-odd :="qzh.odd";
 
 declare variable $config:odd := $config:default-odd;
 
@@ -333,7 +333,7 @@ declare variable $config:odd := $config:default-odd;
  : make sure to run modules/generate-pm-config.xql to update the main configuration
  : module for transformations (modules/pm-config.xql).
  :)
-declare variable $config:odd-available := ( $config:default-odd, "rqzh-norm.odd" );
+declare variable $config:odd-available := ( $config:default-odd, "qzh-norm.odd" );
 
 (:~
  : List of ODD files which are used internally only, i.e. not for displaying information
@@ -343,7 +343,7 @@ declare variable $config:odd-internal := "docx.odd";
 
 declare variable $config:odd-root := $config:app-root || "/resources/odd";
 
-declare variable $config:schema-odd := doc($config:odd-root || "/TEI_Schema_SSRQ.odd")/*;
+declare variable $config:schema-odd := doc($config:odd-root || "/TEI_Schema_QZH.odd")/*;
 
 declare variable $config:abbr := doc($config:odd-root || "/abbr.xml")/*;
 
