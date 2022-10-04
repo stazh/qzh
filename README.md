@@ -1,52 +1,15 @@
-# QZH Readme
+# Quellen zur Zürcher Geschichte
 
-## Documentation
+## Vorlage
+
+Dieses Projekt ist eine modifizierte Version der TEI Publisher Webapplikation "Zürcher Rechtsquellen": https://gitlab.existsolutions.com/rqzh
+
+## Dokumentation
 
 - [Arbeiten mit TEI Publisher: Theorie](/documentation/Arbeiten_mit_TEI_Publisher_Theorie/index.md)
-- [Arbeiten mit TEI Publisher: GIT_Workflow](/documentation/Arbeiten_mit_TEI_Publisher_GIT_Workflow/index.md)
+- [Arbeiten mit TEI Publisher: GIT Workflow](/documentation/Arbeiten_mit_TEI_Publisher_GIT_Workflow/index.md)
 
-## Build qzh
-* simply run the command `ant` in your terminal in the qzh folder and install the data package (see below).
   
-## Data Package
-This app uses data stored in the Github repository https://github.com/stazh/qzh-data.   
-Clone the repository 
-```
-git clone git@github.com:stazh/qzh-data.git
-``` 
-build the xar file by running `ant` and install the data xar file. 
-  
-## Utilise Dev Version of pb-components
+## Daten
 
-1. clone tei-publisher-components ( github.com/eeditiones/tei-publisher-components/ )
-1. in qzh modules/config.xqm set $config:webcomponents-cdn to ‘local’ 
-1. call `ant xar-local`
-1. remove tei-publisher-components from resources/scripts ( `rm -rf resources/scripts/*.js` )
-1. in tei-publisher-components repo execute `npm i && npm run build` 
-1. copy generated .js and .map files from the tei-publisher-components ( e.g. `cp dist/*.js dist/*.map $QZH/qzh/resources/scripts/` )
-1. call `ant xar-local` again
-
-## Run pb-components from feature branch
-
-1. configure the branch / PR in `package.json` like this `"@teipublisher/pb-components": "git+https://github.com/eeditiones/tei-publisher-components.git#develop"` 
-1. in modules/config.xqm set `config:webcomponents` to `local`
-2. call `ant clean xar-local`
-
-## Use local dev version of pb-components
-
-1. clone tei-publisher-components ( github.com/eeditiones/tei-publisher-components/ ) or use
-your existing clone
-1. in qzh modules/config.xqm set `$config:webcomponents :="dev"`;
-1. in qzh modules/config.xqm set `$config:webcomponents-cdn` to ‘http://localhost:8000’ (default port)
-1. run `npm i` to load dependencies
-1. run 'npm run start' to start the devserver which by default listens on port 8000
-1. wait until server is running and start eXist-db with qzh 
-
-
-## Testing
-
-Inside `/cypress/…` you can find end-to-end tests for the deployed application, which is expected to run on `localhost:8080`. To execute the tests:
-
-```shell
-npm run e2e
-```
+Das Projekt besteht aus zwei Repositories: Der Webapplikation (dieses Repository) und dem Daten-Repository mit den Quellenstücken. Das Daten-Repository befindet sich hier: https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte-daten
