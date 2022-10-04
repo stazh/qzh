@@ -120,7 +120,7 @@ Entwicklungsumgebung im Browser. Damit können die Apps und XML-Dateien innerhal
 
 ## Beispielhafter Aufbau einer TEI-Publisher Applikation
 
-![](DraggedImage.tiff)
+![](DraggedImage.jpg)
 
 Die einzelnen Komponenten einer TEI-Publisher Applikation (TEI-XML Quelldateien, ODD-Dateien, Page-Templates) sind in den Folgekapiteln genauer beschrieben.
 
@@ -148,7 +148,7 @@ TEI-Publisher besitzt einen grafischen Editor für die ODD-Dateien:
 
 Alternativ kann das ODD direkt als XML-Text in der eXide bearbeitet werden:
 
-![](DraggedImage-1.tiff)
+![](DraggedImage-1.jpg)
 
 Man kann ein ODD gleichzeitig im XML Editor und im grafischen Editor geöffnet haben, man muss es aber bei jeder Änderung an einem Ort die jeweils andere Seite neu laden.
 

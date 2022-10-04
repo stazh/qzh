@@ -83,9 +83,9 @@ Im Abschnitt User-Management kann man weitere User-Accounts und Passwörter anle
 ### Beitritt zur Gruppe „Quellen zur Zürcher Geschichte“
 Zur Gruppe „Quellen zur Zuercher Geschichte“ hinzugefügt werden. (Nur bestehende Mitglieder:innen in der Gruppe mit den Rollen „Maintainer“ oder „Owner“ können neue Mitglieder:innen hinzufügen)
 
-![](DraggedImage-1.tiff)
+![](DraggedImage-1.jpg)
 
-![](DraggedImage-2.tiff)
+![](DraggedImage-2.jpg)
 
 ### Applikationstoken erstellen
 Ein Token wird benötigt, damit man später Git mit einer Dritt-Applikation ansteuern kann (zum Beispiel SourceTree, siehe unten)
@@ -170,11 +170,11 @@ Als nächstes sollen die beiden `.xar`-Files zur Exist-DB hinzugefügt werden. D
 
 Als nächstes wechselt man zum Package Manager:
 
-![](DraggedImage-4.tiff)
+![](DraggedImage-4.jpg)
 
 Nun können die beiden `.xar`-Files per Drag-and-Drop zum Package Manager hinzugefügt werden:
 
-![](DraggedImage-5.tiff)
+![](DraggedImage-5.jpg)
 
 Wenn die Installation funktioniert hat, erscheinen nun beim Launcher der Exist-DB zwei neue Icons für „Quellen zur Zürcher Geschichte“ und „Quellen zur Zürcher Geschichte: Daten“. Wenn man auf das Icon „Quelle zur Zürcher Geschichte“ klickt, sollte die Applikation gestartet und angezeigt werden:
 
