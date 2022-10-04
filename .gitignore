@@ -1,5 +1,5 @@
 *.DS_Store
-qzh-1.1.22.xar
+qzh-*.xar
 .existdb.json
 .Ulysses-Settings.plist
 .Ulysses-Group.plist

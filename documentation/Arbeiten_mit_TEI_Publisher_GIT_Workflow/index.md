@@ -147,7 +147,7 @@ ant
 Dieser Befehl erzeugt die `.xar`-Datei. Der Speicherort der `.xar`-Datei wird auf der Konsole ausgegeben:
 
 ```bash
-/Users/jan/quellen-zur-zuercher-geschichte/build/qzh-1.1.22.xar
+/Users/jan/quellen-zur-zuercher-geschichte/build/qzh-0.1.xar
 ```
 
 Die gleichen Schritte sollten auch für das Daten-Repository durchgeführt werden:
