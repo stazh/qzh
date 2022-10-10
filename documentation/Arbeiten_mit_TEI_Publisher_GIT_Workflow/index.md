@@ -315,5 +315,3 @@ Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitLab bereits
 In diesem Video werden zwei mögliche Workflows vorgestellt: „Database as Master“ und „Git as Master“. In diesem Dokument ist nur die Version „Git as Master“ beschrieben.
 
 Das Video enthält auch eine grundlegende Einführung zum Thema GIT.
-
-## Test
