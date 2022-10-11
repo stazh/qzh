@@ -380,25 +380,29 @@ declare function api:output-organization($list, $letter as xs:string, $view as x
 
 declare function api:keywords($request as map(*)) {
     let $search := normalize-space($request?parameters?search)
+    let $log := util:log("info","search "|| $search )
     let $letterParam := $request?parameters?category
     let $view := $request?parameters?view
     let $sortDir := $request?parameters?dir
     let $limit := $request?parameters?limit
     let $editionseinheit := translate($request?parameters?editionseinheit, "/","")
     let $log := util:log("info","api:keywords $search:"||$search || " - $letterParam:"||$letterParam||" - $limit:" || $limit || " - $editionseinheit:" || $editionseinheit)
+
     let $keywords := if( $editionseinheit = $config:data-collections )
                     then (
                         if ($search and $search != '') 
                         then (
-                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:org[ft:query(., 'category-desc:(' || $search || '*)')]
+                            (:improvement: use same search logic for keywords, places, organizations and people:)
+                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:category[matches( ./tei:desc/text(), '^' || $search, 'i')] 
                         ) else (
-                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:org
+                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:category
                         )
                     )
                     else (
                         if ($search and $search != '') 
                         then (
-                            doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category[ft:query(., 'category-desc:(' || $search || '*)')]    
+                            (:improvement: use same search logic for keywords, places, organizations and people:)
+                            doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category[matches( ./tei:desc/text(), '^' || $search, 'i')] 
                         ) 
                         else (
                             doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category
