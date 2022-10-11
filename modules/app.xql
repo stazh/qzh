@@ -403,6 +403,19 @@ function app:load-organization($node as node(), $model as map(*), $name as xs:st
         }    
 };
 
+declare
+    %templates:wrap    
+    %templates:default("key","")
+function app:load-keyword($node as node(), $model as map(*), $name as xs:string, $key as xs:string) {
+    let $log := util:log("info", "app:load-keyword $name: " || $name || " - $key:" || $key)
+    let $keyword := doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category[@xml:id = xmldb:decode($key)]
+    return 
+        map {
+                "title": $keyword/tei:desc/text(),
+                "key":$key,
+                "gloss": $keyword/tei:gloss/text()
+        }    
+};
 
 
 declare
@@ -492,6 +505,24 @@ declare %templates:default("name", "")  function app:organization-name($node as 
             else ()
     return
         $name || " " || $date
+};
+
+declare %templates:default("name", "")  function app:keyword-name($node as node(), $model as map(*), $name as xs:string) {
+    let $name := $model?title
+    let $gloss := 
+            if ( string-length( $model?gloss ) > 0 ) 
+            then ( $model?gloss ) 
+            else ()
+    return
+        $name
+};
+
+declare %templates:default("name", "")  function app:keyword-gloss($node as node(), $model as map(*), $name as xs:string) {
+    let $gloss := 
+            if ( string-length( $model?gloss ) > 0 ) 
+            then ( $model?gloss ) 
+            else ()
+    return $gloss
 };
 
 
