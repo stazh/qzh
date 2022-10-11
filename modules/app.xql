@@ -538,6 +538,17 @@ declare function app:person-link($node as node(), $model as map(*)) {
         }    
 };
 
+declare function app:keyword-link($node as node(), $model as map(*)) {
+    let $key := $model?key
+    let $name := $model?title
+    return
+        element a { 
+            attribute href { "https://www.ssrq-sds-fds.ch/lemma-db-edit/views/view-keyword.xq?id=" || $key },
+            attribute target { "_blank"},
+            <span>{xmldb:decode($name)} <pb-i18n key="at-ssrq-sds-fds"/></span>
+        }    
+};
+
 declare %templates:default("name", "")  function app:place-link($node as node(), $model as map(*), $name as xs:string) {
     let $key := $model?key
     let $name := if($model?name) then ($model?name) else $name
@@ -610,7 +621,26 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                                 ) else()
                 }</div>
             </div>
-        )
+        ) else if ($type = "keyword")
+            then (
+                let $keywords := doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category
+                return
+
+                <div>
+                    <h3><pb-i18n key="mentions-of"/>{" '" ||  $keywords[@xml:id = $key]/tei:desc/text() || "':"}</h3>
+                    <div class="mentions">{
+                            for $col in $config:data-collections
+                                let $matches := collection($config:data-root || "/" || $col)//tei:TEI[.//tei:term/@ref = $key]
+                                let $log := util:log("info", "app:mentions: col: " || $col || " - $matches: " || count($matches))
+                                return
+                                    if(count($matches) > 0)
+                                    then (
+                                        <h4><pb-i18n key="menu.{$col}"/></h4>,
+                                        <ul>{app:ref-list("keyword", $matches, $col, $key)}</ul>
+                                    ) else()
+                    }</div>
+                </div>
+            )
         else ()
 };
 declare function app:ref-list($type, $list, $col, $key) {
