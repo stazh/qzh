@@ -41,6 +41,7 @@
   "head": "Introduction",
   "help-title": "Informations sur la recherche",
   "keyword": "Terme",
+  "keywords": "Termes",
   "language": "Langue",
   "literature": "Littérature",
   "living-reformation": "FR: Gelebte Reformation",
@@ -85,10 +86,12 @@
     "keywords": "Terme"
   },
   "menu": {
-	"people":"People",
+    "keywords":"FR-Stichworte",
+  	"people":"People",
   	"places": "Places",
   	"organizations":"Organizations",
-	"all-places" : "All Places",
+    "all-keywords": "FR-Alle-Stichworte",
+  	"all-places" : "All Places",
   	"all-people" : "All People",
   	"all-organizations" : "All Organizations",
   	"ZH_NF_I_1_3":"Stadt und Territorialstaat Zürich II (ZH NF I/1/3)",

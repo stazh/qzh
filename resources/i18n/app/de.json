@@ -41,6 +41,7 @@
   "head": "Einleitung",
   "help-title": "Erläuterungen zur Suche",
   "keyword": "Schlagwort",
+  "keywords": "Schlagworte",
   "language": "Sprache",
   "literature": "Literatur",
   "living-reformation": "Gelebte Reformation",
@@ -86,9 +87,11 @@
     "keywords": "Schlagwort"
   },
   "menu": {
-	"people":"Personen",
+    "keywords":"Stichworte",
+  	"people":"Personen",
   	"places": "Orte",
   	"organizations":"Organisationen",
+    "all-keywords": "Alle Stichworte",
   	"all-places" : "Alle Orte",
   	"all-people" : "Alle Personen",
   	"all-organizations" : "Alle Organisationen",

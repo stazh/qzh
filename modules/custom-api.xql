@@ -289,6 +289,7 @@ declare function api:output-person($list, $letter as xs:string, $view as xs:stri
     }
 };
 
+
 declare function api:organizations($request as map(*)) {
     let $search := normalize-space($request?parameters?search)
     let $letterParam := $request?parameters?category
@@ -372,6 +373,92 @@ declare function api:output-organization($list, $letter as xs:string, $view as x
                 <span>
                     <a href="{$org?3/tei:orgName/text()}?{$params}&amp;key={$org?3/@xml:id}">{$org?2}</a>
                     { if ($type) then <span class="type"> ({$type})</span> else () }
+                </span>
+    }
+};
+
+
+declare function api:keywords($request as map(*)) {
+    let $search := normalize-space($request?parameters?search)
+    let $letterParam := $request?parameters?category
+    let $view := $request?parameters?view
+    let $sortDir := $request?parameters?dir
+    let $limit := $request?parameters?limit
+    let $editionseinheit := translate($request?parameters?editionseinheit, "/","")
+    let $log := util:log("info","api:keywords $search:"||$search || " - $letterParam:"||$letterParam||" - $limit:" || $limit || " - $editionseinheit:" || $editionseinheit)
+    let $keywords := if( $editionseinheit = $config:data-collections )
+                    then (
+                        if ($search and $search != '') 
+                        then (
+                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:org[ft:query(., 'category-desc:(' || $search || '*)')]
+                        ) else (
+                            doc($config:data-root || "/taxonomy/taxonomy-" || $editionseinheit || ".xml")//tei:org
+                        )
+                    )
+                    else (
+                        if ($search and $search != '') 
+                        then (
+                            doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category[ft:query(., 'category-desc:(' || $search || '*)')]    
+                        ) 
+                        else (
+                            doc($config:data-root || "/taxonomy/taxonomy.xml")//tei:category
+                        )
+                    )
+    let $log := util:log("info","api:keywords  found keywords:"||count($keywords) )
+    let $byKey := for-each($keywords, function($keyword as element()) {
+        let $label := $keyword/tei:desc/text()
+        return
+            [lower-case($label), $label, $keyword]
+    })
+    let $sorted := api:sort($byKey, $sortDir)
+    let $letter := 
+        if (count($keywords) < $limit) then 
+            "Alle"
+        else if (not($letterParam) or $letterParam = '') then (
+            substring($sorted[1]?1, 1, 1) => upper-case()
+        )
+        else
+            $letterParam
+    let $byLetter :=
+        if ($letter = 'Alle') then
+            $sorted
+        else
+            filter($sorted, function($entry) {
+                starts-with($entry?1, lower-case($letter))
+            })
+
+    return
+        map {
+            "items": api:output-keyword($byLetter, $letter, $view, $search),
+            "categories":
+                if (count($keywords) < $limit) then
+                    []
+                else array {
+                    for $index in 1 to string-length('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+                    let $alpha := substring('ABCDEFGHIJKLMNOPQRSTUVWXYZ', $index, 1)
+                    let $hits := count(filter($sorted, function($entry) { starts-with($entry?1, lower-case($alpha))}))
+                    where $hits > 0
+                    return
+                        map {
+                            "category": $alpha,
+                            "count": $hits
+                        },
+                    map {
+                        "category": "Alle",
+                        "count": count($sorted)
+                    }
+                }
+        }
+};
+
+declare function api:output-keyword($list, $letter as xs:string, $view as xs:string, $search as xs:string?) {
+    array {
+        for $keyword in $list
+            let $letterParam := if ($letter = "Alle") then substring($keyword?3/tei:desc/text(), 1, 1) else $letter
+            let $params := "category=" || $letterParam || "&amp;view=" || $view || "&amp;search=" || $search
+            return
+                <span>
+                    <a href="{$keyword?3/tei:desc/text()}?{$params}&amp;key={$keyword?3/@xml:id}">{$keyword?2}</a>
                 </span>
     }
 };
