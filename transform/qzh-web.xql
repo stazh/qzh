@@ -1288,7 +1288,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                     "content": .,
                                     "ref": @ref,
                                     "label": ec:label('term'),
-                                    "value": let $id := replace(@ref, ' ', '-') let $target:= id($id, doc("/db/apps/qzh-data/taxonomy/taxonomy.xml")) let $letter := substring($id, 1, 1) => upper-case() return     if ($target) then ( <a href="https://www.ssrq-sds-fds.ch/lemma-db-edit/views/view-keyword.xq?id={$id}" target="_blank">{$target/desc/string()}</a>, if ($target/gloss) then( <span> ({$target/gloss/string()} )</span>) else () ) else (<a href="https://www.ssrq-sds-fds.ch/persons-db-edit/?query={$id}" target="_blank">{$id}</a>)
+                                    "value": let $id := replace(@ref, ' ', '-') let $target:= id($id, doc("/db/apps/qzh-data/taxonomy/taxonomy.xml")) let $letter := substring($id, 1, 1) => upper-case() return     if ($target) then ( <a href="../keyword/all/keyword?key={$id}" target="_blank">{$target/desc/string()}</a>, if ($target/gloss) then( <span> ({$target/gloss/string()} )</span>) else () ) else (<a href="https://www.ssrq-sds-fds.ch/persons-db-edit/?query={$id}" target="_blank">{$id}</a>)
                                 }
 
                                                         let $content := 
