@@ -455,6 +455,8 @@ declare
     %templates:default("editionseinheit","")
 function app:get-edition-unit($node as node(), $model as map(*), $editionseinheit as xs:string) {
     switch($editionseinheit) 
+        case "quellenstuecke" return   
+            <pb-i18n key="menu.quellenstuecke"/>     
         case "ZH_NF_II_11" return   
             <pb-i18n key="menu.ZH_NF_II_11"/>
         case "ZH_NF_II_3" return 
@@ -592,6 +594,9 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                     <h3><pb-i18n key="mentions-of"/>{" " ||  $places[@xml:id = $key]/@n/string()}</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
+                                (:example:)
+                                let $log := util:log("info", "Key: " || $key)
+                                let $log := util:log("info", "Collection: " || $config:data-root || "/" || $col)
                                 let $matches := collection($config:data-root || "/" || $col)//tei:TEI[(.//tei:placeName/@ref|.//tei:origPlace/@ref) = $key]
                                 let $log := util:log("info", "app:mentions: col: " || $col || " - $matches: " || count($matches))
                                 return
