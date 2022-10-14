@@ -1525,11 +1525,14 @@ declare function model:apply($config as map(*), $input as node()*) {
 
                     case element(category) return
                         if ($parameters?header='context') then
+
+                            let $log := util:log("info", "category: " || @xml)
+
                             let $params := 
                                 map {
                                     "content": .,
                                     "ref": @xml:id,
-                                    "value": (<a href="https://www.ssrq-sds-fds.ch/lemma-db-edit/views/view-keyword.xq?id={@xml:id}" target="_blank">{desc/string()}</a>, if(gloss) then(<span> ({gloss/string()})</span>) else ())
+                                    "value": (<a href="../keyword/all/keyword?key={@xml:id}" target="_blank">{desc/string()}</a>, if(gloss) then(<span> ({gloss/string()})</span>) else ())
                                 }
 
                                                         let $content := 
