@@ -702,7 +702,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                                     "fileDescTitle": titleStmt/title,
                                                     "fileDescPerson": ec:persName-list(titleStmt/respStmt[1]/persName),
                                                     "credits": ./publicationStmt/availability/p[@xml:id='facs']/text(),
-                                                    "link": 'http://localhost:8080/exist/apps/qzh/quellenstuecke/' || replace(seriesStmt/idno, '^(.*)_1$', '$1'),
+                                                    "link": '../' || substring-after(util:collection-name(.), '/db/apps/qzh-data/') || '/' ||  replace(seriesStmt/idno, '^(.*)_1$', '$1'),
                                                     "content": .
                                                 }
 
