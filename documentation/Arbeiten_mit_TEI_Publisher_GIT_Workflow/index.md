@@ -3,7 +3,7 @@
 ## Übersicht
 
 (Für eine vergrösserte Ansicht: siehe separate Datei)
-![](Aufbau-Git-Workflow.drawio.png)
+![][image-1]
 
 Auf die einzelnen Abschnitte in dieser Übersicht wird in diesem Dokument eingegangen.
 
@@ -15,7 +15,7 @@ Hinweis: Das Projekt „Rechtsquellen des Kantons Zürich“ besteht aus zwei Re
 
 ### Installationsanleitung
 
-Hier befindet sich eine Installationsanleitung für die eXist-DB und den TEI-Publisher: [https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation](https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation)
+Hier befindet sich eine Installationsanleitung für die eXist-DB und den TEI-Publisher: [https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation][1]
 
 Es gibt zwei Wege, die Applikation zu installieren: entweder über Docker oder als Standalone Java Applikation. 
 
@@ -25,15 +25,15 @@ Die Docker-Version hat einen eher instabilen Eindruck gemacht, deshalb ist die I
 
 ### Verwendete Java-Version
 
-Es gibt verschiedene Versionen der Java Runtime. Falls auf dem System Java noch nicht installiert ist, kann zum Beispiel die folgende Runtime verwendet werden: [https://www.java.com/de/download/manual.jsp](https://www.java.com/de/download/manual.jsp)
+Es gibt verschiedene Versionen der Java Runtime. Falls auf dem System Java noch nicht installiert ist, kann zum Beispiel die folgende Runtime verwendet werden: [https://www.java.com/de/download/manual.jsp][2]
 
 ### Installation von benötigen Hilfs-Packages
 
 Nach der Installation kann der eXist-Datenbank-Server gestartet werden und das Dashboard geöffnet werden:
 
-![](Bildschirmfoto%202022-10-04%20um%2009.31.02.png)
+![][image-2]
 
-![](Bildschirmfoto%202022-09-27%20um%2013.14.06.png)
+![][image-3]
 
 Standartmässig ist bereits ein Benutzer angelegt, mit dem man sich einloggen kann:
 
@@ -42,72 +42,76 @@ Standartmässig ist bereits ein Benutzer angelegt, mit dem man sich einloggen ka
 
 Anschliessend können über den Package Manager weitere Applikationen für die eXist-DB nachinstalliert werden:
 
-![](Bildschirmfoto%202022-09-27%20um%2013.16.33.png)
+![][image-4]
 
 Anscheinend gibt es momentan einen Bug, der verhindert, dass der TEI-Publisher seine Abhängigkeiten selbst lädt. Bei der Installation der Applikation „TEI Publisher“ kann es deshalb zu einem Fehler kommen. 
 
 Um den Fehler zu beheben, sollten zuerst zwei benötigte Abhängigkeiten installiert werden:
 
-![](Bildschirmfoto%202022-09-16%20um%2014.01.02.png)
+![][image-5]
 
-![](Bildschirmfoto%202022-09-16%20um%2014.01.25.png)
+![][image-6]
 
 Anschliessend kann auch der TEI Publisher installiert werden:
 
-![](Bildschirmfoto%202022-09-27%20um%2013.18.33.png)
+![][image-7]
 
 
 ### User-Management
 
 Im Abschnitt User-Management kann man weitere User-Accounts und Passwörter anlegen:
 
-![](DraggedImage.jpg)
+![][image-8]
 
 ## Schritt 2: Installation von Hilfstools: Ant, Node, npm (einmalig)
 
 ### Ant
 
-- ANT wird benötigt, um später aus dem Quellcode der Applikation eine `.xar`-Datei zu erzeugen: [https://ant.apache.org/bindownload.cgi](https://ant.apache.org/bindownload.cgi)
+- ANT wird benötigt, um später aus dem Quellcode der Applikation eine `.xar`-Datei zu erzeugen
+- Eine kurze Anleitung zur Installation von ANT befindet sich hier: [https://ant.apache.org/bindownload.cgi][3]
+- Die Anleitung ist etwas kompliziert, da man von Hand die Umgebungsvariabeln anpassen muss. Unter den folgenden Links ist die Anleitung noch etwas detailierter beschrieben:
+	- Windows: [https://mkyong.com/ant/how-to-install-apache-ant-on-windows/][4]
+	- Mac: Unter MacOS ist es am einfachsten, ein Packagemanager wie Homebrew zu verwenden, um ANT zu installieren. Eine Anleitung zur Installation von ANT mit Hilfe von Homebrew befindet sich hier: [https://www.youtube.com/watch?v=1AU8HqvgHXo][5]
 
 ### Node und npm
 
 - Node und Npm werden benötigt, um später mittels Visual Studio Code automatisch die Änderungen an den Codedateien zur Exist-Datenbank zu Synchronisieren.
-- Je nach Betriebssystem funktioniert die Installation unterschiedlich. Eine Anleitung befindet sich hier: [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- Je nach Betriebssystem funktioniert die Installation unterschiedlich. Eine Anleitung befindet sich hier: [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm][6]. Am einfachsten ist es, den Installer herunterzuladen, der relativ einfach durch die Installation führt. 
 
 
 ## Schritt 3: Anlegen eines GitLab Accounts (einmalig)
 
 ### Anlegen eines Accounts (kostenlos)
-[https://gitlab.com](https://gitlab.com)
+[https://gitlab.com][7]
 
 ### Beitritt zur Gruppe „Quellen zur Zürcher Geschichte“
 Zur Gruppe „Quellen zur Zuercher Geschichte“ hinzugefügt werden. (Nur bestehende Mitglieder:innen in der Gruppe mit den Rollen „Maintainer“ oder „Owner“ können neue Mitglieder:innen hinzufügen)
 
-![](DraggedImage-1.jpg)
+![][image-9]
 
-![](DraggedImage-2.jpg)
+![][image-10]
 
 ### Applikationstoken erstellen
 Ein Token wird benötigt, damit man später Git mit einer Dritt-Applikation ansteuern kann (zum Beispiel SourceTree, siehe unten)
 
-![](Bildschirmfoto%202022-10-03%20um%2014.02.05.png)
+![][image-11]
 
-![](Bildschirmfoto%202022-10-03%20um%2014.03.08.png)
+![][image-12]
 
 Nach dem Generieren des Tokens wird das Token auf der Benutzeroberfläche angezeigt. Das Token dient später als Passwort für Sourcetree und sollte zwischengespeichert werden um es später zu verwenden.
 
-![](Bildschirmfoto%202022-10-03%20um%2015.02.30.png)
+![][image-13]
 
 ## Schritt 4: GitLab Zugangsdaten zum Git-Client hinzufügen (einmalig)
 
 Wenn ein grafischer Git-Client wie Sourcetree verwendet wird, können die Zugangsdaten zu GitLab in den Einstellungen hinterlegt werden:
 
-![](Bildschirmfoto%202022-10-03%20um%2013.58.10.png)
-![](DraggedImage-3.jpg)
+![][image-14]
+![][image-15]
 
 Hinweis: Als Passwort wird das zuvor generierte Token eingegeben, und nicht das Passwort, dass bei der Registrierung für GitLab gewählt wurde.
 
-![](Bildschirmfoto%202022-10-03%20um%2013.58.35.png)
+![][image-16]
 
 
 
@@ -128,9 +132,9 @@ git clone https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuerche
 
 Statt die Git-Konsole zu verwenden, kann auch ein grafischer Git-Client (zum Beispiel SourceTree) verwendet werden: 
 
-![](Bildschirmfoto%202022-09-27%20um%2011.25.11.png)
-![](Bildschirmfoto%202022-10-04%20um%2008.53.21.png)
-![](Bildschirmfoto%202022-10-04%20um%2008.53.43.png)
+![][image-17]
+![][image-18]
+![][image-19]
 
 ## Schritt 6: Applikation zur Exist-DB hinzufügen (einmalig)
 
@@ -166,19 +170,19 @@ auch hier wird wieder der Speicherort auf der Konsole ausgegeben:
 
 Als nächstes sollen die beiden `.xar`-Files zur Exist-DB hinzugefügt werden. Dazu öffnet man das Dashboard der Exist-DB und meldet sich mit dem Nutzer `admin` an. Das Passwort kann leer gelassen werden:
 
-![](Bildschirmfoto%202022-10-04%20um%2009.33.37.png)
+![][image-20]
 
 Als nächstes wechselt man zum Package Manager:
 
-![](DraggedImage-4.jpg)
+![][image-21]
 
 Nun können die beiden `.xar`-Files per Drag-and-Drop zum Package Manager hinzugefügt werden:
 
-![](DraggedImage-5.jpg)
+![][image-22]
 
 Wenn die Installation funktioniert hat, erscheinen nun beim Launcher der Exist-DB zwei neue Icons für „Quellen zur Zürcher Geschichte“ und „Quellen zur Zürcher Geschichte: Daten“. Wenn man auf das Icon „Quelle zur Zürcher Geschichte“ klickt, sollte die Applikation gestartet und angezeigt werden:
 
-![](Bildschirmfoto%202022-10-04%20um%2009.39.39.png)
+![][image-23]
 
 
 
@@ -188,11 +192,11 @@ Hinweis: Statt mit Visual Studio Code kann auch direkt mit dem eXide-Editor gear
 
 Für die Arbeit mit Visual Studio Code sollte die Erweiterung **existdb-vscode** installiert werden (im Menü unter `Code > Einstellungen > Erweiterungen`):
 
-![](Bildschirmfoto%202022-09-20%20um%2011.25.30.png)
+![][image-24]
 
 Daneben soll auch die Erweiterung `tei-publisher-vscode` installiert werden:
 
-![](Bildschirmfoto%202022-09-20%20um%2012.32.04.png)
+![][image-25]
 
 Diese beiden Erweiterungen vereinfachen das Bearbeiten der Dateien und kümmern sich darum, dass Änderungen an den Codedateien automatisch mit der eXist-DB synchronisiert werden. 
 
@@ -202,14 +206,14 @@ Das Synchronisieren muss zuerst konfiguriert werden. Dies muss nacheinander für
 
 Dazu öffnet man ein Repository über das Menü `Datei > Öffnen`
 
-![](Bildschirmfoto%202022-09-27%20um%2011.37.39.png)
+![][image-26]
 
 Anschliessend drückt man in Visual Studio Code `Ctrl+Shift+P`, um alle Commands anzuzeigen (`CMD-Shift-P` auf dem Mac).
 
 Im sich öffnenden Dialog wählt man die Option `eXist-db: Create or edit configuration for folder`. Anschliessend wählt man das angezeigte Verzeichnis mit dem Code aus:
 
-![](Bildschirmfoto%202022-09-27%20um%2011.40.41.png)
-![](Bildschirmfoto%202022-09-27%20um%2011.43.06.png)
+![][image-27]
+![][image-28]
 
 Es öffnet sich eine Datei, in der die Synchronisation konfiguriert werden kann. In dieser Datei sollte man den Zielpfad anpassen, der angibt, in welches Verzeichnis innerhalb des TEI-Publishers der Sourcecode aus Visual Studio Code kopiert werden soll.
 
@@ -248,48 +252,49 @@ Für das zweite Repository sollten die gleichen Schritte wiederholt werden. Alle
 
 Auch hier sollen die folgenden Schritte für beide Repositories wiederholt werden. Innerhalb von Visual Studio Code klickt man wieder auf  `Ctrl+Shift+P`, um alle Commands anzuzeigen (`CMD-Shift-P` auf dem Mac). Über das angezeigte Menü wählt man diesmal `eXist-db: Control folder synchronisation to database`
 
-![](Bildschirmfoto%202022-09-27%20um%2011.50.13.png)
+![][image-29]
 
 Anschliessend wählt man `start synchronization`:
 
-![](Bildschirmfoto%202022-09-27%20um%2011.52.04.png)
+![][image-30]
 
 Wenn alles Funktioniert hat, sieht man jeweils beim Speichern einer Datei, wie die Änderung an die Exist-DB übertragen wird:
 
-![](Bildschirmfoto%202022-09-27%20um%2011.53.41.png)
+![][image-31]
 
-Hinweis: Nicht-gesicherte Dateien werden nicht automatisch übertragen. Bei ungültigen Änderungen wird jeweils eine Fehlermeldung angezeigt und die Änderungen nicht übertragen:
+Hinweis: Nicht-gesicherte Dateien werden nicht automatisch übertragen. Deshalb sollte man immer daran denken, die Files nach dem Editieren zu Speichern. Bei ungültigen Änderungen wird jeweils eine Fehlermeldung angezeigt und die Änderungen nicht übertragen. In diesem Fall muss der Fehler in der Datei zuerst behoben werden und anschliessend die Datei neu gespeichert werden, damit diese übertragen wird:
 
-![](Bildschirmfoto%202022-09-27%20um%2011.55.37.png)
+![][image-32]
 
+Wichtiger Hinweis 1: Grosse Dateien (zum Beispiel Bilddateien) können nicht auf diese Weise übertragen werden. Solche Dateien können jedoch über die eXide hochgeladen werden. Dazu klickt man in der eXide auf „File \> Manage“. Dort gibt es dann einen Button „Upload Files“ (symbolisiert mit einer Wolke).
+
+Wichtiger Hinweis 2: Durch den automatischen Sync können zwar einzelne Dateien übertragen werden, neu angelegte oder umbenannte Ordner werden jedoch nicht übertragen! Das bedeutet, dass man beim Anlegen eines neuen Ordners oder beim Umbenennen eines Ordners diese Änderung manuell in der eXide wiederholen muss. Dies ist auch der Fall, wenn man Code-Änderungen von GitLab pullt, welche eine Änderung an der Ordnerstruktur zur Folge haben.
+
+###  Was kann man tun, wenn der Code in eXide und die lokalen Codedateien voneinander abweichen?
+
+Es kann verschiedene Gründe geben, dass der Code in eXide und nicht mehr mit den lokalen Codedateien übereinstimmt:
+- Es wurde vor Codeänderungen vergessen, den Sync zu aktivieren
+- Beim Pullen von neuem Code über Gitlab konnten nicht alle Änderungen übertragen werden
+- Grosse Dateien wie Bilder wurden nicht durch den Sync übertragen
+- Änderungen an der Ordnerstruktur wurden nicht durch den Sync übertragen
+
+Damit an beiden Orten der Code wieder aktuell ist, kann man folgendermassen vorgehen:
+
+1. Das Projekt aus eXide löschen (je nachdem welches Repository betroffen ist, entweder der Ordner „apps/qzh“ oder der Ordner „apps/qzh-data“). Ordner und Dateien können in eXide über „File \> Manage“ gelöscht werden.
+2. Eine neue `.xar`-Datei aus aus den lokalen Codedateien erzeugen und dieses `.xar` erneut in eXide importieren (Siehe Abschnitt 6 in dieser Anleitung)
 
 ## Schritt 10: Automatisches Browser-Update einrichten (nach jedem Neustart der Exist-DB)
 
-Die in Visual Studio Code vorgenommenen Änderungen sollten direkt im Browser angezeigt werden.  Dazu öffnet man zuerst die Exist-DB:
-
-
-![](Bildschirmfoto%202022-10-04%20um%2009.41.27.png)
-Anschliessend wechselt man in eXide. Wenn alles funktioniert hat, sieht man dort die synchronisierten Dateien (unter „directory“):
-
-![](Bildschirmfoto%202022-10-04%20um%2009.41.54.png)
-
 Vorsicht: Der Sync funktioniert nur in eine Richtung. Änderungen innerhalb von eXide werden nicht an Visual Studio und das Filesystem zurückgespiegelt! Die Änderungen sollten deshalb nur in Visual Studio Code vorgenommen werden.
 
-Als nächstes aktiviert man im Menü von eXide die Option „Live Reload“:
 
-![](Bildschirmfoto%202022-09-27%20um%2012.00.15.png)
+Über das eXist-db Dashboard kann die Applikation gestartet werden.
 
-Die Applikation zeigt nun einen Link an, der mit einem Klick geöffnet werden kann:
-
-![](Bildschirmfoto%202022-10-04%20um%2009.42.10.png)
-
-Im Browser öffnet sich nun die Applikation:
-
-![](Bildschirmfoto%202022-10-04%20um%2009.42.26.png)
+![][image-33]
 
 Nach einer Änderung an den Dateien über Visual Studio Code kann einfach die Browser-Seite neu geladen werden, um die Änderungen live anzuzeigen.
 
-![](Bildschirmfoto%202022-09-27%20um%2012.03.19.png)
+![][image-34]
 
 **Hinweis**: Es kann sein, dass gewisse Änderungen nicht sofort sichtbar sind, weil sie vom Browser ge-cached wurden. In diesem Fall sollte der Cache des Browsers gelöscht werden oder der „Inkognito-Modus“ des Browsers verwendet werden.
 
@@ -299,7 +304,7 @@ Nach einer Änderung an den Dateien über Visual Studio Code kann einfach die Br
 
 Bei SourceTree wählt man über die Checkbox sämtliche Änderungen aus, die man „committen“ möchte und klickt anschliessend unten rechts auf „Commit“. Um die Änderungen schlussendlich auf GitLab zu laden, klickt man auf den Button „Push“.
 
-![](Bildschirmfoto%202022-10-04%20um%2009.43.31.png)
+![][image-35]
 
 
 ## Schritt 12: Änderungen vom GIT-Repository pullen (regelmässig)
@@ -310,8 +315,53 @@ Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitLab bereits
 
 ## Weitere Ressourcen
 
-[https://www.youtube.com/watch?v=dyY539HzN6Q](https://www.youtube.com/watch?v=dyY539HzN6Q)
+[https://www.youtube.com/watch?v=dyY539HzN6Q][8]
 
 In diesem Video werden zwei mögliche Workflows vorgestellt: „Database as Master“ und „Git as Master“. In diesem Dokument ist nur die Version „Git as Master“ beschrieben.
 
 Das Video enthält auch eine grundlegende Einführung zum Thema GIT.
+
+[1]:	https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation
+[2]:	https://www.java.com/de/download/manual.jsp
+[3]:	https://ant.apache.org/bindownload.cgi
+[4]:	https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
+[5]:	https://www.youtube.com/watch?v=1AU8HqvgHXo
+[6]:	https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+[7]:	https://gitlab.com
+[8]:	https://www.youtube.com/watch?v=dyY539HzN6Q
+
+[image-1]:	Aufbau-Git-Workflow.drawio.png
+[image-2]:	Bildschirmfoto%202022-10-04%20um%2009.31.02.png
+[image-3]:	Bildschirmfoto%202022-09-27%20um%2013.14.06.png
+[image-4]:	Bildschirmfoto%202022-09-27%20um%2013.16.33.png
+[image-5]:	Bildschirmfoto%202022-09-16%20um%2014.01.02.png
+[image-6]:	Bildschirmfoto%202022-09-16%20um%2014.01.25.png
+[image-7]:	Bildschirmfoto%202022-09-27%20um%2013.18.33.png
+[image-8]:	DraggedImage.jpg
+[image-9]:	DraggedImage-1.jpg
+[image-10]:	DraggedImage-2.jpg
+[image-11]:	Bildschirmfoto%202022-10-03%20um%2014.02.05.png
+[image-12]:	Bildschirmfoto%202022-10-03%20um%2014.03.08.png
+[image-13]:	Bildschirmfoto%202022-10-03%20um%2015.02.30.png
+[image-14]:	Bildschirmfoto%202022-10-03%20um%2013.58.10.png
+[image-15]:	DraggedImage-3.jpg
+[image-16]:	Bildschirmfoto%202022-10-03%20um%2013.58.35.png
+[image-17]:	Bildschirmfoto%202022-09-27%20um%2011.25.11.png
+[image-18]:	Bildschirmfoto%202022-10-04%20um%2008.53.21.png
+[image-19]:	Bildschirmfoto%202022-10-04%20um%2008.53.43.png
+[image-20]:	Bildschirmfoto%202022-10-04%20um%2009.33.37.png
+[image-21]:	DraggedImage-4.jpg
+[image-22]:	DraggedImage-5.jpg
+[image-23]:	Bildschirmfoto%202022-10-04%20um%2009.39.39.png
+[image-24]:	Bildschirmfoto%202022-09-20%20um%2011.25.30.png
+[image-25]:	Bildschirmfoto%202022-09-20%20um%2012.32.04.png
+[image-26]:	Bildschirmfoto%202022-09-27%20um%2011.37.39.png
+[image-27]:	Bildschirmfoto%202022-09-27%20um%2011.40.41.png
+[image-28]:	Bildschirmfoto%202022-09-27%20um%2011.43.06.png
+[image-29]:	Bildschirmfoto%202022-09-27%20um%2011.50.13.png
+[image-30]:	Bildschirmfoto%202022-09-27%20um%2011.52.04.png
+[image-31]:	Bildschirmfoto%202022-09-27%20um%2011.53.41.png
+[image-32]:	Bildschirmfoto%202022-09-27%20um%2011.55.37.png
+[image-33]:	Bildschirmfoto%202022-10-04%20um%2009.42.26.png
+[image-34]:	Bildschirmfoto%202022-09-27%20um%2012.03.19.png
+[image-35]:	Bildschirmfoto%202022-10-04%20um%2009.43.31.png
