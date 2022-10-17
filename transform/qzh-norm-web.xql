@@ -1080,7 +1080,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                     if (@ref) then
                                         ext-html:link($config, ., ("tei-persName4", "semantic", "person", css:map-rend-to-class(.)), ., (), ())
                                     else
-                                        $config?apply($config, ./node())
+                                        <a class="{("tei-persName4", "semantic", "person", css:map-rend-to-class(.))}" href="../people/all/">{.}</a>
                     case element(lg) return
                         html:block($config, ., ("tei-lg", css:map-rend-to-class(.)), .)
                     case element(front) return
