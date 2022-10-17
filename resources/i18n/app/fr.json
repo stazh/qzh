@@ -86,11 +86,11 @@
     "keywords": "Terme"
   },
   "menu": {
-    "keywords":"FR-Stichworte",
+    "keywords":"FR-Schlagwörter",
   	"people":"People",
   	"places": "Places",
   	"organizations":"Organizations",
-    "all-keywords": "FR-Alle-Stichworte",
+    "all-keywords": "FR-Alle-Schlagwörter",
   	"all-places" : "All Places",
   	"all-people" : "All People",
   	"all-organizations" : "All Organizations",

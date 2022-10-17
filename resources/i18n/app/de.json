@@ -87,11 +87,11 @@
     "keywords": "Schlagwort"
   },
   "menu": {
-    "keywords":"Stichworte",
+    "keywords":"Schlagwörter",
   	"people":"Personen",
   	"places": "Orte",
   	"organizations":"Organisationen",
-    "all-keywords": "Alle Stichworte",
+    "all-keywords": "Alle Schlagwörter",
   	"all-places" : "Alle Orte",
   	"all-people" : "Alle Personen",
   	"all-organizations" : "Alle Organisationen",
