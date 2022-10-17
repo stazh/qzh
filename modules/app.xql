@@ -573,7 +573,7 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
             let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = $key]
             return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"]/text()}</h3>
+                    <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"]/text()}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 let $matches := collection($config:data-root || "/" || $col)//tei:TEI[(.//tei:persName/@ref | @scribe) = $key]
@@ -591,7 +591,7 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
             let $places := doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
             return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  $places[@xml:id = $key]/@n/string()}</h3>
+                    <h3><pb-i18n key="mentions-of"/>{" " ||  $places[@xml:id = $key]/@n/string()}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 (:example:)
@@ -613,7 +613,7 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
             return
 
             <div>
-                <h3><pb-i18n key="mentions-of"/>{" " ||  $orgs[@xml:id = $key]/tei:orgName/text()}</h3>
+                <h3><pb-i18n key="mentions-of"/>{" " ||  $orgs[@xml:id = $key]/tei:orgName/text()}:</h3>
                 <div class="mentions">{
                         for $col in $config:data-collections
                             let $matches := collection($config:data-root || "/" || $col)//tei:TEI[.//tei:orgName/@ref = $key]
