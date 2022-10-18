@@ -263,7 +263,7 @@ declare function app:list-lemmata($node as node(), $model as map(*)) {
 
 declare function app:list-persons($node as node(), $model as map(*)) {
     let $persons :=
-        root($model?data)//tei:persName[@type="full_sorted"]/@ref |
+        root($model?data)//tei:persName[@type="full"]/@ref |
         root($model?data)//@scribe[starts-with(., 'per')]
     where exists($persons)
     return map {

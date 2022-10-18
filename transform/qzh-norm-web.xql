@@ -324,7 +324,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         if ($parameters?header='context') then
                             let $params := 
                                 map {
-                                    "persons": let $register := doc("/db/apps/qzh-data/person/person.xml") let $entries:=     for $p in root(.)//persName[@ref]   group by $k := $p/@ref     return     id($p[1]/@ref , $register)  return  for $p in $entries   order by $p/persName[@type="full_sorted"] ascending   return    $p,
+                                    "persons": let $register := doc("/db/apps/qzh-data/person/person.xml") let $entries:=     for $p in root(.)//persName[@ref]   group by $k := $p/@ref     return     id($p[1]/@ref , $register)  return  for $p in $entries   order by $p/persName[@type="full"] ascending   return    $p,
                                     "places": let $register := doc("/db/apps/qzh-data/place/place.xml") let $entries:=     for $p in root(.)//text//(placeName[@ref]|origPlace[@ref])          group by $k := $p/@ref   return     id($p[1]/@ref,$register)   return  for $p in $entries   order by $p/@n ascending   return    $p,
                                     "organizations":  let $register := doc("/db/apps/qzh-data/organization/organization.xml")  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    ,
                                     "taxonomies": let $register := doc("/db/apps/qzh-data/taxonomy/taxonomy.xml") let $entries:=     for $p in root(.)//keywords//term[starts-with(@ref, "key")]         group by $k := $p/@ref             return                 id($p[1]/@ref, $register)  return  for $p in $entries      order by $p/desc ascending          return                 $p,
@@ -1037,7 +1037,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 map {
                                     "content": .,
                                     "ref": @xml:id,
-                                    "value": ( <a href="../people/all/{./persName[@type='full_sorted']/string()}?key={@xml:id}" target="_blank">{./persName[@type='full_sorted']/string()}</a>, if (string-length(./note) > 0) then( <span> ({./note/string()})</span>) else () )
+                                    "value": ( <a href="../people/all/{./persName[@type='full']/string()}?key={@xml:id}" target="_blank">{./persName[@type='full']/string()}</a>, if (string-length(./note) > 0) then( <span> ({./note/string()})</span>) else () )
                                 }
 
                                                         let $content := 
@@ -1047,7 +1047,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         else
                             (
                                 html:inline($config, ., ("tei-person2", css:map-rend-to-class(.)), (ec:label('person'), ' ')),
-                                ext-html:link($config, ., ("tei-person3", css:map-rend-to-class(.)), persName[@type='full_sorted']/string(), '../people/all/' || persName[@type='full_sorted']/string() || '?key=' || @xml:id, '_new')
+                                ext-html:link($config, ., ("tei-person3", css:map-rend-to-class(.)), persName[@type='full']/string(), '../people/all/' || persName[@type='full']/string() || '?key=' || @xml:id, '_new')
                             )
 
                     case element(titlePage) return

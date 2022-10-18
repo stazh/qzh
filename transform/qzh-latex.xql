@@ -1385,7 +1385,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         else
                             (
                                 latex:inline($config, ., ("tei-person2", css:map-rend-to-class(.)), (ec:label('person'), ' ')),
-                                latex:link($config, ., ("tei-person3", css:map-rend-to-class(.)), persName[@type='full_sorted']/string(), (), map {"link": '../people/all/' || persName[@type='full_sorted']/string() || '?key=' || @xml:id, "target": '_new'})
+                                latex:link($config, ., ("tei-person3", css:map-rend-to-class(.)), persName[@type='full']/string(), (), map {"link": '../people/all/' || persName[@type='full']/string() || '?key=' || @xml:id, "target": '_new'})
                             )
 
                     case element(place) return
