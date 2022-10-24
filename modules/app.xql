@@ -576,7 +576,8 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                     <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"]/text()}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
-                                let $matches := collection($config:data-root || "/" || $col)//tei:TEI[(.//tei:persName/@ref | @scribe) = $key]
+                                (: Is there a more elegant solution instead of the nested substring-before and substring-after? :)
+                                let $matches := collection("/db/apps/qzh-data/quellenstuecke/")//tei:TEI[((.//tei:persName/@ref | @scribe) = $key) or (.//tei:idno/text()) = (substring-before($key, fn:concat('_', substring-after(substring-after($key,'_'), '_'))))]
                                 let $log := util:log("info", "app:mentions: col: " || $col || " - $matches: " || count($matches))
                                 return
                                     if(count($matches) > 0)
