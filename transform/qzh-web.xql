@@ -1321,7 +1321,8 @@ declare function model:apply($config as map(*), $input as node()*) {
                                     if (@ref) then
                                         ext-html:link($config, ., ("tei-persName4", "semantic", "person", css:map-rend-to-class(.)), ., (), ())
                                     else
-                                        <a class="{("tei-persName4", "semantic", "person", css:map-rend-to-class(.))}" href="../people/all/">{.}</a>
+                                        let $normalizedName := fn:normalize-space(.)
+                                        return <a class="{("tei-persName4", "semantic", "person", css:map-rend-to-class(.))}" href="../people/all/?category={$normalizedName}">{.}</a>
                                         
                     (: Semantic highlighting of organization names with tooltip and blue text color :)
                     case element(orgName) return
