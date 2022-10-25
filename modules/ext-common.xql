@@ -212,23 +212,9 @@ declare function pmf:get-canton($id as xs:string?) {
 
 declare function pmf:format-id($id as xs:string?) {
     let $temp := replace($id, "^QZH_", "")
-    let $temp := replace($temp, "^SSRQ_", "")
     let $temp  := replace($temp, "^(.+?)_(\d{3}.*?)(?:_\d{1,2})?$", "$1 $2")
-    let $parts := tokenize($temp)
-    let $ssrq  := substring-before($parts[1], '_')
-    let $vol   := replace(substring-after($parts[1], '_'), '_', '/')
-    let $vol   := replace($vol, "^([A-Z]{2})/", "$1 ")      (: space after canton abbreviation :)
-    let $id    :=
-        if (matches($parts[2], '^\d{8}')) then
-            replace($parts[2], '_', '-')
-        else if (matches($parts[2], '^\d{4}_\d{3}')) then
-            number(substring-before($parts[2], '_')) || '-' || number(substring-after($parts[2], '_'))
-        else if (count($parts) eq 1)
-        then ()
-        else
-            number($parts[2])
     return
-        "QZH " || $ssrq || ' ' || $vol || ' ' || $id
+        "QZH " || $temp
 };
 
 declare function pmf:get-article-nr($id as xs:string?) {
