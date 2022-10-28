@@ -377,7 +377,7 @@ declare
     %templates:wrap    
     %templates:default("key","")
 function app:load-person($node as node(), $model as map(*), $key as xs:string) {
-    let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = xmldb:decode($key)]
+    let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = xmldb:decode($key)][1]
     let $log := util:log("info", "app:load-person $name: " || $person/tei:persName[@type="full"]/text() || " - $key:" || $key)
     
     return 
@@ -573,7 +573,7 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
             let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = $key]
             return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"]/text()}:</h3>
+                    <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"][1]/text()}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 (: Is there a more elegant solution instead of the nested substring-before and substring-after? :)
