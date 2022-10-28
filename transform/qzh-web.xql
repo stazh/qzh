@@ -1305,9 +1305,10 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 html:inline($config, ., ("tei-persName2", css:map-rend-to-class(.)), .)
                             else
                                 if (@ref and id(replace(@ref, ' ', '-'), doc("/db/apps/qzh-data/person/person.xml"))) then
+
                                     let $params := 
                                         map {
-                                            "alternate": id(replace(@ref, ' ', '-'), doc("/db/apps/qzh-data/person/person.xml")),
+                                            "alternate": id(replace("per014037", ' ', '-'), doc("/db/apps/qzh-data/person/person.xml"))//.[1][1],
                                             "default": .,
                                             "ref": @ref,
                                             "content": .
