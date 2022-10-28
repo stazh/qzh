@@ -28,22 +28,18 @@
     <link rel="shortcut icon" type="image/png" href="resources/images/favicon-64.png" sizes="64x64"/>
     <link rel="stylesheet" href="resources/css/theme.css"/>
     <link rel="stylesheet" href="resources/css/theme-qzh.css"/>
+    <link rel="stylesheet" href="resources/css/index.css"/>
+
     <script type="module" src="pb-components-bundle.js" data-template="pages:load-components"/>
     <script src="resources/scripts/app/app.js"/>
     <script src="resources/scripts/app/index.js"/>
+
     <custom-style>
         <style>
-            .title-image {
-                display: block;
-            }
 
-            .title-image img {
-                width: 100%;
-            }
+
         </style>
     </custom-style>
-    <link rel="stylesheet" href="resources/css/index.css"/>
-
 </head>
 
 <body>
@@ -63,28 +59,12 @@
                         <h1 class="tp-title">
                                 <pb-i18n key="doctitle"/>
                             </h1>
-                        <p class="teaser">
-                                <pb-i18n key="title-text-1"/>
-                                <a href="https://suche.staatsarchiv.djiktzh.ch/suchinfo.aspx" target="_blank"><pb-i18n key="title-text-link-2"/></a>
-                                <pb-i18n key="title-text-2"/>
+                        <p class="teaser">Hello World
                         </p>
 
-                        <p class="teaser">
-                                <a href="start.html">
-                                    <pb-i18n key="title-text-link"/>
-                                </a>
-                            </p>
-                    </div>
-                    
-                    <a href="start.html" class="title-image">
-                        <img src="resources/images/title-image.JPG"/>
-                    </a>                                        
+                    </div>                                   
                 </main>
 
-                <footer class="version" style="display:none">
-                    App: v<span data-template="pages:version"/> /
-                    web components: v<pb-version/>
-                </footer>
             </app-header-layout>
         </app-drawer-layout>
 
