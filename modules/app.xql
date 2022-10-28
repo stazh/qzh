@@ -586,6 +586,16 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                                         <ul>{app:ref-list("place", $matches, $col, $key)}</ul>
                                     ) else()
                     }</div>
+
+                    <div>{
+                        if(matches($key, '^[A-Z0-9]+$')) (:if the key is all numeric, we assume that it is a GND-Identifier:)
+                        then (
+                            <a href="https://d-nb.info/gnd/{$key}" target="_blank"><h4>Eintrag in der GND-Datenbank anzeigen</h4></a>
+                        ) else()
+                    }</div>
+
+                    
+                    
                 </div>
         ) else if ($type = "place")
         then (
