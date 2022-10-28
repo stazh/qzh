@@ -1322,7 +1322,8 @@ declare function model:apply($config as map(*), $input as node()*) {
                                         ext-html:link($config, ., ("tei-persName4", "semantic", "person", css:map-rend-to-class(.)), ., (), ())
                                     else
                                         let $normalizedName := fn:normalize-space(.)
-                                        return <a class="{("tei-persName4", "semantic", "person", css:map-rend-to-class(.))}" href="../people/all/?category={$normalizedName}">{.}</a>
+                                        let $firstCharacterOfName := fn:substring($normalizedName, 1, 1)
+                                        return <a class="{("tei-persName4", "semantic", "person", css:map-rend-to-class(.))}" href="../people/all/?category={$firstCharacterOfName}">{.}</a>
                                         
                     (: Semantic highlighting of organization names with tooltip and blue text color :)
                     case element(orgName) return
