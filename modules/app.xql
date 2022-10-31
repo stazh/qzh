@@ -425,9 +425,10 @@ declare
 function app:load-place($node as node(), $model as map(*), $name as xs:string, $key as xs:string) {
     let $log := util:log("info", "app:load-place $name: " || $name || " - $key:" || $key)
     let $place := doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place[@xml:id = xmldb:decode($key)]
-    let $name := $place/tei:placeName[@type="main"]/string()
-    let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/")
-    let $title := if(string-length($type) >0 ) then ( $name || " (" || $type || ")" ) else ($name)
+    let $name := string-join($place/tei:placeName/text(), ", ") (:multiple names are separated with comma:)
+
+    (:let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/"):)
+    (:let $title := if(string-length($type) >0 ) then ( $name || " (" || $type || ")" ) else ($name):)
     
 (:    let $log := util:log("info", "app:load-place $title:" || $title):)
 (:    let $log := util:log("info", "app:load-place $geo:" || $place//tei:geo/text()):)
@@ -437,7 +438,7 @@ function app:load-place($node as node(), $model as map(*), $name as xs:string, $
             let $geo-token := tokenize($place//tei:geo/text(), " ")
             return 
                 map {
-                    "title": $title,
+                    "title": $name,
                     "key":$key,
                     "latitude": $geo-token[1],
                     "longitude": $geo-token[2]
@@ -445,7 +446,7 @@ function app:load-place($node as node(), $model as map(*), $name as xs:string, $
         )
         else (
             map {
-                "title": $title,
+                "title": $name,
                 "key":$key
             }    
         )

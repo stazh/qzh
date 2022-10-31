@@ -1297,7 +1297,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                                         html:inline(map:merge(($config, map:entry("template", true()))), ., ("tei-term", "semantic", "term", css:map-rend-to-class(.)), $content)
                         else
                             $config?apply($config, ./node())
-                    case element(persName) return
+                    case element(persName) return 
                         if (parent::respStmt and ../preceding-sibling::respStmt) then
                             html:inline($config, ., ("tei-persName1", css:map-rend-to-class(.)), .)
                         else
@@ -1364,7 +1364,9 @@ declare function model:apply($config as map(*), $input as node()*) {
                             if (@ref) then
                                 ext-html:link($config, ., ("tei-placeName2", "semantic", "place", css:map-rend-to-class(.)), ., (), ())
                             else
-                                $config?apply($config, ./node())
+                                let $normalizedName := fn:normalize-space(.)
+                                let $firstCharacterOfPlaceName := fn:substring($normalizedName, 1, 1)
+                                return <a class="{("tei-persName2", "semantic", "person", css:map-rend-to-class(.))}" href="../people/places/?category={$firstCharacterOfPlaceName}">{.}</a>
                     case element(origPlace) return
                         if (parent::origin and node()) then
                             html:listItem($config, ., ("tei-origPlace1", css:map-rend-to-class(.)), (ec:label('origPlace'), ec:colon(), .), ())
