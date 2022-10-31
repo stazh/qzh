@@ -608,7 +608,8 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                                 (:example:)
                                 let $log := util:log("info", "Key: " || $key)
                                 let $log := util:log("info", "Collection: " || $config:data-root || "/" || $col)
-                                let $matches := collection($config:data-root || "/" || $col)//tei:TEI[(.//tei:placeName/@ref|.//tei:origPlace/@ref) = $key]
+                                (: Is there a more elegant solution instead of the nested substring-before and substring-after? :)
+                                let $matches := collection($config:data-root || "/" || $col)//tei:TEI[((.//tei:placeName/@ref|.//tei:origPlace/@ref) = $key) or (.//tei:idno/text()) = (substring-before($key, fn:concat('_', substring-after(substring-after($key,'_'), '_'))))]
                                 let $log := util:log("info", "app:mentions: col: " || $col || " - $matches: " || count($matches))
                                 return
                                     if(count($matches) > 0)
