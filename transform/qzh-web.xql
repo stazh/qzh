@@ -1308,7 +1308,7 @@ declare function model:apply($config as map(*), $input as node()*) {
 
                                     let $params := 
                                         map {
-                                            "alternate": id(replace("per014037", ' ', '-'), doc("/db/apps/qzh-data/person/person.xml"))//.[1][1],
+                                            "alternate": id(replace(@ref, ' ', '-'), doc("/db/apps/qzh-data/person/person.xml"))//.[1][1],
                                             "default": .,
                                             "ref": @ref,
                                             "content": .
