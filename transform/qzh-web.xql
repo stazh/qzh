@@ -1366,7 +1366,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                             else
                                 let $normalizedName := fn:normalize-space(.)
                                 let $firstCharacterOfPlaceName := fn:substring($normalizedName, 1, 1)
-                                return <a class="{("tei-persName2", "semantic", "person", css:map-rend-to-class(.))}" href="../people/places/?category={$firstCharacterOfPlaceName}">{.}</a>
+                                return <a class="{("tei-persName2", "semantic", "person", css:map-rend-to-class(.))}" href="../places/all/?category={$firstCharacterOfPlaceName}">{.}</a>
                     case element(origPlace) return
                         if (parent::origin and node()) then
                             html:listItem($config, ., ("tei-origPlace1", css:map-rend-to-class(.)), (ec:label('origPlace'), ec:colon(), .), ())
