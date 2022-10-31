@@ -1518,7 +1518,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 map {
                                     "content": .,
                                     "ref": @xml:id,
-                                    "value": (<a href="../places/all/{placeName[@type="main"]/string()}?key={@xml:id}">{placeName[@type="main"]/string()}</a>, <span>{" " || placeName[@type="add"]/string()}</span>)
+                                    "value": (<a href="../places/all/{placeName[1]/string()}?key={@xml:id}">{placeName[1]/string()}</a>, <span>{" " || placeName[@type="add"]/string()}</span>)
                                 }
 
                                                         let $content := 
@@ -1528,7 +1528,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         else
                             (
                                 html:inline($config, ., ("tei-place2", css:map-rend-to-class(.)), (ec:label('place'), ' ')),
-                                html:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[@type="main"]/string(), (), '_new', map {"link": '../places/all/' || placeName[@type="main"]/string() || '?key=' || @xml:id}),
+                                html:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[1]/string(), (), '_new', map {"link": '../places/all/' || placeName[1]/string() || '?key=' || @xml:id}),
                                 html:inline($config, ., ("tei-place4", css:map-rend-to-class(.)), " " || placeName[@type="add"]/string())
                             )
 

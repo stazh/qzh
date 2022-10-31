@@ -1000,7 +1000,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                     "content": .,
                                     "label": ec:label('place'),
                                     "ref": @ref,
-                                    "value": let $id := replace(@ref, ' ', '-') let $target:= id($id, doc("/db/apps/qzh-data/place/place.xml")) let $letter := substring($id, 1, 1) => upper-case() return     if ($target) then ( <a href="../places/all/{$target/placeName[@type="main"]/string()}?key={$id}" target="_blank">{$target/placeName[@type="main"]/string()}</a>, <span>{" " || $target/placeName[@type="add"]/string()}</span>) else (<a href="https://www.ssrq-sds-fds.ch/places-db-edit/views/view-place.xq?id={$id}" target="_blank">{$id}</a>)
+                                    "value": let $id := replace(@ref, ' ', '-') let $target:= id($id, doc("/db/apps/qzh-data/place/place.xml")) let $letter := substring($id, 1, 1) => upper-case() return     if ($target) then ( <a href="../places/all/{$target/placeName[1]/string()}?key={$id}" target="_blank">{$target/placeName[1]/string()}</a>, <span>{" " || $target/placeName[@type="add"]/string()}</span>) else (<a href="https://www.ssrq-sds-fds.ch/places-db-edit/views/view-place.xq?id={$id}" target="_blank">{$id}</a>)
                                 }
 
                                                         let $content := 

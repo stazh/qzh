@@ -603,7 +603,7 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
             let $places := doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
             return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  $places[@xml:id = $key]/@n/string()}:</h3>
+                    <h3><pb-i18n key="mentions-of"/>{" " ||  string-join($places[@xml:id = $key]/tei:placeName/text(), ", ")}:</h3> <!-- multiple names are separated with comma -->
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 (:example:)

@@ -762,7 +762,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         else
                             (
                                 fo:inline($config, ., ("tei-place2", css:map-rend-to-class(.)), (ec:label('place'), ' ')),
-                                fo:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[@type="main"]/string(), (), map {"link": '../places/all/' || placeName[@type="main"]/string() || '?key=' || @xml:id, "target": '_new'}),
+                                fo:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[1]/string(), (), map {"link": '../places/all/' || placeName[1]/string() || '?key=' || @xml:id, "target": '_new'}),
                                 fo:inline($config, ., ("tei-place4", css:map-rend-to-class(.)), " " || placeName[@type="add"]/string())
                             )
 

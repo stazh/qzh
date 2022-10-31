@@ -1395,7 +1395,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                         else
                             (
                                 latex:inline($config, ., ("tei-place2", css:map-rend-to-class(.)), (ec:label('place'), ' ')),
-                                latex:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[@type="main"]/string(), (), map {"link": '../places/all/' || placeName[@type="main"]/string() || '?key=' || @xml:id, "target": '_new'}),
+                                latex:link($config, ., ("tei-place3", css:map-rend-to-class(.)), placeName[1]/string(), (), map {"link": '../places/all/' || placeName[1]/string() || '?key=' || @xml:id, "target": '_new'}),
                                 latex:inline($config, ., ("tei-place4", css:map-rend-to-class(.)), " " || placeName[@type="add"]/string())
                             )
 
