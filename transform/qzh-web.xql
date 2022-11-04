@@ -167,7 +167,8 @@ declare %private function model:template-fileDesc11($config as map(*), $node as 
                                 <iron-icon icon="icons:info"/>
                             </span><pb-popover placement="bottom" for="info">
                                     <p>
-                                        {$config?apply-children($config, $node, $params?stmtTitle)}, hg. von {$config?apply-children($config, $node, $params?editor)},
+                                        
+                                        {if (exists($params?stmtLink)) then <a href="{$params?stmtLink}" target="blank">{$config?apply-children($config, $node, $params?stmtTitle)}</a> else $config?apply-children($config, $node, $params?stmtTitle)}, hg. von {$config?apply-children($config, $node, $params?editor)},
                                         <pb-i18n key="transcribed-by">transkribiert von</pb-i18n>{$config?apply-children($config, $node, $params?transcript)}
                                     </p>
                                     <p>
@@ -697,6 +698,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                                     "idno-canton": ec:get-canton(seriesStmt/idno),
                                                     "idno-format": ec:format-id(seriesStmt/idno),
                                                     "stmtTitle": seriesStmt/title,
+                                                    "stmtLink": seriesStmt/link,
                                                     "editor": /seriesStmt/respStmt/resp[text() = "Herausgeberschaft"]/preceding-sibling::persName/text(),
                                                     "transcript": titleStmt/respStmt/resp[@key = "transcript"]/preceding-sibling::persName/text(),
                                                     "fileDescTitle": titleStmt/title,

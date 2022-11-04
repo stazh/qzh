@@ -321,7 +321,8 @@ declare variable $config:data-default := $config:data-root;
  :)
 declare variable $config:data-exclude := (
     doc($config:data-root || "/taxonomy.xml")/tei:TEI,
-    collection($config:data-root || "/SG/SG_III_4/latest")/tei:TEI
+    collection($config:data-root || "/SG/SG_III_4/latest")/tei:TEI,
+    doc($config:data-root || "/help.xml")/tei:TEI
 );
 
 declare variable $config:default-odd :="qzh.odd";
