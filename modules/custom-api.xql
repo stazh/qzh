@@ -283,7 +283,8 @@ declare function api:output-person($list, $letter as xs:string, $view as xs:stri
             let $params := "category=" || $letterParam || "&amp;view=" || $view || "&amp;search=" || $search
             return
                 <span class="person">
-                    <a href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}</a> { if (starts-with($person?3/@xml:id, "GND_")) then <iron-icon icon="icons:perm-identity"></iron-icon> else () }
+                    <!-- todo: is there a better alternative for the nested "replace" and "substring-after"? Something like substring-after-last? -->
+                    <a href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}</a> { if (starts-with($person?3/@xml:id, "QZH_")) then <span> ({replace(replace($person?3/@xml:id, ("_" || substring-after(substring-after($person?3/@xml:id, "_"), "_")), ""), "_", " ")})</span> else () } { if (starts-with($person?3/@xml:id, "GND_")) then <iron-icon icon="icons:perm-identity"></iron-icon> else () }
                     { if ($dates) then <span class="dates"> ({$dates})</span> else () }
                 </span>
     }
