@@ -282,8 +282,8 @@ declare function api:output-person($list, $letter as xs:string, $view as xs:stri
             let $letterParam := if ($letter = "Alle") then substring($person?3/tei:persName[@type='full']/text(), 1, 1) else $letter
             let $params := "category=" || $letterParam || "&amp;view=" || $view || "&amp;search=" || $search
             return
-                <span>
-                    <a href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}</a>
+                <span class="person">
+                    <a href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}</a> { if (starts-with($person?3/@xml:id, "GND_")) then <iron-icon icon="icons:perm-identity"></iron-icon> else () }
                     { if ($dates) then <span class="dates"> ({$dates})</span> else () }
                 </span>
     }
