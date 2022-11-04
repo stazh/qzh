@@ -36,10 +36,10 @@ declare %private function model:template-teiHeader($config as map(*), $node as n
   <ul class="persons">
     {$config?apply-children($config, $node, $params?persons)}
   </ul>
-  <h3 class="organization {$config?apply-children($config, $node, $params?emptyOrg)}"><pb-i18n key="register.organisation"/></h3>
+<!--<h3 class="organization {$config?apply-children($config, $node, $params?emptyOrg)}"><pb-i18n key="register.organisation"/></h3>
   <ul class="organizations">
     {$config?apply-children($config, $node, $params?organizations)}
-  </ul>
+  </ul>-->
   <h3 class="term {$config?apply-children($config, $node, $params?emptyTerm)}"><pb-i18n key="register.keywords"/></h3>
   <ul class="keywords">
     {$config?apply-children($config, $node, $params?taxonomies)}
@@ -305,7 +305,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 map {
                                     "persons": let $register := doc("/db/apps/qzh-data/person/person.xml") let $entries:=     for $p in root(.)//persName[@ref]   group by $k := $p/@ref     return     id($p[1]/@ref , $register)  return  for $p in $entries   order by $p/persName[@type="full"] ascending   return    $p,
                                     "places": let $register := doc("/db/apps/qzh-data/place/place.xml") let $entries:=     for $p in root(.)//text//(placeName[@ref]|origPlace[@ref])          group by $k := $p/@ref   return     id($p[1]/@ref,$register)   return  for $p in $entries   order by $p/@n ascending   return    $p,
-                                    "organizations":  let $register := doc("/db/apps/qzh-data/organization/organization.xml")  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    ,
+                                    (:"organizations":  let $register := doc("/db/apps/qzh-data/organization/organization.xml")  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    ,:)
                                     "taxonomies": let $register := doc("/db/apps/qzh-data/taxonomy/taxonomy.xml") let $entries:=     for $p in root(.)//keywords//term[starts-with(@ref, "key")]         group by $k := $p/@ref             return                 id($p[1]/@ref, $register)  return  for $p in $entries      order by $p/desc ascending          return                 $p,
                                     "emptyPlace": if(root(.)//text//(placeName[@ref]|origPlace[@ref])) then () else ("hidden") ,
                                     "emptyPerson": if(root(.)//persName[@ref]) then () else ("hidden") ,
@@ -1511,7 +1511,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 html:inline($config, ., ("tei-place4", css:map-rend-to-class(.)), " " || placeName[@type="add"]/string())
                             )
 
-                    case element(org) return
+                    (:case element(org) return
                         if ($parameters?header='context') then
                             let $params := 
                                 map {
@@ -1529,7 +1529,7 @@ declare function model:apply($config as map(*), $input as node()*) {
                                 html:inline($config, ., ("tei-org2", css:map-rend-to-class(.)), (ec:label('organisation'), ' ')),
                                 ext-html:link($config, ., ("tei-org3", css:map-rend-to-class(.)), orgName/string(), '../organization/all/' || orgName/string() || '?key=' || @xml:id, '_new'),
                                 html:inline($config, ., ("tei-org4", css:map-rend-to-class(.)), " " || @type/string())
-                            )
+                            ):)
 
                     case element(category) return
                         if ($parameters?header='context') then

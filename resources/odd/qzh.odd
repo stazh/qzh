@@ -505,7 +505,7 @@
             <param name="uri" value="'https://www.ssrq-sds-fds.ch/persons-db-edit/?query=' || replace(@ref, ' ', '-')"/>
         </model>
                 </elementSpec>
-                <elementSpec ident="orgName" mode="add">
+                <!--<elementSpec ident="orgName" mode="add">
                     <desc>Semantic highlighting of organization names with tooltip and blue text color</desc>
                     <model predicate="@ref and id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/organization/organization.xml&#34;))" behaviour="inline" cssClass="semantic person">
             <param name="alternate" value="id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/organization/organization.xml&#34;))"/>
@@ -521,7 +521,7 @@
                     <model predicate="@ref" behaviour="link" cssClass="semantic organization">
             <param name="uri" value="'https://www.ssrq-sds-fds.ch/persons-db-edit/?query=' || replace(@ref, ' ', '-')"/>
         </model>
-                </elementSpec>
+                </elementSpec>-->
                 <elementSpec ident="placeName" mode="add">
                     <model predicate="@ref and id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/place/place.xml&#34;))" behaviour="inline" cssClass="semantic place">
             <param name="alternate" value="id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/place/place.xml&#34;))"/>
@@ -1173,10 +1173,10 @@
   <ul class="persons">
     [[persons]]
   </ul>
-  <h3 class="organization [[emptyOrg]]"><pb-i18n key="register.organisation"/></h3>
+  <!--<h3 class="organization [[emptyOrg]]"><pb-i18n key="register.organisation"/></h3>
   <ul class="organizations">
     [[organizations]]
-  </ul>
+  </ul>-->
   <h3 class="term [[emptyTerm]]"><pb-i18n key="register.keywords"/></h3>
   <ul class="keywords">
     [[taxonomies]]
@@ -1309,7 +1309,7 @@
             </model>
         </modelSequence>
                 </elementSpec>
-                <elementSpec ident="org" mode="add">
+                <!--<elementSpec ident="org" mode="add">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
             <param name="content" value="."/>
             <param name="ref" value="@xml:id"/>
@@ -1332,7 +1332,7 @@
                 <param name="content" value="&#34; &#34; || @type/string()"/>
             </model>
         </modelSequence>
-                </elementSpec>
+                </elementSpec>-->
                 <elementSpec ident="category" mode="add">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
             <param name="content" value="."/>

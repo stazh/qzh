@@ -43,10 +43,10 @@ declare %private function model:template-teiHeader($config as map(*), $node as n
   <ul class="persons">
     {$config?apply-children($config, $node, $params?persons)}
   </ul>
-  <h3 class="organization {$config?apply-children($config, $node, $params?emptyOrg)}"><pb-i18n key="register.organisation"/></h3>
-  <ul class="organizations">
+    <!--<h3 class="organization {$config?apply-children($config, $node, $params?emptyOrg)}"><pb-i18n key="register.organisation"/></h3>
+    <ul class="organizations">
     {$config?apply-children($config, $node, $params?organizations)}
-  </ul>
+  </ul>-->
   <h3 class="term {$config?apply-children($config, $node, $params?emptyTerm)}"><pb-i18n key="register.keywords"/></h3>
   <ul class="keywords">
     {$config?apply-children($config, $node, $params?taxonomies)}

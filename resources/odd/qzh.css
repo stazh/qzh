@@ -118,7 +118,7 @@ iron-icon {
     color: #055005;
 }
 
-.person, .organization {
+.person/*, .organization*/ {
     color: #395576;
 }
 
