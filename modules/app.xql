@@ -589,9 +589,9 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                     }</div>
 
                     <div>{
-                        if(matches($key, '^[A-Z0-9]+$')) (:if the key is all numeric, we assume that it is a GND-Identifier:)
+                        if(matches($key, '^GND_[A-Z0-9]+$')) (:if the key is all numeric and has the prefix "GND", we assume that it is a GND-Identifier:)
                         then (
-                            <a href="https://d-nb.info/gnd/{$key}" target="_blank"><h4>Eintrag in der GND-Datenbank anzeigen</h4></a>
+                            <a href="https://d-nb.info/gnd/{substring-after($key, "GND_")}" target="_blank"><h4>Eintrag in der GND-Datenbank anzeigen</h4></a>
                         ) else()
                     }</div>
 
