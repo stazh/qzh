@@ -278,14 +278,35 @@ declare function api:people($request as map(*)) {
 declare function api:output-person($list, $letter as xs:string, $view as xs:string, $search as xs:string?) {
     array {
         for $person in $list
-            let $dates := $person?3/tei:note[@type="date"]/text()
+            let $dates := $person?3/tei:dateOfTheSource/text()
             let $letterParam := if ($letter = "Alle") then substring($person?3/tei:persName[@type='full']/text(), 1, 1) else $letter
             let $params := "category=" || $letterParam || "&amp;view=" || $view || "&amp;search=" || $search
+            let $sourceTitle := replace(replace($person?3/@xml:id, ("_" || substring-after(substring-after($person?3/@xml:id, "_"), "_")), ""), "_", " ")
+            let $hasGNDIdenifier := starts-with($person?3/@xml:id, "GND_")
+            let $hasDateInformation := $dates and $dates != ""
+            let $shouldDisplaySourceTitle := starts-with($person?3/@xml:id, "QZH_") and not($hasGNDIdenifier)
+
+
+
             return
                 <span class="person">
                     <!-- todo: is there a better alternative for the nested "replace" and "substring-after"? Something like substring-after-last? -->
-                    <a href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}</a> { if (starts-with($person?3/@xml:id, "QZH_")) then <span> ({replace(replace($person?3/@xml:id, ("_" || substring-after(substring-after($person?3/@xml:id, "_"), "_")), ""), "_", " ")})</span> else () } { if (starts-with($person?3/@xml:id, "GND_")) then <iron-icon icon="icons:perm-identity"></iron-icon> else () }
-                    { if ($dates) then <span class="dates"> ({$dates})</span> else () }
+                    <a 
+                        href="{$person?3/tei:persName[@type='full']/text()}?{$params}&amp;key={$person?3/@xml:id}">{$person?2}
+                    </a> 
+                    
+                    { if ($shouldDisplaySourceTitle)
+                        then 
+                            if ($hasDateInformation)
+                                then <span> ({$sourceTitle}, {$dates})</span>
+                                else <span> ({$sourceTitle})</span>
+                        else () 
+                    } 
+
+                    { if ($hasGNDIdenifier) 
+                        then <iron-icon icon="icons:perm-identity"></iron-icon> 
+                        else () 
+                    }
                 </span>
     }
 };
