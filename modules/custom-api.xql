@@ -201,7 +201,7 @@ declare function api:people($request as map(*)) {
     let $limit := $request?parameters?limit
     let $editionseinheit := translate($request?parameters?editionseinheit, "/","")
     let $log := util:log("info","api:people $search:"||$search || " - $letterParam:"||$letterParam||" - $limit:" || $limit || " - $editionseinheit:" || $editionseinheit)
-    let $peoples := if( $editionseinheit = $config:data-collections )
+    let $people := if( $editionseinheit = $config:data-collections )
                             then (
                                 if ($search and $search != '') 
                                 then (
@@ -219,12 +219,12 @@ declare function api:people($request as map(*)) {
                                     doc($config:data-root || "/person/person.xml")//tei:person
                                 )
                             )
-    let $sorted_peoples := for $people in $peoples 
+    let $sorted_people := for $people in $people 
                             order by $people/tei:persName[@type='sorted_full'] ascending
                             return
                                 $people
-    let $log := util:log("info","api:people  found people:"||count($sorted_peoples) )
-    let $byKey := for-each($sorted_peoples, function($person as element()) {
+    let $log := util:log("info","api:people  found people:"||count($sorted_people) )
+    let $byKey := for-each($sorted_people, function($person as element()) {
         let $label := $person/tei:persName[@type='full']/text()
         let $sortKey :=
             if (starts-with($label, "von ")) then
@@ -236,7 +236,7 @@ declare function api:people($request as map(*)) {
     })
     let $sorted := api:sort($byKey, $sortDir)
     let $letter := 
-        if (count($sorted_peoples) < $limit) then 
+        if (count($sorted_people) < $limit) then 
             "Alle"
         else if (not($letterParam) or $letterParam = '') then (
             substring($sorted[1]?1, 1, 1) => upper-case()
@@ -255,7 +255,7 @@ declare function api:people($request as map(*)) {
         map {
             "items": api:output-person($byLetter, $letter, $view, $search),
             "categories":
-                if (count($sorted_peoples) < $limit) then
+                if (count($sorted_people) < $limit) then
                     []
                 else array {
                     for $index in 1 to string-length('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
