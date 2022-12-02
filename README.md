@@ -13,7 +13,7 @@ Dieses Projekt ist eine modifizierte Version der TEI Publisher Webapplikation "Z
   
 ## Daten
 
-Das Projekt besteht aus zwei Repositories: Der Webapplikation (dieses Repository) und dem Daten-Repository mit den Quellenstücken. Das Daten-Repository befindet sich hier: https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte-daten
+Das Projekt besteht aus zwei Repositories: Der Webapplikation (dieses Repository) und dem Daten-Repository mit den Quellenstücken. Das Daten-Repository befindet sich hier: https://github.com/stazh/qzh-data
 Unter diesem Link befindet sich auch eine Anleitung zum Taggen von Quellenstücken.
 
 ## Hinweis für das Deployment auf dem Server

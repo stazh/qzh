@@ -12,10 +12,10 @@ Im Vergleich zu dieser ursprünglichen Version wurden folgende Änderungen vorge
 - Die Startseite wurde überarbeitet
 - Eine "About"-Seite wurde erstellt
 - Organisationen werden nicht mehr separat aufgeführt (keine Organisations-Übersicht und Aufzählung in den Quellenstücken)
-- Personen werden anderst erfasst, siehe https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte-daten
+- Personen werden anderst erfasst, siehe https://github.com/stazh/qzh-data
 - Bei Personen kann eine GND-Referenz angegeben werden. Eine Referenzierung der Personen ist nicht mehr zwingend.
 - Die Liste mit den Personen kann automatisch generiert werden
-- Orte werden anderst erfasst, siehe https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte-daten
+- Orte werden anderst erfasst, siehe https://github.com/stazh/qzh-data
 - Eine Referenzierung von Orten ist nicht mehr zwingend
 - In der Personenliste wird das Quellenstück und das Jahr des Quellenstücks angegeben, wenn die Person nur in einem Quellenstück erwähnt wird
 - Es wird überall "Lexia Fontes" verwendet
