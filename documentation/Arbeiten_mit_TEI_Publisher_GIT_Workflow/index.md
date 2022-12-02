@@ -79,53 +79,35 @@ Im Abschnitt User-Management kann man weitere User-Accounts und Passwörter anle
 - Je nach Betriebssystem funktioniert die Installation unterschiedlich. Eine Anleitung befindet sich hier: [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm][6]. Am einfachsten ist es, den Installer herunterzuladen, der relativ einfach durch die Installation führt. 
 
 
-## Schritt 3: Anlegen eines GitLab Accounts (einmalig)
+## Schritt 3: Anlegen eines GitHub (bzw. GitLab) Accounts (einmalig)
 
 ### Anlegen eines Accounts (kostenlos)
-[https://gitlab.com][7]
+
+[https://github.com][7]
 
 ### Beitritt zur Gruppe „Quellen zur Zürcher Geschichte“
 Zur Gruppe „Quellen zur Zuercher Geschichte“ hinzugefügt werden. (Nur bestehende Mitglieder:innen in der Gruppe mit den Rollen „Maintainer“ oder „Owner“ können neue Mitglieder:innen hinzufügen)
 
-![][image-9]
 
-![][image-10]
+## Schritt 4: GitHub Zugangsdaten zum Git-Client hinzufügen (einmalig)
 
-### Applikationstoken erstellen
-Ein Token wird benötigt, damit man später Git mit einer Dritt-Applikation ansteuern kann (zum Beispiel SourceTree, siehe unten)
-
-![][image-11]
-
-![][image-12]
-
-Nach dem Generieren des Tokens wird das Token auf der Benutzeroberfläche angezeigt. Das Token dient später als Passwort für Sourcetree und sollte zwischengespeichert werden um es später zu verwenden.
-
-![][image-13]
-
-## Schritt 4: GitLab Zugangsdaten zum Git-Client hinzufügen (einmalig)
-
-Wenn ein grafischer Git-Client wie Sourcetree verwendet wird, können die Zugangsdaten zu GitLab in den Einstellungen hinterlegt werden:
+Wenn ein grafischer Git-Client wie Sourcetree verwendet wird, können die Zugangsdaten zu GitHub in den Einstellungen hinterlegt werden:
 
 ![][image-14]
 ![][image-15]
-
-Hinweis: Als Passwort wird das zuvor generierte Token eingegeben, und nicht das Passwort, dass bei der Registrierung für GitLab gewählt wurde.
-
 ![][image-16]
 
 
-
-
-## Schritt 5: Beide Projekt-Repositories von GitLab klonen (einmalig)
+## Schritt 5: Beide Projekt-Repositories von GitHub (bzw. GitLab) klonen (einmalig)
 
 ### Variante 1: Über die Konsole klonen
 
 ```bash
-git clone https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte.git
+git clone https://github.com/stazh/qzh.git
 ```
 
 ```bash
-git clone https://gitlab.com/quellen-zur-zuercher-geschichte/quellen-zur-zuercher-geschichte-daten.git
+git clone https://github.com/stazh/qzh-data.git
 ```
 
 ### Variante 2: Über einen Git-Client klonen
@@ -248,7 +230,7 @@ Für das zweite Repository sollten die gleichen Schritte wiederholt werden. Alle
 
 ## Schritt 9: Automatische Synchronisation mit eXist-DB starten (nach jedem Neustart von Visual Studio Code)
 
-**Wichtig**: Dieser Schritt sollte immer als erstes gemacht werden, bevor man Änderungen am Code durchführt oder die neusten Änderungen des Codes von GitLab pullt.
+**Wichtig**: Dieser Schritt sollte immer als erstes gemacht werden, bevor man Änderungen am Code durchführt oder die neusten Änderungen des Codes von GitHub pullt.
 
 Auch hier sollen die folgenden Schritte für beide Repositories wiederholt werden. Innerhalb von Visual Studio Code klickt man wieder auf  `Ctrl+Shift+P`, um alle Commands anzuzeigen (`CMD-Shift-P` auf dem Mac). Über das angezeigte Menü wählt man diesmal `eXist-db: Control folder synchronisation to database`
 
@@ -268,13 +250,13 @@ Hinweis: Nicht-gesicherte Dateien werden nicht automatisch übertragen. Deshalb 
 
 Wichtiger Hinweis 1: Grosse Dateien (zum Beispiel Bilddateien) können nicht auf diese Weise übertragen werden. Solche Dateien können jedoch über die eXide hochgeladen werden. Dazu klickt man in der eXide auf „File \> Manage“. Dort gibt es dann einen Button „Upload Files“ (symbolisiert mit einer Wolke).
 
-Wichtiger Hinweis 2: Durch den automatischen Sync können zwar einzelne Dateien übertragen werden, neu angelegte oder umbenannte Ordner werden jedoch nicht übertragen! Das bedeutet, dass man beim Anlegen eines neuen Ordners oder beim Umbenennen eines Ordners diese Änderung manuell in der eXide wiederholen muss. Dies ist auch der Fall, wenn man Code-Änderungen von GitLab pullt, welche eine Änderung an der Ordnerstruktur zur Folge haben.
+Wichtiger Hinweis 2: Durch den automatischen Sync können zwar einzelne Dateien übertragen werden, neu angelegte oder umbenannte Ordner werden jedoch nicht übertragen! Das bedeutet, dass man beim Anlegen eines neuen Ordners oder beim Umbenennen eines Ordners diese Änderung manuell in der eXide wiederholen muss. Dies ist auch der Fall, wenn man Code-Änderungen von GitHub pullt, welche eine Änderung an der Ordnerstruktur zur Folge haben.
 
 ###  Was kann man tun, wenn der Code in eXide und die lokalen Codedateien voneinander abweichen?
 
 Es kann verschiedene Gründe geben, dass der Code in eXide und nicht mehr mit den lokalen Codedateien übereinstimmt:
 - Es wurde vor Codeänderungen vergessen, den Sync zu aktivieren
-- Beim Pullen von neuem Code über Gitlab konnten nicht alle Änderungen übertragen werden
+- Beim Pullen von neuem Code über GitHub konnten nicht alle Änderungen übertragen werden
 - Grosse Dateien wie Bilder wurden nicht durch den Sync übertragen
 - Änderungen an der Ordnerstruktur wurden nicht durch den Sync übertragen
 
@@ -300,9 +282,9 @@ Nach einer Änderung an den Dateien über Visual Studio Code kann einfach die Br
 
 ## Schritt 11: Änderungen in das GIT-Repository pushen (regelmässig)
 
-Änderungen an den Codedateien können entweder über die Konsole oder über einen grafischen GIT-Client wie SourceTree auf GitLab gepusht werden.
+Änderungen an den Codedateien können entweder über die Konsole oder über einen grafischen GIT-Client wie SourceTree auf GitHub gepusht werden.
 
-Bei SourceTree wählt man über die Checkbox sämtliche Änderungen aus, die man „committen“ möchte und klickt anschliessend unten rechts auf „Commit“. Um die Änderungen schlussendlich auf GitLab zu laden, klickt man auf den Button „Push“.
+Bei SourceTree wählt man über die Checkbox sämtliche Änderungen aus, die man „committen“ möchte und klickt anschliessend unten rechts auf „Commit“. Um die Änderungen schlussendlich auf BitHub zu laden, klickt man auf den Button „Push“.
 
 ![][image-35]
 
@@ -311,7 +293,7 @@ Bei SourceTree wählt man über die Checkbox sämtliche Änderungen aus, die man
 
 **Wichtig**: Neue Änderungen sollten erst dann vom Repository gepullt werden, wenn die automatische Synchronisierung zwischen Filesystem und der Exist-DB läuft (Schritt 9)
 
-Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitLab bereits Änderungen durch andere Personen gegeben hat. In diesem Fall sollte man den neuen Source Code „pullen“ bevor man seine Änderungen pusht. Dazu gibt es im SourceTree den Button „Pull“ (bei vorhandenen Änderungen ist dieser jeweils mit einer Zahl hervorgehoben). Falls zwei Personen die gleiche Datei bearbeitet haben, kann es zu GIT-Konflikten kommen, die anschliessend wieder aufgelöst werden müssen.
+Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitHub bereits Änderungen durch andere Personen gegeben hat. In diesem Fall sollte man den neuen Source Code „pullen“ bevor man seine Änderungen pusht. Dazu gibt es im SourceTree den Button „Pull“ (bei vorhandenen Änderungen ist dieser jeweils mit einer Zahl hervorgehoben). Falls zwei Personen die gleiche Datei bearbeitet haben, kann es zu GIT-Konflikten kommen, die anschliessend wieder aufgelöst werden müssen.
 
 ## Weitere Ressourcen
 
@@ -327,7 +309,7 @@ Das Video enthält auch eine grundlegende Einführung zum Thema GIT.
 [4]:	https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
 [5]:	https://www.youtube.com/watch?v=1AU8HqvgHXo
 [6]:	https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-[7]:	https://gitlab.com
+[7]:	https://github.com
 [8]:	https://www.youtube.com/watch?v=dyY539HzN6Q
 
 [image-1]:	Aufbau-Git-Workflow.drawio.png
