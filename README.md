@@ -1,7 +1,7 @@
 # Quellen zur Zürcher Geschichte
 
 ## Vorlage
-test
+
 Dieses Projekt ist eine modifizierte Version der TEI Publisher Webapplikation "Zürcher Rechtsquellen": https://gitlab.existsolutions.com/rqzh
 
 ## Dokumentation
