@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<meta xmlns="http://exist-db.org/xquery/repo">
+<meta xmlns="http://exist-db.org/xquery/repo" commit-id="@commit-id@" commit-time="@commit-time@">
     <description>Quellen zur Zürcher Geschichte</description>
     <author/>
     <status>beta</status>
@@ -9,7 +9,7 @@
     <prepare>pre-install.xql</prepare>
     <finish>post-install.xql</finish>
     <target>qzh</target>
-    <permissions user="qzh" group="tei" mode="rw-r--r--"/>
+    <permissions user="qzh" password="qzh" group="tei" mode="rwxr--r--"/>
     
     <changelog>
         <change version="1.0.0">
@@ -19,5 +19,4 @@
             </ul>
         </change>
     </changelog>
-<repo:deployed xmlns:repo="http://exist-db.org/xquery/repo">2022-09-16T14:22:43.172+02:00</repo:deployed>
 </meta>

@@ -26,7 +26,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  : If a version is given, the components will be loaded from a public CDN.
  : This is recommended unless you develop your own components.
  :)
-declare variable $config:webcomponents :="1.38.1";
+declare variable $config:webcomponents :="local";
 
 (:~
  : CDN URL to use for loading webcomponents. Could be changed if you created your
@@ -368,7 +368,7 @@ declare variable $config:session-prefix := $config:expath-descriptor/@abbrev/str
 
 declare variable $config:default-fields := ('date-min');
 
-declare variable $config:iiif-base-uri := 'https://apps.existsolutions.com/cantaloupe/iiif/2/erqzh!';
+declare variable $config:iiif-base-uri := 'https://apps.existsolutions.com/cantaloupe/iiif/2/qzh!';
 
 declare variable $config:dts-collections := map {
     "id": "default",
