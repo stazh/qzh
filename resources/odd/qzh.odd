@@ -1300,8 +1300,8 @@
                 <param name="content" value="(ec:label('place'), ' ')"/>
             </model>
             <model behaviour="link">
-                <param name="link" value="'../places/all/' || placeName[@type=&#34;main&#34;]/string() || '?key=' || @xml:id"/>
-                <param name="content" value="placeName[@type=&#34;main&#34;]/string()"/>
+                <param name="link" value="'../places/all/' || (placeName[@type=&#34;main&#34;])[1]/string() || '?key=' || @xml:id"/>
+                <param name="content" value="string-join(placeName[@type=&#34;main&#34;]/string(), &#34;, &#34;)"/>
                 <param name="target" value="'_new'"/>
             </model>
             <model behaviour="inline">
