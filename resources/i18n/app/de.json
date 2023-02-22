@@ -44,7 +44,7 @@
   "genre": "Textgattung",
   "head": "Einleitung",
   "help-title": "Erläuterungen zur Suche",
-  "keyword": "Schlagwort",
+  "keyword": "Schlagwörter",
   "keywords": "Schlagwörter",
   "language": "Sprache",
   "literature": "Literatur",
@@ -88,7 +88,7 @@
     "person": "Person",
     "organisation": "Familie/Organisation",
     "lemma": "Lemma",
-    "keywords": "Schlagwort"
+    "keywords": "Schlagwörter"
   },
   "menu": {
     "keywords":"Schlagwörter",
