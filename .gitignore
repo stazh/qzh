@@ -20,3 +20,4 @@ resources/lib/
 resources/scripts/*.js
 resources/scripts/*.map
 transform
+package-lock.json
