@@ -108,7 +108,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 •	Trägermaterial (material) (o)
 
-•	[Schlagwörter](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/kap_3_4_2_11_schlagwoerter_Excel_V12_2022.pdf/ "Schlagwörter"). (term) (f)
+•	Schlagwörter (term) (f)
 
 •	Kommentar zu Quellenstück (back) (f)
 
@@ -131,7 +131,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 [add](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/examples-add.html/ "addition"): Hinzufügung (mit Attributen @place und ggf. @hand)
 
-[persName](https://tei-c.org/release/doc/tei-p5-doc/es/html/ref-persName.html/ "personal name"): Personenname
+[persName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-persName.html/ "personal name"): Personenname
 
 [placesName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-placeName.html/ "place name"): Ortsname
 
