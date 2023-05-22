@@ -16,11 +16,11 @@ Verfasst von Michael Schaffner, Mai 2023
 
 ## 1. Allgemeines	
 
-Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Ab-sprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschich-te» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software TEI Publisher: https://teipublisher.com/index.html
+Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Ab-sprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software TEI Publisher: https://teipublisher.com/index.html
 
 Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
-Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in TEI/XML. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertie-rungsmaschine ist die sogenannte TEI-Garage: https://teigarage.tei-c.org/
+Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte TEI-Garage: https://teigarage.tei-c.org/
 
 
 
@@ -29,245 +29,194 @@ Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat d
 Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein e-editiones (https://www.e-editiones.org/) entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
 
 
-## Schritt 2: Installation von Hilfstools: Ant, Node, npm (einmalig)
+## 2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
+
+Zur Erstellung und Bearbeitung der Transkriptionen wird das Programm Visual Studio Code empfohlen. Es können jedoch selbstverständlich nach eigenem Ermessen auch andere Programme wie Oxygen oder Notepad++ verwendet werden. Bei VS Code handelt es sich um eine kostenlose Applikation zur niederschwelligen Bearbeitung und Vali-dierung von xml-Dateien. Sie kann hier heruntergeladen werden: https://code.visualstudio.com/download
+
+Für VS Code sind – ebenfalls kostenlos – Erweiterungen, sogenannte Extensions, verfügbar, welche die Bearbeitung und Validierung der Texte in XML/TEI sowie spezifisch das Zusammenspiel mit dem TEI Publisher erleichtern. 
+Folgende Extensions werden empfohlen: 
+•	XML Language Support by Red Hat (vor allem zur Validierung)
+•	tei-publisher-vscode (Vorschaufunktion in TEI Publisher und GND-Link, vgl. un-ten)
+
+Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
+xml formatieren für eine übersichtliche Darstellung
+•	Shift + Alt + F
+    Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt:
+•	Shift + Alt + A
+    Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spe-zifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd
+•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei (GND):
+    Shift + Alt + E
+    Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).
+
+Untenstehend (Anhang 2) findet sich ein idealtypisches Quellenstück in XML/TEI, das als Vorlage zum Transkribieren mit VS Code verwendet werden kann.
+
+
+## 3. Transkription
+
+Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schwei-zerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien
+
+## 4. Tagging 
+
+Die xml-Dateien werden mittels des Stylesheets von SSRQ validiert. Das Stylesheet ist im TEI-Header verlinkt. 
+
+Die Auszeichnung von Textphänomenen (Seiten- und Zeilenumbrüche, Absätze, Titel, Streichungen, Hinzufügungen, Dorsualnotizen etc.) erfolgt gemäss der Tag-Bibliothek des TEI-Konsortiums: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (vgl. auch Anhang 1, Wichtigste Tags). Eine hilfreiche Liste einschlägiger Tags findet sich auch in der Tag-Bibliothek der SSRQ (https://www.ssrq-sds-fds.ch/wiki/Kategorie:Tag). Die Tag-Bibliothek ist nicht öffentlich, bei Interesse kann aber ein Zugang bei der Rechtsquellenstiftung angefragt werden.
+
+Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName) und Daten (date/origDate). In den inhaltlichen Auszeichnungen werden folgende Referenzierungen zu Normdaten vorgenommen: 
+•	Personennamen: Gemeinsame Normdatei GND (https://explore.gnd.network)
+Format: <persName ref="GND_1089527993">Scheüchtzer</persName>. Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels Tastenkombination eine Abfrage generiert werden (vgl. Tastaturkombination oben, Kap. 2). 
+•	Ortsnamen: Referenzierung gemäss https://www.geonames.org/. Format: <placeName ref="LOC_43.29695_5.38107">Marseille</placeName>
+
+
+## 5. Metadaten
+
+Unten stehende Metadaten werden pro Quellenstück erhoben und die Informationen im TEI-Header mittels der untenstehenden Tags verzeichnet. Die korrekte Einordnung der Metadaten in den Header wird auch aus Anhang 2 (exemplarisches Quellenstück) ersichtlich.
+Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im Erschliessungshandbuch des Staatsarchivs: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf
+
+•	Name Transkriptor:in (<resp key="transcript"/>) (o)
+•	Name Bearbeiter:in Tagging (<resp key="tagging"/>) (f)
+•	Name des Projekts (<title>) (f) 
+•	Name Herausgeber:in (<respStmt>) (f) (ohne andere Angabe Staatsarchiv Zü-rich)
+•	QZH-ID (<idno>, wird durch StAZH vergeben) (o)
+•	Signatur des Quellenstücks inkl. Kürzel Archiv- oder Bibliotheksstandort        (<idno@source>) (o)
+•	Editorischer (moderner) Titel des Quellenstücks (<head>) (o)
+•	Regest (<summary>) (f)
+•	Sprache (<textLang>) (o)
+•	Überlieferung (<filiation>) (o)
+•	Entstehungszeitraum (<origDate>) (o)
+•	Trägermaterial: <material> (o)
+•	Schlagwörter: <term> (f)
+•	Kommentar zu Quellenstück (in <back>) (f)
+
+Legende:
+(o) = Angabe obligatorisch
+(f) = Angabe fakultativ
+
+
+## 6. Anhang 1: Wichtigste Tags
+
+<p>: Absatz 
+<pb n="35">: Seitenumbruch unter Angabe der originalen Seitenzahl 
+<lb/>: Zeilenumbruch
+<head>: Überschrift
+<del>: Streichung
+<add>: Hinzufügung (mit Attributen @place und ggf. @hand)
+<persName>: Personenname
+<placeName>: Ortsname
+<date>: Datum (mit Attribut @when)
+<abbr>: Abkürzung (ggf. mit Attribut @expan) 
+<origDate>: Originaldatum des Quellenstücks (mit Attribut @when)
+
+
+
+## 7. Anhang 2: Exemplarisches Quellenstück
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://www.ssrq-sds-fds.ch/tei/TEI_Schema_SSRQ.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://www.ssrq-sds-fds.ch/tei/TEI_Schema_SSRQ.rng" type="application/xml" schematy-pens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-stylesheet type="text/css" href="https://www.ssrq-sds-fds.ch/tei/Textkritik_Version_tei-ssrq.css“?>
+<!--<?xml-stylesheet type="text/css" href="https://www.ssrq-sds-fds.ch/tei/Inhalt_Version_tei-ssrq.css"?>-->
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns:ssrq="http://ssrq-sds-fds.ch/ns/nonTEI" n="1234" xml:lang="de">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <respStmt>
+                    <persName><!-- Name Transkriptor:in--></persName>
+                    <resp key="transcript"/>
+                </respStmt>
+                <respStmt>
+                    <persName><!--Name Bearbeiter:in Tagging --></persName>
+                    <resp key="tagging"/>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <date type="electronic" when="2021-05-01"/>
+                <date type="print" when="2018-12-31"/>
+            </publicationStmt>
+            <seriesStmt xml:id="ssrq-sds-fds">
+                <title><!-- Name Projekt--></title>
+                <respStmt>
+                    <persName><!-- Name Herausgeber:in--></persName>
+                    <resp>Herausgeberschaft</resp>
+                </respStmt>
+                <idno><!-- QZH-ID nach Schema QZH_XXX--></idno>
+            </seriesStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <idno source="<!-- Link zu Quelle in Archivkatalog-->"><!-- Signatur der Quelle--></idno>
+                    </msIdentifier>
+                    <head><!-- Editorischer Titel des Quellenstücks --></head>
+                    <msContents>
+                    <summary><!-- Regest--></summary>
+                        <msItem>
+                            <textLang><!-- Sprache--></textLang>
+                            <filiation type="current"><!--Überlieferung --></filiation>
+                            <filiation type="original"><origDate when="1706-07-21"/></filiation>
+                        </msItem>
+                    </msContents>
+                    <physDesc>
+                        <objectDesc>
+                            <supportDesc>
+                                <sup-port><material>Papier</material></support>
+                                <extent/>
+                            </supportDesc>
+                        </objectDesc>
+                    </physDesc>
+                    <history>
+                        <origin/>
+                    </history>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <editorialDecl>
+                <p>
+                    <ref target="https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien"/>
+                </p>
+            </editorialDecl>
+        </encodingDesc>
+        <profileDesc> </profileDesc>
+        <profileDesc>
+            <textClass default="false">
+                <keywords scheme="http://www.ssrq-sds-fds.ch/taxonomie">
+                    <term ref="key000325"><!-- Schlagwort--></term>
+                </keywords>
+            </textClass>
+            <particDesc default="false"/>
+            <settingDesc default="false"/>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <group>
+            <text><!-- Editionstext-->
+        <body>
+        <div>
+            <pb n="35" facs="StAZH_B_II_695__S__35_.tif"/>
+            <p>
+                <lb/>Der im <placeName ref="LOC_47.374444_8.541111">Ötenbach</placeName> verwahrte betrieger, wel-cher
+                <lb/>sich von namen <persName>Mustapha Caffa</persName> und von <placeName ref="LOC_36.73225_3.08746">Algiers</placeName>
+            <lb/>gebürtig dargibt, auch allhier das christenthum an<lb break="no"/>nemmen wollen, und getaufft zuwerden verlangt,
+                <lb/>soll in den <placeName ref="LOC_47.368744_8.542639">Wellenberg</placeName> gelegt, durch die her-ren
+            <lb/>nachgänger alles ernsts wohar er komme? by was
+            <lb/>gsellschafft er sich die zeitharo aufgehalten?
+                <lb/>was für reisen er gemacht? ob und wann er zu <placeNa-me ref="LOC_46.94809_7.44744">Bern</placeName> ge<lb break="no"/>taufft worden, auch obe er zu <placeName ref="LOC_47.12693_8.75345">Einsidlen</placeName> nicht um
+            <lb/>ein gleiches angehalten, und was ihme dorten
+            <lb/>widerfahren, befraget, und seine verantwortung
+            <lb/>widerum an <abbr>mghh.</abbr> gebracht werden.</p></div>
+        </body>
+                <back>
+                <div>
+                    <p><!-- Kommentar zum Quellenstück-->
+                    </p>
+                </div>
+                </back>
+            </text>
+            </group>
+    </text>
+</TEI>
 
-### Ant
 
-- ANT wird benötigt, um später aus dem Quellcode der Applikation eine `.xar`-Datei zu erzeugen
-- Eine kurze Anleitung zur Installation von ANT befindet sich hier: [https://ant.apache.org/bindownload.cgi][3]
-- Die Anleitung ist etwas kompliziert, da man von Hand die Umgebungsvariabeln anpassen muss. Unter den folgenden Links ist die Anleitung noch etwas detailierter beschrieben:
-	- Windows: [https://mkyong.com/ant/how-to-install-apache-ant-on-windows/][4]
-	- Mac: Unter MacOS ist es am einfachsten, ein Packagemanager wie Homebrew zu verwenden, um ANT zu installieren. Eine Anleitung zur Installation von ANT mit Hilfe von Homebrew befindet sich hier: [https://www.youtube.com/watch?v=1AU8HqvgHXo][5]
-
-### Node und npm
-
-- Node und Npm werden benötigt, um später mittels Visual Studio Code automatisch die Änderungen an den Codedateien zur Exist-Datenbank zu Synchronisieren.
-- Je nach Betriebssystem funktioniert die Installation unterschiedlich. Eine Anleitung befindet sich hier: [https://docs.npmjs.com/downloading-and-installing-node-js-and-npm][6]. Am einfachsten ist es, den Installer herunterzuladen, der relativ einfach durch die Installation führt. 
-
-
-## Schritt 3: Anlegen eines GitHub (bzw. GitLab) Accounts (einmalig)
-
-### Anlegen eines Accounts (kostenlos)
-
-[https://github.com][7]
-
-### Beitritt zur Gruppe „Quellen zur Zürcher Geschichte“
-Zur Gruppe „Quellen zur Zuercher Geschichte“ hinzugefügt werden. (Nur bestehende Mitglieder:innen in der Gruppe mit den Rollen „Maintainer“ oder „Owner“ können neue Mitglieder:innen hinzufügen)
-
-
-## Schritt 4: GitHub Zugangsdaten zum Git-Client hinzufügen (einmalig)
-
-Wenn ein grafischer Git-Client wie Sourcetree verwendet wird, können die Zugangsdaten zu GitHub in den Einstellungen hinterlegt werden:
-
-![][image-14]
-![][image-15]
-![][image-16]
-
-
-## Schritt 5: Beide Projekt-Repositories von GitHub (bzw. GitLab) klonen (einmalig)
-
-### Variante 1: Über die Konsole klonen
-
-```bash
-git clone https://github.com/stazh/qzh.git
-```
-
-```bash
-git clone https://github.com/stazh/qzh-data.git
-```
-
-### Variante 2: Über einen Git-Client klonen
-
-Statt die Git-Konsole zu verwenden, kann auch ein grafischer Git-Client (zum Beispiel SourceTree) verwendet werden: 
-
-![][image-17]
-![][image-18]
-![][image-19]
-
-## Schritt 6: Applikation zur Exist-DB hinzufügen (einmalig)
-
-Später wird der geklonte Quellcode automatisch mit der ExistDB synchronisiert. Damit dies funktioniert, muss jedoch bereits eine initiale Version des Codes zur Exist-DB hinzugefügt werden.
-
-Dazu muss zuerst aus den geklonten Repositories jeweils eine `.xar`-Datei erzeugt werden. Dies geschieht über die Konsole, die lokalen Pfade müssen je nach Speicherort des Codes abgeändert werden:
-
-```bash
-cd /Users/jan/quellen-zur-zuercher-geschichte
-
-ant
-```
-
-Dieser Befehl erzeugt die `.xar`-Datei. Der Speicherort der `.xar`-Datei wird auf der Konsole ausgegeben:
-
-```bash
-/Users/jan/quellen-zur-zuercher-geschichte/build/qzh-0.1.xar
-```
-
-Die gleichen Schritte sollten auch für das Daten-Repository durchgeführt werden:
-
-```bash
-cd /Users/jan/quellen-zur-zuercher-geschichte-daten
-
-ant
-```
-
-auch hier wird wieder der Speicherort auf der Konsole ausgegeben:
-
-```bash
-/Users/jan/quellen-zur-zuercher-geschichte-daten/build/qzh-data-0.1.xar
-```
-
-Als nächstes sollen die beiden `.xar`-Files zur Exist-DB hinzugefügt werden. Dazu öffnet man das Dashboard der Exist-DB und meldet sich mit dem Nutzer `admin` an. Das Passwort kann leer gelassen werden:
-
-![][image-20]
-
-Als nächstes wechselt man zum Package Manager:
-
-![][image-21]
-
-Nun können die beiden `.xar`-Files per Drag-and-Drop zum Package Manager hinzugefügt werden:
-
-![][image-22]
-
-Wenn die Installation funktioniert hat, erscheinen nun beim Launcher der Exist-DB zwei neue Icons für „Quellen zur Zürcher Geschichte“ und „Quellen zur Zürcher Geschichte: Daten“. Wenn man auf das Icon „Quelle zur Zürcher Geschichte“ klickt, sollte die Applikation gestartet und angezeigt werden:
-
-![][image-23]
-
-
-
-## Schritt 7: Visual Studio Code und Erweiterungen installieren (einmalig)
-
-Hinweis: Statt mit Visual Studio Code kann auch direkt mit dem eXide-Editor gearbeitet werden. Dies hat jedoch den Nachteil, dass jede Änderung im Code wieder auf das File-System exportiert und manuell in das Git-Repository kopiert werden muss, was umständlich und fehleranfällig ist. Deshalb wird hier nur auf die Variante mit Visual Studio Code eingegangen.
-
-Für die Arbeit mit Visual Studio Code sollte die Erweiterung **existdb-vscode** installiert werden (im Menü unter `Code > Einstellungen > Erweiterungen`):
-
-![][image-24]
-
-Daneben soll auch die Erweiterung `tei-publisher-vscode` installiert werden:
-
-![][image-25]
-
-Diese beiden Erweiterungen vereinfachen das Bearbeiten der Dateien und kümmern sich darum, dass Änderungen an den Codedateien automatisch mit der eXist-DB synchronisiert werden. 
-
-## Schritt 8: Automatische Synchronisation mit der eXist-DB einrichten (einmalig)
-
-Das Synchronisieren muss zuerst konfiguriert werden. Dies muss nacheinander für beide Repositories gemacht werden.
-
-Dazu öffnet man ein Repository über das Menü `Datei > Öffnen`
-
-![][image-26]
-
-Anschliessend drückt man in Visual Studio Code `Ctrl+Shift+P`, um alle Commands anzuzeigen (`CMD-Shift-P` auf dem Mac).
-
-Im sich öffnenden Dialog wählt man die Option `eXist-db: Create or edit configuration for folder`. Anschliessend wählt man das angezeigte Verzeichnis mit dem Code aus:
-
-![][image-27]
-![][image-28]
-
-Es öffnet sich eine Datei, in der die Synchronisation konfiguriert werden kann. In dieser Datei sollte man den Zielpfad anpassen, der angibt, in welches Verzeichnis innerhalb des TEI-Publishers der Sourcecode aus Visual Studio Code kopiert werden soll.
-
-Hier heisst das Ziel-Verzeichnis: `/db/apps/qzh`:
-
-```json
-{
-    "servers": {
-        "localhost": {
-            "server": "http://localhost:8080/exist",
-            "user": "admin",
-            "password": "",
-            "root": "/db/apps/qzh" <- hier den pfad anpassen
-        }
-    },
-    "sync": {
-        "server": "localhost",
-        "ignore": [
-            ".existdb.json",
-            ".git/**",
-            "node_modules/**",
-            "bower_components/**",
-            "package*.json",
-            ".vscode/**"
-        ]
-    }
-}
-```
-
-Für das zweite Repository sollten die gleichen Schritte wiederholt werden. Allerdings sollte man hier einen anderen Zielpfad wählen (z.B. `/db/apps/qzh-data`)
-
-
-## Schritt 9: Automatische Synchronisation mit eXist-DB starten (nach jedem Neustart von Visual Studio Code)
-
-**Wichtig**: Dieser Schritt sollte immer als erstes gemacht werden, bevor man Änderungen am Code durchführt oder die neusten Änderungen des Codes von GitHub pullt.
-
-Auch hier sollen die folgenden Schritte für beide Repositories wiederholt werden. Innerhalb von Visual Studio Code klickt man wieder auf  `Ctrl+Shift+P`, um alle Commands anzuzeigen (`CMD-Shift-P` auf dem Mac). Über das angezeigte Menü wählt man diesmal `eXist-db: Control folder synchronisation to database`
-
-![][image-29]
-
-Anschliessend wählt man `start synchronization`:
-
-![][image-30]
-
-Wenn alles Funktioniert hat, sieht man jeweils beim Speichern einer Datei, wie die Änderung an die Exist-DB übertragen wird:
-
-![][image-31]
-
-Hinweis: Nicht-gesicherte Dateien werden nicht automatisch übertragen. Deshalb sollte man immer daran denken, die Files nach dem Editieren zu Speichern. Bei ungültigen Änderungen wird jeweils eine Fehlermeldung angezeigt und die Änderungen nicht übertragen. In diesem Fall muss der Fehler in der Datei zuerst behoben werden und anschliessend die Datei neu gespeichert werden, damit diese übertragen wird:
-
-![][image-32]
-
-Wichtiger Hinweis 1: Grosse Dateien (zum Beispiel Bilddateien) können nicht auf diese Weise übertragen werden. Solche Dateien können jedoch über die eXide hochgeladen werden. Dazu klickt man in der eXide auf „File \> Manage“. Dort gibt es dann einen Button „Upload Files“ (symbolisiert mit einer Wolke).
-
-Wichtiger Hinweis 2: Durch den automatischen Sync können zwar einzelne Dateien übertragen werden, neu angelegte oder umbenannte Ordner werden jedoch nicht übertragen! Das bedeutet, dass man beim Anlegen eines neuen Ordners oder beim Umbenennen eines Ordners diese Änderung manuell in der eXide wiederholen muss. Dies ist auch der Fall, wenn man Code-Änderungen von GitHub pullt, welche eine Änderung an der Ordnerstruktur zur Folge haben.
-
-###  Was kann man tun, wenn der Code in eXide und die lokalen Codedateien voneinander abweichen?
-
-Es kann verschiedene Gründe geben, dass der Code in eXide und nicht mehr mit den lokalen Codedateien übereinstimmt:
-- Es wurde vor Codeänderungen vergessen, den Sync zu aktivieren
-- Beim Pullen von neuem Code über GitHub konnten nicht alle Änderungen übertragen werden
-- Grosse Dateien wie Bilder wurden nicht durch den Sync übertragen
-- Änderungen an der Ordnerstruktur wurden nicht durch den Sync übertragen
-
-Damit an beiden Orten der Code wieder aktuell ist, kann man folgendermassen vorgehen:
-
-1. Das Projekt aus eXide löschen (je nachdem welches Repository betroffen ist, entweder der Ordner „apps/qzh“ oder der Ordner „apps/qzh-data“). Ordner und Dateien können in eXide über „File \> Manage“ gelöscht werden.
-2. Eine neue `.xar`-Datei aus aus den lokalen Codedateien erzeugen und dieses `.xar` erneut in eXide importieren (Siehe Abschnitt 6 in dieser Anleitung)
-
-## Schritt 10: Automatisches Browser-Update einrichten (nach jedem Neustart der Exist-DB)
-
-Vorsicht: Der Sync funktioniert nur in eine Richtung. Änderungen innerhalb von eXide werden nicht an Visual Studio und das Filesystem zurückgespiegelt! Die Änderungen sollten deshalb nur in Visual Studio Code vorgenommen werden.
-
-
-Über das eXist-db Dashboard kann die Applikation gestartet werden.
-
-![][image-33]
-
-Nach einer Änderung an den Dateien über Visual Studio Code kann einfach die Browser-Seite neu geladen werden, um die Änderungen live anzuzeigen.
-
-![][image-34]
-
-**Hinweis**: Es kann sein, dass gewisse Änderungen nicht sofort sichtbar sind, weil sie vom Browser ge-cached wurden. In diesem Fall sollte der Cache des Browsers gelöscht werden oder der „Inkognito-Modus“ des Browsers verwendet werden.
-
-## Schritt 11: Änderungen in das GIT-Repository pushen (regelmässig)
-
-Änderungen an den Codedateien können entweder über die Konsole oder über einen grafischen GIT-Client wie SourceTree auf GitHub gepusht werden.
-
-Bei SourceTree wählt man über die Checkbox sämtliche Änderungen aus, die man „committen“ möchte und klickt anschliessend unten rechts auf „Commit“. Um die Änderungen schlussendlich auf BitHub zu laden, klickt man auf den Button „Push“.
-
-![][image-35]
-
-
-## Schritt 12: Änderungen vom GIT-Repository pullen (regelmässig)
-
-**Wichtig**: Neue Änderungen sollten erst dann vom Repository gepullt werden, wenn die automatische Synchronisierung zwischen Filesystem und der Exist-DB läuft (Schritt 9)
-
-Wenn gemeinsam am Code gearbeitet wird, kann es sein, dass es auf GitHub bereits Änderungen durch andere Personen gegeben hat. In diesem Fall sollte man den neuen Source Code „pullen“ bevor man seine Änderungen pusht. Dazu gibt es im SourceTree den Button „Pull“ (bei vorhandenen Änderungen ist dieser jeweils mit einer Zahl hervorgehoben). Falls zwei Personen die gleiche Datei bearbeitet haben, kann es zu GIT-Konflikten kommen, die anschliessend wieder aufgelöst werden müssen.
-
-## Weitere Ressourcen
-
-[https://www.youtube.com/watch?v=dyY539HzN6Q][8]
-
-In diesem Video werden zwei mögliche Workflows vorgestellt: „Database as Master“ und „Git as Master“. In diesem Dokument ist nur die Version „Git as Master“ beschrieben.
-
-Das Video enthält auch eine grundlegende Einführung zum Thema GIT.
 
 [1]:	https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation
 [2]:	https://www.java.com/de/download/manual.jsp
