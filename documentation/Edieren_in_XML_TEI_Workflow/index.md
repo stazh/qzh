@@ -94,17 +94,17 @@ Legende:
 
 ## 6. Anhang 1: Wichtigste Tags
 
-<p>: Absatz 
-<pb n="35">: Seitenumbruch unter Angabe der originalen Seitenzahl 
-<lb/>: Zeilenumbruch
-<head>: Überschrift
-<del>: Streichung
-<add>: Hinzufügung (mit Attributen @place und ggf. @hand)
-<persName>: Personenname
-<placeName>: Ortsname
-<date>: Datum (mit Attribut @when)
-<abbr>: Abkürzung (ggf. mit Attribut @expan) 
-<origDate>: Originaldatum des Quellenstücks (mit Attribut @when)
+p: Absatz 
+p="35": Seitenumbruch unter Angabe der originalen Seitenzahl 
+lb: Zeilenumbruch
+head: Überschrift
+del: Streichung
+add: Hinzufügung (mit Attributen @place und ggf. @hand)
+persName: Personenname
+placeName: Ortsname
+date: Datum (mit Attribut @when)
+abbr: Abkürzung (ggf. mit Attribut @expan) 
+origDate: Originaldatum des Quellenstücks (mit Attribut @when)
 
 
 
