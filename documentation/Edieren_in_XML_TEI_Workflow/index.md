@@ -22,7 +22,7 @@ Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es
 
 Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte [TEI Garage](https://teigarage.tei-c.org/ "TEI Garage").
 
-
+Für Nutzer:innen, die mit Transkribus arbeiten, existiert eine eigene Anleitung zum Export in TEI: https://readcoop.eu/de/transkribus/howto/how-to-export-documents-from-transkribus/
 
 Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Originals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format [TIFF](https://de.wikipedia.org/wiki/Tagged_Image_File_Format). 
 
@@ -31,10 +31,11 @@ Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein [e-e
 
 ## 2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
 
-Zur Erstellung und Bearbeitung der Transkriptionen wird das Programm Visual Studio Code empfohlen. Es können jedoch selbstverständlich nach eigenem Ermessen auch andere Programme wie Oxygen oder Notepad++ verwendet werden. Bei VS Code handelt es sich um eine kostenlose Applikation zur niederschwelligen Bearbeitung und Vali-dierung von xml-Dateien. Sie kann hier heruntergeladen werden: https://code.visualstudio.com/download
+Zur Erstellung und Bearbeitung der Transkriptionen wird das Programm Visual Studio Code empfohlen. Es können jedoch selbstverständlich nach eigenem Ermessen auch andere Programme wie Oxygen oder Notepad++ verwendet werden. Bei VS Code handelt es sich um eine kostenlose Applikation zur niederschwelligen Bearbeitung und Validierung von xml-Dateien. Sie kann hier heruntergeladen werden: https://code.visualstudio.com/download
 
 Für VS Code sind – ebenfalls kostenlos – Erweiterungen, sogenannte Extensions, verfügbar, welche die Bearbeitung und Validierung der Texte in XML/TEI sowie spezifisch das Zusammenspiel mit dem TEI Publisher erleichtern. 
 Folgende Extensions werden empfohlen: 
+
 •	XML Language Support by Red Hat (vor allem zur Validierung)
 
 
@@ -50,7 +51,7 @@ Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
 Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd. Dass die Vorschau gemäss dem ODD von QZH generiert wird, kann folgendermassen konfiguriert werden: Einstellung File in VS Code --> Preferences --> Settings --> search settings --> teipublisher eingeben --> Feld «Teipublisher: Endpoint» wird sichtbar. Hier den Link zu QZH einfügen: https://qzh.sources-online.org/index.html. 
    
    
-   •	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND"): 
+   •	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei (GND)](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND"): 
     Shift + Alt + E
     Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhandenen Einträgen (vgl. auch unten, Kap. 4: Tagging).
     
@@ -71,7 +72,7 @@ Die Auszeichnung von Textphänomenen (Seiten- und Zeilenumbrüche, Absätze, Tit
 Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName) und Daten (date/origDate). In den inhaltlichen Auszeichnungen werden folgende Referenzierungen zu Normdaten vorgenommen: 
 
 
-•	Personennamen: Gemeinsame Normdatei GND [Gemeinsame Normdatei](https://explore.gnd.network). Format: persName ref="GND_1089527993"
+•	Personennamen: [Gemeinsame Normdatei](https://explore.gnd.network). Format: persName ref="GND_1089527993"
 
 Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels Tastenkombination eine Abfrage generiert werden (vgl. Tastaturkombination oben, Kap. 2). 
 
@@ -82,7 +83,7 @@ Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels T
 ## 5. Metadaten
 
 Unten stehende Metadaten werden pro Quellenstück erhoben und die Informationen im TEI-Header mittels der untenstehenden Tags verzeichnet. Die korrekte Einordnung der Metadaten in den Header wird auch aus Anhang 2 (exemplarisches Quellenstück) ersichtlich.
-Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im [Erschliessungshandbuch des Staatsarchivs Zürich](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf)
+Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gegeben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im [Erschliessungshandbuch des Staatsarchivs Zürich](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf).
 
 •	Name Transkriptor:in (resp key="transcript") (o)
 
