@@ -8,7 +8,7 @@ Dieses Projekt ist eine modifizierte Version der TEI Publisher Webapplikation "Z
 
 - [Arbeiten mit TEI Publisher: Theorie und Hinweise für die Wartung der Webapplikation](/documentation/Arbeiten_mit_TEI_Publisher_Theorie/index.md)
 - [Arbeiten mit TEI Publisher: GIT Workflow](/documentation/Arbeiten_mit_TEI_Publisher_GIT_Workflow/index.md)
-- [Edieren mit dem StAZH: TEI Workflow](/documentation/Edieren_in_XML_TEI_Workflow/index.md)
+- [Edieren mit dem StAZH: TEI-Workflow](/documentation/Edieren_in_XML_TEI_Workflow/index.md)
 - [Changelog](/documentation/Changelog/index.md)
 
   
