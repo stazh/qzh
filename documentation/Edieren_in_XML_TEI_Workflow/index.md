@@ -47,7 +47,7 @@ Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
 •	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A
 
 
-Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd
+Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd. Dass die Vorschau gemäss dem ODD von QZH generiert wird, kann folgendermassen konfiguriert werden: Einstellung File in VS Code --> Preferences --> Settings --> search settings --> teipublisher eingeben --> Feld «Teipublisher: Endpoint» wird sichtbar. Hier den Link zu QZH einfügen: https://qzh.sources-online.org/index.html. 
    
    
    •	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND"): 
@@ -60,7 +60,7 @@ Untenstehend (Anhang 2) findet sich ein idealtypisches Quellenstück in XML/TEI,
 
 ## 3. Transkription
 
-Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schwei-zerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien
+Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schweizerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien
 
 ## 4. Tagging 
 
@@ -81,7 +81,7 @@ Format: <persName ref="GND_1089527993">Scheüchtzer</persName>. Hinweis: In der 
 ## 5. Metadaten
 
 Unten stehende Metadaten werden pro Quellenstück erhoben und die Informationen im TEI-Header mittels der untenstehenden Tags verzeichnet. Die korrekte Einordnung der Metadaten in den Header wird auch aus Anhang 2 (exemplarisches Quellenstück) ersichtlich.
-Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im Erschliessungshandbuch des Staatsarchivs: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf
+Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im [Erschliessungshandbuch des Staatsarchivs Zürich](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf)
 
 •	Name Transkriptor:in (resp key="transcript") (o)
 
@@ -119,27 +119,27 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 ## 6. Anhang 1: Wichtigste Tags
 
-[p](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-p.html / "paragraph"): Absatz 
+[p](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-p.html): Absatz 
 
-[pb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pb.html/ "page break"): Seitenanfang
+[pb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pb.html): Seitenanfang
 
-[lb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lb.html/ "line break"): Zeilenumbruch
+[lb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lb.html): Zeilenumbruch
 
-[head](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-head.html/ "head"): Überschrift
+[head](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-head.html): Überschrift
 
-[del](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-del.html/ "del"): Streichung
+[del](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-del.html): Streichung
 
-[add](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/examples-add.html/ "addition"): Hinzufügung (mit Attributen @place und ggf. @hand)
+[add](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/examples-add.html): Hinzufügung (mit Attributen @place und ggf. @hand)
 
-[persName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-persName.html/ "personal name"): Personenname
+[persName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-persName.html): Personenname
 
-[placesName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-placeName.html/ "place name"): Ortsname
+[placesName](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-placeName.html): Ortsname
 
-[date](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-date.html/ "place name"): Datum (mit Attribut @when)
+[date](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-date.html): Datum (mit Attribut @when)
 
-[origDate](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-origDate.html/ "origin date"): Originaldatum des Quellenstücks (mit Attribut @when)
+[origDate](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-origDate.html): Originaldatum des Quellenstücks (mit Attribut @when)
 
-[abbr](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-abbr.html/ "abbreviation"): Abkürzung
+[abbr](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-abbr.html): Abkürzung
 
 
 ## 7. Anhang 2: Exemplarisches Quellenstück
