@@ -9,62 +9,25 @@ Verfasst von Michael Schaffner, Mai 2023
 3. Transkription	
 4. Tagging	
 5. Metadaten	
-Anhang 1: Wichtigste Tags	
-Anhang 2: Exemplarisches Quellenstück	
+6. Anhang 1: Wichtigste Tags	
+7. Anhang 2: Exemplarisches Quellenstück	
 
 
 
-## Schritt 1: Lokale Installation der eXist-DB und des TEI-Publishers (einmalig)
+## 1. Allgemeines	
 
-### Installationsanleitung
+Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Ab-sprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschich-te» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software TEI Publisher: https://teipublisher.com/index.html
 
-Hier befindet sich eine Installationsanleitung für die eXist-DB und den TEI-Publisher: [https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation][1]
+Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
-Es gibt zwei Wege, die Applikation zu installieren: entweder über Docker oder als Standalone Java Applikation. 
-
-Die Docker-Version hat einen eher instabilen Eindruck gemacht, deshalb ist die Installation als Standalone Java Applikation empfohlen.
-
-**Hinweis**: da TEI-Publisher Root-Rechte erfordert, kann er nicht auf dem Arbeitsrechner installiert werden.
-
-### Verwendete Java-Version
-
-Es gibt verschiedene Versionen der Java Runtime. Falls auf dem System Java noch nicht installiert ist, kann zum Beispiel die folgende Runtime verwendet werden: [https://www.java.com/de/download/manual.jsp][2]
-
-### Installation von benötigen Hilfs-Packages
-
-Nach der Installation kann der eXist-Datenbank-Server gestartet werden und das Dashboard geöffnet werden:
-
-![][image-2]
-
-![][image-3]
-
-Standartmässig ist bereits ein Benutzer angelegt, mit dem man sich einloggen kann:
-
-- Username: `admin`
-- Passwort: (leer)
-
-Anschliessend können über den Package Manager weitere Applikationen für die eXist-DB nachinstalliert werden:
-
-![][image-4]
-
-Anscheinend gibt es momentan einen Bug, der verhindert, dass der TEI-Publisher seine Abhängigkeiten selbst lädt. Bei der Installation der Applikation „TEI Publisher“ kann es deshalb zu einem Fehler kommen. 
-
-Um den Fehler zu beheben, sollten zuerst zwei benötigte Abhängigkeiten installiert werden:
-
-![][image-5]
-
-![][image-6]
-
-Anschliessend kann auch der TEI Publisher installiert werden:
-
-![][image-7]
+Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in TEI/XML. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertie-rungsmaschine ist die sogenannte TEI-Garage: https://teigarage.tei-c.org/
 
 
-### User-Management
 
-Im Abschnitt User-Management kann man weitere User-Accounts und Passwörter anlegen:
+Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Origi-nals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format TIFF. 
 
-![][image-8]
+Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein e-editiones (https://www.e-editiones.org/) entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
+
 
 ## Schritt 2: Installation von Hilfstools: Ant, Node, npm (einmalig)
 
