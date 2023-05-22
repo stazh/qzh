@@ -44,7 +44,7 @@ Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
     
 <p>•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A</p>
    <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
-<p>•	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html#:~:text=Die%20Gemeinsame%20Normdatei%20(GND%20)%20ist,kulturellen%20und%20wissenschaftlichen%20Sammlungen%20stehen./ "GND"):
+<p>•	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND")
     Shift + Alt + E
     Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).</p>
 
