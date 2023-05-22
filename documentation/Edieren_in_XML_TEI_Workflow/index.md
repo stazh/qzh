@@ -72,9 +72,9 @@ Format: <persName ref="GND_1089527993">Scheüchtzer</persName>. Hinweis: In der 
 Unten stehende Metadaten werden pro Quellenstück erhoben und die Informationen im TEI-Header mittels der untenstehenden Tags verzeichnet. Die korrekte Einordnung der Metadaten in den Header wird auch aus Anhang 2 (exemplarisches Quellenstück) ersichtlich.
 Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im Erschliessungshandbuch des Staatsarchivs: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf
 
-•	Name Transkriptor:in (<resp key="transcript"/>) (o)
-•	Name Bearbeiter:in Tagging (<resp key="tagging"/>) (f)
-•	Name des Projekts (<title>) (f) 
+<p>•	Name Transkriptor:in (<resp key="transcript"/>) (o)</p>
+<p>•	Name Bearbeiter:in Tagging (<resp key="tagging"/>) (f)</p>
+<p>•	Name des Projekts (<title>) (f) </p>
 •	Name Herausgeber:in (<respStmt>) (f) (ohne andere Angabe Staatsarchiv Zü-rich)
 •	QZH-ID (<idno>, wird durch StAZH vergeben) (o)
 •	Signatur des Quellenstücks inkl. Kürzel Archiv- oder Bibliotheksstandort        (<idno@source>) (o)
@@ -97,14 +97,14 @@ Legende:
 <p>p: Absatz </p>
 <p>p="35": Seitenumbruch unter Angabe der originalen Seitenzahl </p>
 <p>lb: Zeilenumbruch</p>
-head: Überschrift
-del: Streichung
-add: Hinzufügung (mit Attributen @place und ggf. @hand)
-persName: Personenname
-placeName: Ortsname
-date: Datum (mit Attribut @when)
-abbr: Abkürzung (ggf. mit Attribut @expan) 
-origDate: Originaldatum des Quellenstücks (mit Attribut @when)
+<p>head: Überschrift</p>
+<p>del: Streichung</p>
+<p>add: Hinzufügung (mit Attributen @place und ggf. @hand)</p>
+<p>persName: Personenname</p>
+<p>placeName: Ortsname</p>
+<p>date: Datum (mit Attribut @when)</p>
+<p>abbr: Abkürzung (ggf. mit Attribut @expan) </p>
+<p>origDate: Originaldatum des Quellenstücks (mit Attribut @when)</p>
 
 
 
