@@ -16,17 +16,17 @@ Verfasst von Michael Schaffner, Mai 2023
 
 ## 1. Allgemeines	
 
-Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Absprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software <ref target="https://teipublisher.com/index.html">TEI Publisher</ref>.
+Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Absprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software <a href target="https://teipublisher.com/index.html">TEI Publisher</a>.
 
 Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
-Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte <ref target="https://teigarage.tei-c.org/">TEI-Garage</ref>.
+Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte <a gref target="https://teigarage.tei-c.org/">TEI-Garage</a>.
 
 
 
-Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Origi-nals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format TIFF. 
+Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Originals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format TIFF. 
 
-Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein <ref target="https://www.e-editiones.org/">e-editiones</ref> entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
+Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein <a href target="https://www.e-editiones.org/">e-editiones</a> entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
 
 
 ## 2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
@@ -35,18 +35,18 @@ Zur Erstellung und Bearbeitung der Transkriptionen wird das Programm Visual Stud
 
 Für VS Code sind – ebenfalls kostenlos – Erweiterungen, sogenannte Extensions, verfügbar, welche die Bearbeitung und Validierung der Texte in XML/TEI sowie spezifisch das Zusammenspiel mit dem TEI Publisher erleichtern. 
 Folgende Extensions werden empfohlen: 
-•	XML Language Support by Red Hat (vor allem zur Validierung)
-•	tei-publisher-vscode (Vorschaufunktion in TEI Publisher und GND-Link, vgl. un-ten)
+<p>•	XML Language Support by Red Hat (vor allem zur Validierung)</p>
+<p>•	tei-publisher-vscode (Vorschaufunktion in TEI Publisher und GND-Link, vgl. unten)</p>
 
 Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
-xml formatieren für eine übersichtliche Darstellung
-•	Shift + Alt + F
+
+<p>•	xml formatieren für eine übersichtliche Darstellung: Shift + Alt + F</p>
     Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt:
-•	Shift + Alt + A
-    Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spe-zifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd
-•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei (GND):
+<p>•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A</p>
+   <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spe-zifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
+<p>•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei (GND):
     Shift + Alt + E
-    Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).
+    Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).</p>
 
 Untenstehend (Anhang 2) findet sich ein idealtypisches Quellenstück in XML/TEI, das als Vorlage zum Transkribieren mit VS Code verwendet werden kann.
 
@@ -112,7 +112,7 @@ Legende:
 
 Das hier verlinkte <a href target="https://github.com/stazh/qzh/blob/master/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml">exemplarische Quellenstück</a> zeigt den Aufbau eines XML-Dokuments. Es enthält den korrekten TEI-Header inklusive Angaben zum Einfügen der notwendigen Metadaten pro Quellenstück. Der edierte Originaltext wurde unter Verwendung der oben beschriebenen Tags ausgezeichnet. Es kann als Vorlage für das Anfertigen eigener Transkriptionen verwendet werden.
 
-[image-1]:	https://github.com/stazh/qzh/blob/master/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml
+
 [image-2]:	Bildschirmfoto%202022-10-04%20um%2009.31.02.png
 [image-3]:	Bildschirmfoto%202022-09-27%20um%2013.14.06.png
 [image-4]:	Bildschirmfoto%202022-09-27%20um%2013.16.33.png
