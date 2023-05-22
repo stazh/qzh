@@ -112,7 +112,7 @@ Legende:
 
 ![][image-1]
 
-[image-1]:	Aufbau-Git-Workflow.drawio.png
+[image-1]:	https://github.com/stazh/qzh/blob/master/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml
 [image-2]:	Bildschirmfoto%202022-10-04%20um%2009.31.02.png
 [image-3]:	Bildschirmfoto%202022-09-27%20um%2013.14.06.png
 [image-4]:	Bildschirmfoto%202022-09-27%20um%2013.16.33.png
