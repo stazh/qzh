@@ -119,7 +119,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 ## 6. Anhang 1: Wichtigste Tags
 
-[p](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-p.html/ "paragraph"): Absatz 
+[p](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-p.html / "paragraph"): Absatz 
 
 [pb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pb.html/ "page break"): Seitenanfang
 
