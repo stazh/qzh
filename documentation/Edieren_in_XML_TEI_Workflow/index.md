@@ -20,13 +20,13 @@ Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen 
 
 Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
-Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte <a gref target="https://teigarage.tei-c.org/">TEI-Garage</a>.
+Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte [TEI Garage](https://teigarage.tei-c.org/ "TEI Garage").
 
 
 
 Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Originals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format TIFF. 
 
-Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein <a href target="https://www.e-editiones.org/">e-editiones</a> entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
+Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein [e-editiones](https://www.e-editiones.org/ "e-editiones") entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
 
 
 ## 2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
@@ -43,8 +43,8 @@ Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
 <p>•	xml formatieren für eine übersichtliche Darstellung: Shift + Alt + F</p>
     Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt:
 <p>•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A</p>
-   <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spe-zifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
-<p>•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei (GND):
+   <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
+<p>•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei ([GND](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND"):
     Shift + Alt + E
     Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).</p>
 
