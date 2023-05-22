@@ -71,13 +71,12 @@ Die Auszeichnung von Textphänomenen (Seiten- und Zeilenumbrüche, Absätze, Tit
 Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName) und Daten (date/origDate). In den inhaltlichen Auszeichnungen werden folgende Referenzierungen zu Normdaten vorgenommen: 
 
 
-•	Personennamen: Gemeinsame Normdatei GND (https://explore.gnd.network)
-Format: persName ref="GND_1089527993">Scheüchtzer
+•	Personennamen: Gemeinsame Normdatei GND [Gemeinsame Normdatei](https://explore.gnd.network). Format: persName ref="GND_1089527993"
 
 Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels Tastenkombination eine Abfrage generiert werden (vgl. Tastaturkombination oben, Kap. 2). 
 
 
-•	Ortsnamen: Referenzierung gemäss https://www.geonames.org/. Format: placeName ref="LOC_43.29695_5.38107"
+•	Ortsnamen: Referenzierung gemäss [GeoNames](https://www.geonames.org/). Format: placeName ref="LOC_43.29695_5.38107"
 
 
 ## 5. Metadaten
