@@ -16,17 +16,17 @@ Verfasst von Michael Schaffner, Mai 2023
 
 ## 1. Allgemeines	
 
-Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Ab-sprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software TEI Publisher: https://teipublisher.com/index.html
+Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Absprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software <ref target="https://teipublisher.com/index.html">TEI Publisher</ref>.
 
 Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
-Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte TEI-Garage: https://teigarage.tei-c.org/
+Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte <ref target="https://teigarage.tei-c.org/">TEI-Garage</ref>.
 
 
 
 Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Origi-nals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format TIFF. 
 
-Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein e-editiones (https://www.e-editiones.org/) entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
+Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein <ref target="https://www.e-editiones.org/">e-editiones</ref> entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
 
 
 ## 2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
@@ -72,24 +72,24 @@ Format: <persName ref="GND_1089527993">Scheüchtzer</persName>. Hinweis: In der 
 Unten stehende Metadaten werden pro Quellenstück erhoben und die Informationen im TEI-Header mittels der untenstehenden Tags verzeichnet. Die korrekte Einordnung der Metadaten in den Header wird auch aus Anhang 2 (exemplarisches Quellenstück) ersichtlich.
 Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits gege-ben, erfolgt durch das StAZH unter Verwendung der gelieferten Metadaten. Informationen zur Verzeichnung der Metadaten finden sich im Erschliessungshandbuch des Staatsarchivs: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/ehb_stazh_version_2_8_2023.pdf
 
-<p>•	Name Transkriptor:in (<resp key="transcript"/>) (o)</p>
-<p>•	Name Bearbeiter:in Tagging (<resp key="tagging"/>) (f)</p>
-<p>•	Name des Projekts (<title>) (f) </p>
-•	Name Herausgeber:in (<respStmt>) (f) (ohne andere Angabe Staatsarchiv Zü-rich)
-•	QZH-ID (<idno>, wird durch StAZH vergeben) (o)
-•	Signatur des Quellenstücks inkl. Kürzel Archiv- oder Bibliotheksstandort        (<idno@source>) (o)
-•	Editorischer (moderner) Titel des Quellenstücks (<head>) (o)
-•	Regest (<summary>) (f)
-•	Sprache (<textLang>) (o)
-•	Überlieferung (<filiation>) (o)
-•	Entstehungszeitraum (<origDate>) (o)
-•	Trägermaterial: <material> (o)
-•	Schlagwörter: <term> (f)
-•	Kommentar zu Quellenstück (in <back>) (f)
+<p>•	Name Transkriptor:in (resp key="transcript") (o)</p>
+<p>•	Name Bearbeiter:in Tagging (resp key="tagging") (f)</p>
+<p>•	Name des Projekts (title) (f) </p>
+<p>•	Name Herausgeber:in (respStmt) (f) (ohne andere Angabe: Staatsarchiv Zürich</p>)
+<p>•	QZH-ID (idno, wird durch StAZH vergeben) (o)</p>
+<p>•	Signatur des Quellenstücks inkl. Kürzel Archiv- oder Bibliotheksstandort (idno@source) (o)</p>
+<p>•	Editorischer (moderner) Titel des Quellenstücks (head) (o)</p>
+<p>•	Regest (summary) (f)</p>
+<p>•	Sprache (textLang) (o)</p>
+<p>•	Überlieferung (filiation) (o)</p>
+<p>•	Entstehungszeitraum (origDate) (o)</p>
+<p>•	Trägermaterial (material) (o)</p>
+<p>•	<ref target="https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/kap_3_4_2_11_schlagwoerter_Excel_V12_2022.pdf">Schlagwörter</ref> (term) (f)</p>
+<p>•	Kommentar zu Quellenstück (back) (f)</p>
 
 Legende:
-(o) = Angabe obligatorisch
-(f) = Angabe fakultativ
+<p>(o) = Angabe obligatorisch</p>
+<p>(f) = Angabe fakultativ</p>
 
 
 ## 6. Anhang 1: Wichtigste Tags
@@ -110,122 +110,7 @@ Legende:
 
 ## 7. Anhang 2: Exemplarisches Quellenstück
 
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://www.ssrq-sds-fds.ch/tei/TEI_Schema_SSRQ.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://www.ssrq-sds-fds.ch/tei/TEI_Schema_SSRQ.rng" type="application/xml" schematy-pens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-stylesheet type="text/css" href="https://www.ssrq-sds-fds.ch/tei/Textkritik_Version_tei-ssrq.css“?>
-<!--<?xml-stylesheet type="text/css" href="https://www.ssrq-sds-fds.ch/tei/Inhalt_Version_tei-ssrq.css"?>-->
-<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:ssrq="http://ssrq-sds-fds.ch/ns/nonTEI" n="1234" xml:lang="de">
-    <teiHeader>
-        <fileDesc>
-            <titleStmt>
-                <respStmt>
-                    <persName><!-- Name Transkriptor:in--></persName>
-                    <resp key="transcript"/>
-                </respStmt>
-                <respStmt>
-                    <persName><!--Name Bearbeiter:in Tagging --></persName>
-                    <resp key="tagging"/>
-                </respStmt>
-            </titleStmt>
-            <publicationStmt>
-                <date type="electronic" when="2021-05-01"/>
-                <date type="print" when="2018-12-31"/>
-            </publicationStmt>
-            <seriesStmt xml:id="ssrq-sds-fds">
-                <title><!-- Name Projekt--></title>
-                <respStmt>
-                    <persName><!-- Name Herausgeber:in--></persName>
-                    <resp>Herausgeberschaft</resp>
-                </respStmt>
-                <idno><!-- QZH-ID nach Schema QZH_XXX--></idno>
-            </seriesStmt>
-            <sourceDesc>
-                <msDesc>
-                    <msIdentifier>
-                        <idno source="<!-- Link zu Quelle in Archivkatalog-->"><!-- Signatur der Quelle--></idno>
-                    </msIdentifier>
-                    <head><!-- Editorischer Titel des Quellenstücks --></head>
-                    <msContents>
-                    <summary><!-- Regest--></summary>
-                        <msItem>
-                            <textLang><!-- Sprache--></textLang>
-                            <filiation type="current"><!--Überlieferung --></filiation>
-                            <filiation type="original"><origDate when="1706-07-21"/></filiation>
-                        </msItem>
-                    </msContents>
-                    <physDesc>
-                        <objectDesc>
-                            <supportDesc>
-                                <sup-port><material>Papier</material></support>
-                                <extent/>
-                            </supportDesc>
-                        </objectDesc>
-                    </physDesc>
-                    <history>
-                        <origin/>
-                    </history>
-                </msDesc>
-            </sourceDesc>
-        </fileDesc>
-        <encodingDesc>
-            <editorialDecl>
-                <p>
-                    <ref target="https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien"/>
-                </p>
-            </editorialDecl>
-        </encodingDesc>
-        <profileDesc> </profileDesc>
-        <profileDesc>
-            <textClass default="false">
-                <keywords scheme="http://www.ssrq-sds-fds.ch/taxonomie">
-                    <term ref="key000325"><!-- Schlagwort--></term>
-                </keywords>
-            </textClass>
-            <particDesc default="false"/>
-            <settingDesc default="false"/>
-        </profileDesc>
-    </teiHeader>
-    <text>
-        <group>
-            <text><!-- Editionstext-->
-        <body>
-        <div>
-            <pb n="35" facs="StAZH_B_II_695__S__35_.tif"/>
-            <p>
-                <lb/>Der im <placeName ref="LOC_47.374444_8.541111">Ötenbach</placeName> verwahrte betrieger, wel-cher
-                <lb/>sich von namen <persName>Mustapha Caffa</persName> und von <placeName ref="LOC_36.73225_3.08746">Algiers</placeName>
-            <lb/>gebürtig dargibt, auch allhier das christenthum an<lb break="no"/>nemmen wollen, und getaufft zuwerden verlangt,
-                <lb/>soll in den <placeName ref="LOC_47.368744_8.542639">Wellenberg</placeName> gelegt, durch die her-ren
-            <lb/>nachgänger alles ernsts wohar er komme? by was
-            <lb/>gsellschafft er sich die zeitharo aufgehalten?
-                <lb/>was für reisen er gemacht? ob und wann er zu <placeNa-me ref="LOC_46.94809_7.44744">Bern</placeName> ge<lb break="no"/>taufft worden, auch obe er zu <placeName ref="LOC_47.12693_8.75345">Einsidlen</placeName> nicht um
-            <lb/>ein gleiches angehalten, und was ihme dorten
-            <lb/>widerfahren, befraget, und seine verantwortung
-            <lb/>widerum an <abbr>mghh.</abbr> gebracht werden.</p></div>
-        </body>
-                <back>
-                <div>
-                    <p><!-- Kommentar zum Quellenstück-->
-                    </p>
-                </div>
-                </back>
-            </text>
-            </group>
-    </text>
-</TEI>
-
-
-
-[1]:	https://teipublisher.com/exist/apps/tei-publisher/doc/documentation.xml?id=installation
-[2]:	https://www.java.com/de/download/manual.jsp
-[3]:	https://ant.apache.org/bindownload.cgi
-[4]:	https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
-[5]:	https://www.youtube.com/watch?v=1AU8HqvgHXo
-[6]:	https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-[7]:	https://github.com
-[8]:	https://www.youtube.com/watch?v=dyY539HzN6Q
+![][image-1]
 
 [image-1]:	Aufbau-Git-Workflow.drawio.png
 [image-2]:	Bildschirmfoto%202022-10-04%20um%2009.31.02.png
