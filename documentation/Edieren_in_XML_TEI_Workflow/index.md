@@ -2,14 +2,15 @@
 
 Verfasst von Michael Schaffner, Mai 2023
 
-## Übersicht
+## Inhalt
 
-(Für eine vergrösserte Ansicht: siehe separate Datei)
-![][image-1]
-
-Auf die einzelnen Abschnitte in dieser Übersicht wird in diesem Dokument eingegangen.
-
-Hinweis: Das Projekt „Rechtsquellen des Kantons Zürich“ besteht aus zwei Repositories: Ein Repository mit dem gesamten Quellcode und ein separates Repository, welches nur die Quelldateien enthält. Die Setup-Schritte müssen jeweils für beide Repositories einmalig ausgeführt werden.
+1. Allgemeines	
+2. Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI	
+3. Transkription	
+4. Tagging	
+5. Metadaten	
+Anhang 1: Wichtigste Tags	
+Anhang 2: Exemplarisches Quellenstück	
 
 
 
