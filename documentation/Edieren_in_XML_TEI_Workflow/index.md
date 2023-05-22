@@ -24,7 +24,7 @@ Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkei
 
 
 
-Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Originals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format [TIFF](https://de.wikipedia.org/wiki/Tagged_Image_File_Format/ "TIFF"). 
+Quellenstücke werden auf QZH grundsätzlich als Transkription mit Digitalisat des Originals publiziert. Die Digitalisate werden, sofern es sich um Bestände des Staatsarchivs handelt, durch das StAZH bereitgestellt im Format [TIFF](https://de.wikipedia.org/wiki/Tagged_Image_File_Format). 
 
 Die nachfolgende Anleitung lehnt sich an Workflows an, die durch den Verein [e-editiones](https://www.e-editiones.org/ "e-editiones") entwickelt wurden, um ein effizientes Zusam-menspiel zwischen der Edition von Quellentexten und deren anschliessender Publikation im TEI Publisher zu garantieren. Ausführliche Erläuterungen finden sich in diesem Video: https://www.youtube.com/watch?v=dyY539HzN6Q (Ab 1:02:00: Editorial Workflows).
 
@@ -72,10 +72,12 @@ Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName) 
 
 
 •	Personennamen: Gemeinsame Normdatei GND (https://explore.gnd.network)
-Format: <persName ref="GND_1089527993">Scheüchtzer</persName>. Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels Tastenkombination eine Abfrage generiert werden (vgl. Tastaturkombination oben, Kap. 2). 
+Format: persName ref="GND_1089527993">Scheüchtzer
+
+Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels Tastenkombination eine Abfrage generiert werden (vgl. Tastaturkombination oben, Kap. 2). 
 
 
-•	Ortsnamen: Referenzierung gemäss https://www.geonames.org/. Format: <placeName ref="LOC_43.29695_5.38107">Marseille</placeName>
+•	Ortsnamen: Referenzierung gemäss https://www.geonames.org/. Format: placeName ref="LOC_43.29695_5.38107"
 
 
 ## 5. Metadaten
