@@ -110,7 +110,7 @@ Legende:
 
 ## 7. Anhang 2: Exemplarisches Quellenstück
 
-![][image-1]
+Das hier verlinkte <ref target="https://github.com/stazh/qzh/blob/master/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml">exemplarische Quellenstück</ref> zeigt den Aufbau eines XML-Dokuments. Es enthält den korrekten TEI-Header inklusive Angaben zum Einfügen der notwendigen Metadaten pro Quellenstück. Der edierte Originaltext wurde unter Verwendung der oben beschriebenen Tags ausgezeichnet. Es kann als Vorlage für das Anfertigen eigener Transkriptionen verwendet werden.
 
 [image-1]:	https://github.com/stazh/qzh/blob/master/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml
 [image-2]:	Bildschirmfoto%202022-10-04%20um%2009.31.02.png
