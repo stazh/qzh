@@ -41,10 +41,10 @@ Folgende Extensions werden empfohlen:
 Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
 
 <p>•	xml formatieren für eine übersichtliche Darstellung: Shift + Alt + F</p>
-    Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt:
+    
 <p>•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A</p>
-   <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das ge-wünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
-<p>•	Identifizieren einer markierten Person mittels Gemeinsame Normdatei ([GND](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html/ "GND"):
+   <p> Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd</p>
+<p>•	Identifizieren einer markierten Person mittels [Gemeinsame Normdatei](https://www.dnb.de/DE/Professionell/Standardisierung/GND/gnd_node.html#:~:text=Die%20Gemeinsame%20Normdatei%20(GND%20)%20ist,kulturellen%20und%20wissenschaftlichen%20Sammlungen%20stehen./ "GND"):
     Shift + Alt + E
     Diese Tastenkombination öffnet eine Liste mit Vorschlägen von in der GND vorhande-nen Einträgen (vgl. auch unten, Kap. 4: Tagging).</p>
 
@@ -75,7 +75,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 <p>•	Name Transkriptor:in (resp key="transcript") (o)</p>
 <p>•	Name Bearbeiter:in Tagging (resp key="tagging") (f)</p>
 <p>•	Name des Projekts (title) (f) </p>
-<p>•	Name Herausgeber:in (respStmt) (f) (ohne andere Angabe: Staatsarchiv Zürich</p>)
+<p>•	Name Herausgeber:in (respStmt) (f) (ohne andere Angabe: Staatsarchiv Zürich)</p>
 <p>•	QZH-ID (idno, wird durch StAZH vergeben) (o)</p>
 <p>•	Signatur des Quellenstücks inkl. Kürzel Archiv- oder Bibliotheksstandort (idno@source) (o)</p>
 <p>•	Editorischer (moderner) Titel des Quellenstücks (head) (o)</p>
@@ -84,18 +84,18 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 <p>•	Überlieferung (filiation) (o)</p>
 <p>•	Entstehungszeitraum (origDate) (o)</p>
 <p>•	Trägermaterial (material) (o)</p>
-<p>•	<ref target="https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/kap_3_4_2_11_schlagwoerter_Excel_V12_2022.pdf">Schlagwörter</ref> (term) (f)</p>
+<p>•	[Schlagwörter](https://www.zh.ch/content/dam/zhweb/bilder-dokumente/organisation/direktion-der-justiz-und-des-innern/staatsarchiv/erschliessungshandbuch/kap_3_4_2_11_schlagwoerter_Excel_V12_2022.pdf/ "Schlagwörter"). (term) (f)</p>
 <p>•	Kommentar zu Quellenstück (back) (f)</p>
 
-Legende:
+### Legende:
 <p>(o) = Angabe obligatorisch</p>
 <p>(f) = Angabe fakultativ</p>
 
 
 ## 6. Anhang 1: Wichtigste Tags
 
-<p>p: Absatz </p>
-<p>p="35": Seitenumbruch unter Angabe der originalen Seitenzahl </p>
+<p>[p](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-p.html/ "paragraph"): Absatz </p>
+<p>[pb](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pb.html/ "page break")</p>
 <p>lb: Zeilenumbruch</p>
 <p>head: Überschrift</p>
 <p>del: Streichung</p>
