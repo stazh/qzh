@@ -94,9 +94,9 @@ Legende:
 
 ## 6. Anhang 1: Wichtigste Tags
 
-p: Absatz 
-p="35": Seitenumbruch unter Angabe der originalen Seitenzahl 
-lb: Zeilenumbruch
+<p>p: Absatz </p>
+<p>p="35": Seitenumbruch unter Angabe der originalen Seitenzahl </p>
+<p>lb: Zeilenumbruch</p>
 head: Überschrift
 del: Streichung
 add: Hinzufügung (mit Attributen @place und ggf. @hand)
