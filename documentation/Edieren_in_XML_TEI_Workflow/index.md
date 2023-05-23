@@ -4,13 +4,13 @@ Verfasst von Michael Schaffner, Mai 2023
 
 ## Inhalt
 
-1. [Allgemeines] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#1-allgemeines)
-2. [Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#2-verwendung-eines-programms-zur-bearbeitung-von-dokumenten-in-xmltei)  	
-3. [Transkription] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#3-transkription)
-4. [Tagging] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#4-tagging)
-5. [Metadaten] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#5-metadaten)
-6. [Anhang 1: Wichtigste Tags] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#6-anhang-1-wichtigste-tags)
-7. [Anhang 2: Exemplarisches Quellenstück] (/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)
+1. [Allgemein](/documentation/Edieren_in_XML_TEI_Workflow/index.md#1-allgemeines)
+2. [Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI](/documentation/Edieren_in_XML_TEI_Workflow/index.md#2-verwendung-eines-programms-zur-bearbeitung-von-dokumenten-in-xmltei)  	
+3. [Transkription](/documentation/Edieren_in_XML_TEI_Workflow/index.md#3-transkription)
+4. [Tagging](/documentation/Edieren_in_XML_TEI_Workflow/index.md#4-tagging)
+5. [Metadaten](/documentation/Edieren_in_XML_TEI_Workflow/index.md#5-metadaten)
+6. [Anhang 1: Wichtigste Tags](/documentation/Edieren_in_XML_TEI_Workflow/index.md#6-anhang-1-wichtigste-tags)
+7. [Anhang 2: Exemplarisches Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)
 
 
 
