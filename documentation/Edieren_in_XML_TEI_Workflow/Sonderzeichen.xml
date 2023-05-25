@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='../../Ressourcen/Stylesheet.xsl'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <teiHeader xmlns="http://www.tei-c.org/ns/1.0">
+        <fileDesc>
+            <titleStmt>
+                <title>Quellen zur Zürcher Geschichte</title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Use for copy and paste</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Sonderzeichen für QZH</p>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+<p>
+oͧ 
+aͧ
+eͣ
+uͦ
+aͧ
+u̍
+aͤ
+Uͦ
+oͤ
+uͤ
+₰
+
+
+ħ
+℔
+
+
+</p>
+
+</TEI>
