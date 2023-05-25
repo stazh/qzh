@@ -63,6 +63,8 @@ Untenstehend (Anhang 2) findet sich ein idealtypisches Quellenstück in XML/TEI,
 
 Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schweizerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien
 
+Eine Liste mit den wichtigsten Sonderzeichen und Symbolen findet sich [hier](/documentation/Edieren_in_XML_TEI_Workflow/Sonderzeichen.xml). Sie kann zum Kopieren und Einfügen beim Transkribieren verwendet werden.
+
 ## 4. Tagging 
 
 Die xml-Dateien werden mittels des Schemas von TEI validiert. Dieses ist im Header des Dokuments verlinkt (vgl. [Anhang 2: Exemplarisches Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)). In Rücksprache mit dem Staatsarchiv kann auch das detailliertere Schema der SSRQ verwendet werden.
