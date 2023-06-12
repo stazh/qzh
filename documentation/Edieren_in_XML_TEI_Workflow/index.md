@@ -148,7 +148,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 ## 7. Anhang 2: Exemplarisches Quellenstück
 
-Das hier verlinkte [exemplarische Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/QZH_Beispielquelle.xml) zeigt den Aufbau eines XML-Dokuments. Es enthält den korrekten TEI-Header inklusive Angaben zum Einfügen der notwendigen Metadaten pro Quellenstück. Der edierte Originaltext wurde unter Verwendung der oben beschriebenen Tags ausgezeichnet. Es kann als Vorlage für das Anfertigen eigener Transkriptionen verwendet werden.
+Ein exemplarisches Quellenstück kann gegen Anfrage beim Staatsarchiv bezogen werden. Es enthält den korrekten TEI-Header inklusive Angaben zum Einfügen der notwendigen Metadaten pro Quellenstück. Der edierte Originaltext wurde unter Verwendung der oben beschriebenen Tags ausgezeichnet. Es kann als Vorlage für das Anfertigen eigener Transkriptionen verwendet werden.
 
 
 
