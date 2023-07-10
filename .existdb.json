@@ -16,7 +16,7 @@
             "node_modules/**",
             "bower_components/**",
             "package*.json",
-            ".devcontainer/**"
+            ".devcontainer/**",
             ".idea/**",
             ".vscode/**"
         ],
