@@ -215,7 +215,8 @@
             </h2>
             <paper-dialog-scrollable>
                 <pb-document id="help-text" path="help" odd="qzh"/>
-                <pb-view src="help-text" view="single" use-language="use-language" xpath="//div[@xml:lang=tokenize(request:get-parameter('user.language', ()), '-')[1] or @xml:lang='de'][1]">
+                <pb-view src="help-text" view="single" use-language="use-language" xpath="//div[@xml:lang=tokenize(request:get-parameter('user.language', ()), '-')[1] or @xml:lang='de'][1]"
+                    disable-history="">
                 </pb-view>
             </paper-dialog-scrollable>
             <div class="buttons">
