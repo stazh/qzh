@@ -12,9 +12,12 @@
         "ignore": [
             ".existdb.json",
             ".git/**",
+            "build/**",
             "node_modules/**",
             "bower_components/**",
             "package*.json",
+            ".devcontainer/**",
+            ".idea/**",
             ".vscode/**"
         ],
         "polling": false,
