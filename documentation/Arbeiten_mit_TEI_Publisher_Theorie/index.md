@@ -276,7 +276,7 @@ So kann zum Beispiel eine `pb-view` die `pb-facimile`-view darüber Informieren,
 
 ```xml
 <pb-view id="view1" src="document1" column-separator=".tei-cb" append-footnotes="append-footnotes" subscribe="transcription" emit="transcription" wait-for="#facsimile"/>
-<pb-facsimile id="facsimile" base-uri="https://apps.existsolutions.com/cantaloupe/iiif/2/" default-zoom-level="0" show-navigation-control="show-navigation-control" show-navigator="show-navigator" subscribe="transcription"/>
+<pb-facsimile id="facsimile" base-uri="https://media.sources-online.org/iiif/2/" default-zoom-level="0" show-navigation-control="show-navigation-control" show-navigator="show-navigator" subscribe="transcription"/>
 ```
 (Beachte die Attribute „Subscribe“ und „Emit“):
 

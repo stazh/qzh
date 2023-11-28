@@ -368,7 +368,7 @@ declare variable $config:session-prefix := $config:expath-descriptor/@abbrev/str
 
 declare variable $config:default-fields := ('date-min');
 
-declare variable $config:iiif-base-uri := 'https://apps.existsolutions.com/cantaloupe/iiif/2/qzh!';
+declare variable $config:iiif-base-uri := 'https://media.sources-online.org/iiif/2/qzh!';
 
 declare variable $config:dts-collections := map {
     "id": "default",
