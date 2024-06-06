@@ -86,6 +86,8 @@ Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels T
 
 Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der rechten Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
 
+![][image-1]
+
 
 ## 5. Metadaten
 
