@@ -267,5 +267,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
 
 Ein exemplarisches Quellenstück kann gegen Anfrage beim Staatsarchiv bezogen werden. Es enthält den korrekten TEI-Header inklusive Angaben zum Einfügen der notwendigen Metadaten pro Quellenstück. Der edierte Originaltext wurde unter Verwendung der oben beschriebenen Tags ausgezeichnet. Es kann als Vorlage für das Anfertigen eigener Transkriptionen verwendet werden.
 
+[image-1]:	Extension_TEI_Publisher.JPG
+
 
 
