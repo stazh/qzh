@@ -43,9 +43,12 @@ Folgende Extensions werden empfohlen:
 
 Folgende Tastaturkombinationen in VS Code erleichtern das Arbeiten:
 
-•	xml formatieren für eine übersichtliche Darstellung: Shift + Alt + F
+•	xml formatieren für eine übersichtliche Darstellung: Ctr + Shift + F
     
-•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Shift + Alt + A
+•	 Vorschau generieren, welche die Umsetzung des XML/TEI im Webformat anzeigt: Ctr + Shift + A
+
+•	 TEI Entity Explorer (vgl. unten): Ctr + Shift + E
+
 
 
 Ein ODD (One document does it all) definiert die Umsetzung von XML/TEI in das gewünschte Publikationsformat. Mittels der Vorschaufunktion wird auf diese Weise bereits während des Transkribierens ersichtlich, wie sich der publizierte Text auf QZH präsentieren wird. Die Tastenkombination Shift + Alt + A öffnet eine Liste der verfügbaren ODDs. Das spezifische ODD von QZH kann hier heruntergeladen werden: https://github.com/stazh/qzh/blob/master/resources/odd/qzh.odd. Dass die Vorschau gemäss dem ODD von QZH generiert wird, kann folgendermassen konfiguriert werden: Einstellung File in VS Code --> Preferences --> Settings --> search settings --> teipublisher eingeben --> Feld «Teipublisher: Endpoint» wird sichtbar. Hier den Link zu QZH einfügen: https://qzh.sources-online.org/index.html. 
@@ -65,7 +68,7 @@ Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der
 
 Eine Liste mit den wichtigsten Sonderzeichen und Symbolen findet sich [hier](/documentation/Edieren_in_XML_TEI_Workflow/Sonderzeichen.xml). Sie kann zum Kopieren und Einfügen beim Transkribieren verwendet werden.
 
-## 4. Tagging 
+## 4. Tagging und Named Entities 
 
 Die xml-Dateien werden mittels des Schemas von TEI validiert. Dieses ist im Header des Dokuments verlinkt (vgl. [Anhang 2: Exemplarisches Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)). In Rücksprache mit dem Staatsarchiv kann auch das detailliertere Schema der SSRQ verwendet werden.
 
@@ -80,6 +83,8 @@ Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels T
 
 
 •	Ortsnamen: Referenzierung gemäss [GeoNames](https://www.geonames.org/). Format: placeName ref="LOC_43.29695_5.38107"
+
+Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der rechten Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
 
 
 ## 5. Metadaten
