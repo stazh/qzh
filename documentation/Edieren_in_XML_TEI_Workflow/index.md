@@ -7,7 +7,7 @@ Verfasst von Michael Schaffner, Mai 2023
 1. [Allgemein](/documentation/Edieren_in_XML_TEI_Workflow/index.md#1-allgemeines)
 2. [Verwendung eines Programms zur Bearbeitung von Dokumenten in XML/TEI](/documentation/Edieren_in_XML_TEI_Workflow/index.md#2-verwendung-eines-programms-zur-bearbeitung-von-dokumenten-in-xmltei)  	
 3. [Transkription](/documentation/Edieren_in_XML_TEI_Workflow/index.md#3-transkription)
-4. [Tagging und Named Entities](/documentation/Edieren_in_XML_TEI_Workflow/index.md#4-tagging)
+4. [Tagging und Named Entities](/documentation/Edieren_in_XML_TEI_Workflow/index.md#4-tagging-und-named-entities)
 5. [Metadaten](/documentation/Edieren_in_XML_TEI_Workflow/index.md#5-metadaten)
 6. [Anhang 1: Wichtigste Tags](/documentation/Edieren_in_XML_TEI_Workflow/index.md#6-anhang-1-wichtigste-tags)
 7. [Anhang 2: Exemplarisches Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)
@@ -84,7 +84,7 @@ Hinweis: In der GND kann mit der TEI Publisher-Erweiterung von VS Code mittels T
 
 •	Ortsnamen: Referenzierung gemäss [GeoNames](https://www.geonames.org/). Format: placeName ref="LOC_43.29695_5.38107"
 
-Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der rechten Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
+Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der linken Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
 
 ![][image-1]
 
