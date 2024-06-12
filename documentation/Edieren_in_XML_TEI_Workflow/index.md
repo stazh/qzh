@@ -88,7 +88,7 @@ Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Na
 
 ![][image-1]
 
-Weitere Hinweise zur Verwendung der getagten Entitäten zur Erstellung von Personen- und Ortsregistern (wird durch das StAZH ausgeführt) finden sich im Read-Me von [QZH-data] (https://github.com/stazh/qzh-data?tab=readme-ov-file#quellen-zur-z%C3%BCrcher-geschichte-daten).
+Weitere Hinweise zur Verwendung der getagten Entitäten zur Erstellung von Personen- und Ortsregistern (wird durch das StAZH ausgeführt) finden sich im Read-Me des Repositories [QZH-data](https://github.com/stazh/qzh-data?tab=readme-ov-file#quellen-zur-z%C3%BCrcher-geschichte-daten).
 
 ## 5. Metadaten
 
