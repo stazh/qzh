@@ -4,7 +4,8 @@
         <h2>
             <pb-i18n key="browse.search">Suche</pb-i18n>
             <a href="#" id="search-info">
-                <iron-icon icon="info"/>
+                <!-- <iron-icon icon="info"/> -->
+                 <!-- commented out search ikon, msr -->
             </a>
         </h2>
     </div>
@@ -128,6 +129,7 @@
                 </pb-select-->
 
                 <pb-select name="filter-project" data-i18n="[label]project" value="${filter-project}" data-template="pages:parse-params"> 
+                    <paper-item value=""/>
                     <paper-item value="Gelebte Reformation. Zürich 1500-1800">
                         <pb-i18n key="living-reformation">Gelebte Reformation</pb-i18n>
                     </paper-item>
@@ -211,22 +213,6 @@
 
             </div>
         </pb-search>
-        <paper-dialog id="query-help-dialog">
-            <h2>
-                <pb-i18n key="help-title">Erläuterungen zur Suche</pb-i18n>
-            </h2>
-            <paper-dialog-scrollable>
-                <pb-document id="help-text" path="help" odd="qzh"/>
-                <pb-view src="help-text" view="single" use-language="use-language" xpath="//div[@xml:lang=tokenize(request:get-parameter('user.language', ()), '-')[1] or @xml:lang='de'][1]"
-                    disable-history="">
-                </pb-view>
-            </paper-dialog-scrollable>
-            <div class="buttons">
-                <paper-button dialog-confirm="dialog-confirm" autofocus="autofocus">
-                    <pb-i18n key="dialogs.close">Close</pb-i18n>
-                </paper-button>
-            </div>
-        </paper-dialog>
     </div>
     <script defer="defer">
         const trigger = document.getElementById('search-info');
