@@ -64,15 +64,15 @@ Untenstehend (Anhang 2) findet sich ein idealtypisches Quellenstück in XML/TEI,
 
 ## 3. Transkription
 
-Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schweizerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien
+Die Transkriptionen in QZH orientieren sich an den Transkriptionsrichtlinien der Schweizerischen Rechtsquellenstiftung (SSRQ). Diese sind hier abrufbar: https://schema.ssrq-sds-fds.ch/latest/base/transcription/
 
-Eine Liste mit den wichtigsten Sonderzeichen und Symbolen findet sich [hier](/documentation/Edieren_in_XML_TEI_Workflow/Sonderzeichen.xml). Sie kann zum Kopieren und Einfügen beim Transkribieren verwendet werden.
+Eine Liste mit den wichtigsten Sonderzeichen und Symbolen findet sich [hier](/documentation/Edieren_in_XML_TEI_Workflow/Sonderzeichen.xml). Sie kann zum Kopieren und Einfügen beim Transkribieren verwendet werden. Vgl. dazu auch die Sonderzeichen-Sammlung der SSRQ: https://schema.ssrq-sds-fds.ch/latest/base/transcription/spelling/special/
 
 ## 4. Tagging und Named Entities 
 
 Die xml-Dateien werden mittels des Schemas von TEI validiert. Dieses ist im Header des Dokuments verlinkt (vgl. [Anhang 2: Exemplarisches Quellenstück](/documentation/Edieren_in_XML_TEI_Workflow/index.md#7-anhang-2-exemplarisches-quellenstück)). In Rücksprache mit dem Staatsarchiv kann auch das detailliertere Schema der SSRQ verwendet werden.
 
-Die Auszeichnung von Textphänomenen (Seiten- und Zeilenumbrüche, Absätze, Titel, Streichungen, Hinzufügungen, Dorsualnotizen etc.) erfolgt gemäss der Tag-Bibliothek des TEI-Konsortiums: https://tei-c.org/release/doc/tei-p5-doc/en/html/ (vgl. auch Anhang 1, Wichtigste Tags). Eine hilfreiche Liste einschlägiger Tags mit Beschreibung findet sich auch in der Tag-Bibliothek der SSRQ (https://www.ssrq-sds-fds.ch/wiki/Kategorie:Tag). Letztere Tag-Bibliothek ist nicht öffentlich, bei Interesse kann aber ein Zugang bei der Rechtsquellenstiftung angefragt werden.
+Die Auszeichnung von Textphänomenen (Seiten- und Zeilenumbrüche, Absätze, Titel, Streichungen, Hinzufügungen, Dorsualnotizen etc.) erfolgt gemäss der Tag-Bibliothek des TEI-Konsortiums: https://tei-c.org/release/doc/tei-p5-doc/en/html/ (vgl. auch Anhang 1, Wichtigste Tags). Eine hilfreiche Liste einschlägiger Tags mit Beschreibung findet sich auch in der Tag-Bibliothek der SSRQ (https://schema.ssrq-sds-fds.ch/latest/elements/).
 
 Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName), Daten (date/origDate) und Zahlen (num). In den inhaltlichen Auszeichnungen werden folgende Referenzierungen zu Normdaten vorgenommen: 
 
@@ -82,7 +82,7 @@ Inhaltlich ausgezeichnet werden Personennamen (persName), Ortsnamen (placeName),
 
 •	Ortsnamen: Referenzierung gemäss [GeoNames](https://www.geonames.org/). Format: placeName ref="LOC_43.29695_5.38107"
 
-Hinweis: Das Programm Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der linken Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
+Hinweis: Das Programm Visual Studio Code bietet für das Tagging von Named Entities in der Extension "TEI Publisher Tools" die praktische Funktion des TEI Entity Explorers: Dabei kann ein Personen- oder Ortsame manuell markiert und dann die Tastenkombination Ctr + Shift + E betätigt werden: In der linken Seitenleiste erscheint dann eine Liste mit Vorschlägen aus Normdatenbanken wie der Gemeinsamen Normdatenbank GND. Durch Betätigung des Plus-Symbols wird die Norm-ID direkt in das Attribut des Tags der Entität geschrieben. Welche Normdatenbanken abgefragt werden, lässt sich customizen. Für weitere Infos zur Extension vgl. [tei-publisher-vscode](https://marketplace.visualstudio.com/items?itemName=e-editiones.tei-publisher-vscode)
 
 ![][image-1]
 
