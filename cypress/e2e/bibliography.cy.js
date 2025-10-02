@@ -1,33 +1,29 @@
 describe('bibliography page', () => {
-    it('should load', () => {
+    beforeEach('should load', () => {
         cy.visit('literaturverzeichnis.html')
     })
 
-    it('should display two separate tables', () => {
+    it('should display one table', () => {
         cy.get('caption')
         .should('be.visible')
         .should('have.length', 2)
     })
-
-    // see https://gitlab.existsolutions.com/rqzh/rqzh2/-/issues/83#note_19302
-    it('should only have 3 columns', () => {
+    
+    it('should only have 2 columns', () => {
         cy.get('thead > tr >th')
         .should('be.visible')
-        .should('have.length', 6)
+        .should('have.length', 4)
     })
 
-    // see https://gitlab.existsolutions.com/rqzh/rqzh2/-/issues/83#note_19473
-    it('should not truncate page numbers in journal articels', () => {
-        cy.get('tr#chbsg000045808')
-        .contains('Bickel, Wolf-H.')
-        .contains('195–217')  
+    
+    it('should have an entry for id chbsg000050069', () => {
+        cy.get('tr#chbsg000050069')
+        .contains('Loetz 2022')
     })
-
-    // ensure fixup was applied
-    it('should not truncate page numbers in journal articels', () => {
-        cy.get('tr#chbsg000105140')
-        .contains('Rippmann, Dorothee')
-        .contains('91–114')  
+    
+    it('should have an entry for id chbsg991001261448103977', () => {
+        cy.get('tr#chbsg991001261448103977')
+        .contains('Loetz 2002')
     })
 })
 
