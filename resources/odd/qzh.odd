@@ -507,7 +507,7 @@
                     <model behaviour="inline" cssClass="semantic person">
             <desc>Fallback für persName ohne @ref: Hervorhebung und Tooltip</desc>
             <param name="content" value="."/>
-            <param name="tooltip" value="&lt;pb-i18n key=&quot;person-unidentified&quot;/&gt;"/>
+            <param name="tooltip" value="ec:label('person-unidentified')"/>
             <pb:template xmlns="" xml:space="preserve">
                             <pb-popover>
                                 <span slot="default">[[content]]</span>
