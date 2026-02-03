@@ -504,6 +504,16 @@
                     <model predicate="@ref" behaviour="link" cssClass="semantic person">
             <param name="uri" value="'https://www.ssrq-sds-fds.ch/persons-db-edit/?query=' || replace(@ref, ' ', '-')"/>
         </model>
+                    <model behaviour="inline" cssClass="semantic person">
+            <desc>Fallback für persName ohne @ref: Hervorhebung und Tooltip</desc>
+            <param name="content" value="."/>
+            <pb:template xmlns="" xml:space="preserve">
+                            <pb-popover>
+                                <span slot="default">[[content]]</span>
+                                <span slot="alternate"><pb-i18n key="person-unidentified"/></span>
+                            </pb-popover>
+                        </pb:template>
+        </model>
                 </elementSpec>
                 <!--<elementSpec ident="orgName" mode="add">
                     <desc>Semantic highlighting of organization names with tooltip and blue text color</desc>
@@ -1156,12 +1166,12 @@
                 </elementSpec>
                 <elementSpec ident="teiHeader" mode="change">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
-            <param name="persons" value="let $register := doc(&#34;/db/apps/qzh-data/person/person.xml&#34;) let $entries:=     for $p in root(.)//persName[@ref]   group by $k := $p/@ref     return     id($p[1]/@ref , $register)  return  for $p in $entries   order by $p/persName[@type=&#34;full&#34;] ascending   return    $p"/>
+            <param name="persons" value="let $register := doc(&#34;/db/apps/qzh-data/person/person.xml&#34;) let $identified := for $p in root(.)//persName[@ref] group by $k := $p/@ref return id($p[1]/@ref, $register) let $unidentified := for $p in root(.)//persName[not(@ref)] group by $name := normalize-space($p) return &lt;span class=&#34;unidentified-person&#34;&gt;{$name}&lt;/span&gt; return (for $p in $identified order by $p/persName[@type=&#34;full&#34;] ascending return $p, $unidentified)"/>
             <param name="places" value="let $register := doc(&#34;/db/apps/qzh-data/place/place.xml&#34;) let $entries:=     for $p in root(.)//text//(placeName[@ref]|origPlace[@ref])          group by $k := $p/@ref   return     id($p[1]/@ref,$register)   return  for $p in $entries   order by $p/@n ascending   return    $p"/>
             <param name="organizations" value=" let $register := doc(&#34;/db/apps/qzh-data/organization/organization.xml&#34;)  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    "/>
             <param name="taxonomies" value="let $register := doc(&#34;/db/apps/qzh-data/taxonomy/taxonomy.xml&#34;) let $entries:=     for $p in root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]         group by $k := $p/@ref             return                 id($p[1]/@ref, $register)  return  for $p in $entries      order by $p/desc ascending          return                 $p"/>
             <param name="emptyPlace" value="if(root(.)//text//(placeName[@ref]|origPlace[@ref])) then () else (&#34;hidden&#34;) "/>
-            <param name="emptyPerson" value="if(root(.)//persName[@ref]) then () else (&#34;hidden&#34;) "/>
+            <param name="emptyPerson" value="if(root(.)//persName) then () else (&#34;hidden&#34;) "/>
             <param name="emptyOrg" value="if(root(.)//text//orgName[@ref]) then () else (&#34;hidden&#34;) "/>
             <param name="emptyTerm" value="if(root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]) then () else (&#34;hidden&#34;) "/>
             <pb:template xmlns="" xml:space="preserve"><div class="context register">
