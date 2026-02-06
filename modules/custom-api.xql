@@ -219,6 +219,24 @@ declare function api:people($request as map(*)) {
                                     doc($config:data-root || "/person/person.xml")//tei:person
                                 )
                             )
+    (: Deduplicate non-identified persons: group by name + source document so that
+       e.g. "Anndli Käller" from QZH 085 appears only once instead of once per mention :)
+    let $people := 
+        let $dedupKeys := for $p in $people
+            let $id := $p/@xml:id/string()
+            let $isNonGND := starts-with($id, "QZH_") and not(starts-with($id, "GND_"))
+            return
+                if ($isNonGND) then
+                    (: Build key from source document (e.g. "QZH_085") + normalized person name :)
+                    let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                    let $name := normalize-space($p/tei:persName[@type='full']/text())
+                    return $source || "||" || $name
+                else
+                    $id
+        for $p at $pos in $people
+            let $key := $dedupKeys[$pos]
+            group by $key
+            return $p[1]
     let $sorted_people := for $people in $people 
                             order by $people/tei:persName[@type='sorted_full'] ascending
                             return
