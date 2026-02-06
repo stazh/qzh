@@ -622,6 +622,8 @@ declare function api:output-place($list, $category as xs:string, $search as xs:s
         let $label := $place/@n/string()
         let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/")
         let $coords := tokenize($place/tei:location/tei:geo)
+        let $isNonIdentified := starts-with($place/@xml:id, "QZH_")
+        let $sourceTitle := if ($isNonIdentified) then replace(replace($place/@xml:id, ("_" || substring-after(substring-after($place/@xml:id, "_"), "_")), ""), "_", " ") else ()
         return
             element span {
                 attribute class { "place" },
@@ -630,7 +632,9 @@ declare function api:output-place($list, $category as xs:string, $search as xs:s
                         attribute href { $label || "?" || $params },
                         $label
                     },
-                    if (string-length($type) > 0) then <span class="type"> ({$type})</span> else () 
+                    if ($isNonIdentified and $sourceTitle) then <span> ({$sourceTitle})</span>
+                    else if (string-length($type) > 0) then <span class="type"> ({$type})</span>
+                    else () 
                 },
                 if(string-length(normalize-space($place/tei:location/tei:geo)) > 0) 
                 then (
