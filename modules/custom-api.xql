@@ -237,18 +237,25 @@ declare function api:people($request as map(*)) {
             let $key := $dedupKeys[$pos]
             group by $key
             return $p[1]
-    let $sorted_people := for $people in $people 
-                            order by $people/tei:persName[@type='sorted_full'] ascending
+    let $sorted_people := for $people in $people
+                            let $id := $people/@xml:id/string()
+                            let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                            order by $people/tei:persName[@type='sorted_full'] ascending, $source ascending
                             return
                                 $people
     let $log := util:log("info","api:people  found people:"||count($sorted_people) )
     let $byKey := for-each($sorted_people, function($person as element()) {
         let $label := $person/tei:persName[@type='full']/text()
-        let $sortKey :=
+        let $nameKey :=
             if (starts-with($label, "von ")) then
                 substring($label, 5)
             else
                 $label
+        (: Append source document ID as secondary sort key so that entries with the
+           same name are ordered by document number (e.g. QZH 001 before QZH 002) :)
+        let $id := $person/@xml:id/string()
+        let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+        let $sortKey := lower-case($nameKey) || " " || $source
         return
             [lower-case($sortKey), $label, $person]
     })
