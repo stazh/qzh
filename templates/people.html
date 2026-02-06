@@ -79,10 +79,18 @@
     
             .list {
                 height: 60%;
-                max-width: 41.24rem;
-                margin: 0 auto;
+                max-width: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0 1rem;
                 overflow: auto;
-                --pb-categorized-list-columns: 1;
+                --pb-categorized-list-columns: 2;
+            }
+            
+            @media (min-width: 1200px) {
+                .list {
+                    --pb-categorized-list-columns: 3;
+                }
             }
     
             [slot=controls] {

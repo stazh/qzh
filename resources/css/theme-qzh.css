@@ -554,6 +554,16 @@ main pb-view {
     grid-area: register;
 }
 
+/* Mobile Register Styles */
+.document-grid aside.register {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    border-radius: 4px;
+}
+
 .document-grid__item {
     height: auto;
     margin-bottom: 2rem;
@@ -584,6 +594,24 @@ main pb-view {
         padding: 0 20px 0 0;
         margin-bottom: 0;
     }
+
+    /* Desktop register styles */
+    .document-grid aside.register {
+        padding: 1.5rem;
+        margin-top: 0;
+        border-top: none;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border-left: 3px solid var(--pb-brand-color);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        max-width: 400px;
+        min-width: 280px;
+        align-self: start;
+        position: sticky;
+        top: 1rem;
+        max-height: calc(100vh - var(--toolbar-height) - var(--footer-height-total) - 2rem);
+        overflow-y: auto;
+    }
 }
 
 /* DIPLOMATIC VIEW */
@@ -599,8 +627,8 @@ body[data-view="diplomatic"] .facsimile[loaded]~.register {
 @media screen and (min-width: 769px) {
     body[data-view="diplomatic"] .document-grid__facsimile {
         display: grid;
-        grid-template-columns: 60% auto;
-        grid-gap: 15px;
+        grid-template-columns: 1fr minmax(300px, 45%);
+        grid-gap: 20px;
         grid-template-areas:
             "main   facsimile";
     }
@@ -609,10 +637,11 @@ body[data-view="diplomatic"] .facsimile[loaded]~.register {
 @media screen and (min-width: 769px) {
     body[data-view="diplomatic"] .document-grid__register {
         display: grid;
-        grid-template-columns: 60% auto;
-        grid-gap: 15px;
+        grid-template-columns: 1fr auto;
+        grid-gap: 24px;
         grid-template-areas:
             "main    register";
+        align-items: start;
     }
 }
 
@@ -636,10 +665,11 @@ body[data-view="normalized"] .facsimile {
 @media screen and (min-width: 769px) {
     body[data-view="normalized"] .document-grid {
         display: grid;
-        grid-template-columns: 60% auto;
-        grid-gap: 15px;
+        grid-template-columns: 1fr auto;
+        grid-gap: 24px;
         grid-template-areas:
             "main   register";
+        align-items: start;
     }
 }
 
