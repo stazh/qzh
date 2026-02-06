@@ -219,18 +219,43 @@ declare function api:people($request as map(*)) {
                                     doc($config:data-root || "/person/person.xml")//tei:person
                                 )
                             )
-    let $sorted_people := for $people in $people 
-                            order by $people/tei:persName[@type='sorted_full'] ascending
+    (: Deduplicate non-identified persons: group by name + source document so that
+       e.g. "Anndli Käller" from QZH 085 appears only once instead of once per mention :)
+    let $people := 
+        let $dedupKeys := for $p in $people
+            let $id := $p/@xml:id/string()
+            let $isNonGND := starts-with($id, "QZH_") and not(starts-with($id, "GND_"))
+            return
+                if ($isNonGND) then
+                    (: Build key from source document (e.g. "QZH_085") + normalized person name :)
+                    let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                    let $name := normalize-space($p/tei:persName[@type='full']/text())
+                    return $source || "||" || $name
+                else
+                    $id
+        for $p at $pos in $people
+            let $key := $dedupKeys[$pos]
+            group by $key
+            return $p[1]
+    let $sorted_people := for $people in $people
+                            let $id := $people/@xml:id/string()
+                            let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                            order by $people/tei:persName[@type='sorted_full'] ascending, $source ascending
                             return
                                 $people
     let $log := util:log("info","api:people  found people:"||count($sorted_people) )
     let $byKey := for-each($sorted_people, function($person as element()) {
         let $label := $person/tei:persName[@type='full']/text()
-        let $sortKey :=
+        let $nameKey :=
             if (starts-with($label, "von ")) then
                 substring($label, 5)
             else
                 $label
+        (: Append source document ID as secondary sort key so that entries with the
+           same name are ordered by document number (e.g. QZH 001 before QZH 002) :)
+        let $id := $person/@xml:id/string()
+        let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+        let $sortKey := lower-case($nameKey) || " " || $source
         return
             [lower-case($sortKey), $label, $person]
     })
@@ -524,8 +549,30 @@ declare function api:places($request as map(*)) {
                                     doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
                                 )
                             )
+    (: Deduplicate non-identified places: group by name + source document so that
+       the same place within one source appears only once instead of once per mention :)
+    let $places :=
+        let $dedupKeys := for $p in $places
+            let $id := $p/@xml:id/string()
+            let $isNonLOC := starts-with($id, "QZH_")
+            return
+                if ($isNonLOC) then
+                    let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                    let $name := normalize-space($p/@n/string())
+                    return $source || "||" || $name
+                else
+                    $id
+        for $p at $pos in $places
+            let $key := $dedupKeys[$pos]
+            group by $key
+            return $p[1]
     let $log := util:log("info","api:places  found places:"||count($places) )
-    let $sorted := sort($places, "?lang=de-DE", function($place) { lower-case($place/@n) })
+    (: Sort by name, then by source document number for entries with the same name :)
+    let $sorted := sort($places, "?lang=de-DE", function($place) {
+        let $id := $place/@xml:id/string()
+        let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+        return lower-case($place/@n) || " " || $source
+    })
     
     let $letter := 
         if (count($places) < $limit) then 
@@ -575,6 +622,8 @@ declare function api:output-place($list, $category as xs:string, $search as xs:s
         let $label := $place/@n/string()
         let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/")
         let $coords := tokenize($place/tei:location/tei:geo)
+        let $isNonIdentified := starts-with($place/@xml:id, "QZH_")
+        let $sourceTitle := if ($isNonIdentified) then replace(replace($place/@xml:id, ("_" || substring-after(substring-after($place/@xml:id, "_"), "_")), ""), "_", " ") else ()
         return
             element span {
                 attribute class { "place" },
@@ -583,7 +632,9 @@ declare function api:output-place($list, $category as xs:string, $search as xs:s
                         attribute href { $label || "?" || $params },
                         $label
                     },
-                    if (string-length($type) > 0) then <span class="type"> ({$type})</span> else () 
+                    if ($isNonIdentified and $sourceTitle) then <span> ({$sourceTitle})</span>
+                    else if (string-length($type) > 0) then <span class="type"> ({$type})</span>
+                    else () 
                 },
                 if(string-length(normalize-space($place/tei:location/tei:geo)) > 0) 
                 then (
