@@ -549,8 +549,30 @@ declare function api:places($request as map(*)) {
                                     doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
                                 )
                             )
+    (: Deduplicate non-identified places: group by name + source document so that
+       the same place within one source appears only once instead of once per mention :)
+    let $places :=
+        let $dedupKeys := for $p in $places
+            let $id := $p/@xml:id/string()
+            let $isNonLOC := starts-with($id, "QZH_")
+            return
+                if ($isNonLOC) then
+                    let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+                    let $name := normalize-space($p/@n/string())
+                    return $source || "||" || $name
+                else
+                    $id
+        for $p at $pos in $places
+            let $key := $dedupKeys[$pos]
+            group by $key
+            return $p[1]
     let $log := util:log("info","api:places  found places:"||count($places) )
-    let $sorted := sort($places, "?lang=de-DE", function($place) { lower-case($place/@n) })
+    (: Sort by name, then by source document number for entries with the same name :)
+    let $sorted := sort($places, "?lang=de-DE", function($place) {
+        let $id := $place/@xml:id/string()
+        let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
+        return lower-case($place/@n) || " " || $source
+    })
     
     let $letter := 
         if (count($places) < $limit) then 
