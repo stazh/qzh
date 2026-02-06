@@ -5939,6 +5939,12 @@
                             <desc xml:lang="it">Persona:</desc>
                             <desc xml:lang="en">Person:</desc>
                         </valItem>
+                        <valItem ident="person-unidentified">
+                            <desc xml:lang="de">Person: nicht identifiziert</desc>
+                            <desc xml:lang="fr">Personne : non identifiée</desc>
+                            <desc xml:lang="it">Persona: non identificata</desc>
+                            <desc xml:lang="en">Person: not identified</desc>
+                        </valItem>
                         <valItem ident="organisation">
                             <desc xml:lang="de">Organisation:</desc>
                             <desc xml:lang="fr">Organisation :</desc>

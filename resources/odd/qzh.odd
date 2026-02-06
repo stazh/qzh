@@ -504,6 +504,18 @@
                     <model predicate="@ref" behaviour="link" cssClass="semantic person">
             <param name="uri" value="'https://www.ssrq-sds-fds.ch/persons-db-edit/?query=' || replace(@ref, ' ', '-')"/>
         </model>
+                    <model behaviour="inline" cssClass="semantic person">
+            <desc>Fallback für persName ohne @ref: Hervorhebung und Tooltip</desc>
+            <param name="content" value="."/>
+            <param name="alternate" value="ec:label('person-unidentified')"/>
+            <param name="ref" value="'unid-' || encode-for-uri(normalize-space(.))"/>
+            <pb:template xmlns="" xml:space="preserve">
+                            <pb-popover data-ref="[[ref]]">
+                                [[content]]
+                                <template slot="alternate">[[alternate]]</template>
+                            </pb-popover>
+                        </pb:template>
+        </model>
                 </elementSpec>
                 <!--<elementSpec ident="orgName" mode="add">
                     <desc>Semantic highlighting of organization names with tooltip and blue text color</desc>
@@ -1156,12 +1168,12 @@
                 </elementSpec>
                 <elementSpec ident="teiHeader" mode="change">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
-            <param name="persons" value="let $register := doc(&#34;/db/apps/qzh-data/person/person.xml&#34;) let $entries:=     for $p in root(.)//persName[@ref]   group by $k := $p/@ref     return     id($p[1]/@ref , $register)  return  for $p in $entries   order by $p/persName[@type=&#34;full&#34;] ascending   return    $p"/>
+            <param name="persons" value="let $register := doc(&#34;/db/apps/qzh-data/person/person.xml&#34;) let $identified := for $p in root(.)//text//persName[@ref] group by $k := $p/@ref return id($p[1]/@ref, $register) let $unidentified := for $p in root(.)//text//persName[not(@ref)] group by $name := normalize-space($p) order by $name ascending return &lt;person xmlns=&#34;http://www.tei-c.org/ns/1.0&#34; n=&#34;unid-{encode-for-uri($name)}&#34; type=&#34;unidentified&#34;&gt;&lt;persName type=&#34;full&#34;&gt;{$name}&lt;/persName&gt;&lt;/person&gt; return (for $p in $identified order by $p/persName[@type=&#34;full&#34;] ascending return $p, $unidentified)"/>
             <param name="places" value="let $register := doc(&#34;/db/apps/qzh-data/place/place.xml&#34;) let $entries:=     for $p in root(.)//text//(placeName[@ref]|origPlace[@ref])          group by $k := $p/@ref   return     id($p[1]/@ref,$register)   return  for $p in $entries   order by $p/@n ascending   return    $p"/>
             <param name="organizations" value=" let $register := doc(&#34;/db/apps/qzh-data/organization/organization.xml&#34;)  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    "/>
             <param name="taxonomies" value="let $register := doc(&#34;/db/apps/qzh-data/taxonomy/taxonomy.xml&#34;) let $entries:=     for $p in root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]         group by $k := $p/@ref             return                 id($p[1]/@ref, $register)  return  for $p in $entries      order by $p/desc ascending          return                 $p"/>
             <param name="emptyPlace" value="if(root(.)//text//(placeName[@ref]|origPlace[@ref])) then () else (&#34;hidden&#34;) "/>
-            <param name="emptyPerson" value="if(root(.)//persName[@ref]) then () else (&#34;hidden&#34;) "/>
+            <param name="emptyPerson" value="if(root(.)//text//persName) then () else (&#34;hidden&#34;) "/>
             <param name="emptyOrg" value="if(root(.)//text//orgName[@ref]) then () else (&#34;hidden&#34;) "/>
             <param name="emptyTerm" value="if(root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]) then () else (&#34;hidden&#34;) "/>
             <pb:template xmlns="" xml:space="preserve"><div class="context register">
@@ -1265,6 +1277,14 @@
                     <model output="web" predicate="$parameters?header='short'" behaviour="block"/>
                 </elementSpec>
             <elementSpec ident="person" mode="add">
+                    <model predicate="$parameters?header='context' and @type='unidentified'" behaviour="pass-through">
+            <param name="ref" value="@n"/>
+            <param name="value" value="./persName[@type='full']/string()"/>
+            <pb:template xmlns="" xml:space="preserve"><li data-ref="[[ref]]">
+        <paper-checkbox class="select-facet" title="i18n(highlight-facet)"/>
+        <div>[[value]]</div>
+        </li></pb:template>
+        </model>
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
             <param name="content" value="."/>
             <param name="ref" value="@xml:id"/>
