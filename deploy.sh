@@ -46,6 +46,12 @@ echo "==> ODDs kompilieren"
 curl -sf -X POST "$EXIST_URL/exist/apps/qzh/api/odd?odd=qzh.odd" -u "$USER" > /dev/null
 curl -sf -X POST "$EXIST_URL/exist/apps/qzh/api/odd?odd=qzh-norm.odd" -u "$USER" > /dev/null
 
+echo "==> pm-config.xql wiederherstellen (ODD-Kompilierung überschreibt diese Datei)"
+curl -sf -X PUT "$EXIST_URL/exist/rest/db/apps/qzh/modules/pm-config.xql" \
+  -u "$USER" \
+  -H "Content-Type: application/xquery" \
+  --data-binary @modules/pm-config.xql
+
 echo "==> Permissions auf Transform-Dateien setzen"
 curl -sf -X POST "$EXIST_URL/exist/rest/db" \
   -u "admin:" \
