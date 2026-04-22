@@ -23180,7 +23180,7 @@ found at http://polymer.github.io/PATENTS.txt
 */
 // Give the user the choice to opt out of font loading.
 
-if (!window.polymerSkipLoadingFontRoboto) {
+if (false) {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';

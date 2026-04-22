@@ -4476,8 +4476,6 @@ class PbDemoSnippet extends LitElement {
     }
 
     const cpCss = `
-@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto&display=swap');
-
 body {
     margin: 10px 20px;
     font-size: 16px;
