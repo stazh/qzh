@@ -65,7 +65,13 @@
             <section class="document__wrapper">
                 <div class="pb-container">
                     <div id="gridWrapper">
-                        <main class="document-grid__item">
+                        <div class="view-tabs" role="tablist">
+                            <button class="active" data-tab="text"><pb-i18n key="view-tab-text">Text</pb-i18n></button>
+                            <button data-tab="facsimile"><pb-i18n key="view-tab-facsimile">Faksimile</pb-i18n></button>
+                            <button data-tab="register"><pb-i18n key="view-tab-register">Register</pb-i18n></button>
+                        </div>
+
+                        <main class="document-grid__item view-tab-panel active" data-panel="text">
                             <header>
                                 <pb-view id="metadata" src="document1" view="single" use-language="use-language" emit="metadata" subscribe="transcription" map="ssrq">
                                     <pb-param name="view" value="metadata"/>
@@ -87,10 +93,10 @@
                             </div>
                         </main>
 
-                        <pb-facsimile class="document-grid__item facsimile" show-rotation-control="show-rotation-control" show-full-page-control="show-full-page-control" show-navigation-control="show-navigation-control" base-uri="https://media.sources-online.org/iiif/2/qzh!" subscribe="transcription">
+                        <pb-facsimile class="document-grid__item facsimile view-tab-panel" data-panel="facsimile" show-rotation-control="show-rotation-control" show-full-page-control="show-full-page-control" show-navigation-control="show-navigation-control" base-uri="https://media.sources-online.org/iiif/2/qzh!" subscribe="transcription">
                         </pb-facsimile>
 
-                        <aside class="document-grid__item register">
+                        <aside class="document-grid__item register view-tab-panel" data-panel="register">
                             <pb-view id="register" src="document1" subscribe="none" emit="register" view="single" on-update="">
                                 <pb-param name="header" value="context"/>
                             </pb-view>
@@ -99,6 +105,52 @@
                     </div>
                 </div>
             </section>
+            <script>
+            //<![CDATA[
+            (function () {
+                var wrapper = document.getElementById('gridWrapper');
+                if (!wrapper) return;
+                var tabs = wrapper.querySelector('.view-tabs');
+                if (!tabs) return;
+
+                function setActive(target) {
+                    tabs.querySelectorAll('button').forEach(function (b) {
+                        b.classList.toggle('active', b.getAttribute('data-tab') === target);
+                    });
+                    wrapper.querySelectorAll('.view-tab-panel').forEach(function (p) {
+                        p.classList.toggle('active', p.getAttribute('data-panel') === target);
+                    });
+                    document.body.setAttribute('data-active-tab', target);
+                }
+
+                tabs.addEventListener('click', function (e) {
+                    var btn = e.target.closest('button[data-tab]');
+                    if (!btn) return;
+                    setActive(btn.getAttribute('data-tab'));
+                });
+
+                function refreshTabVisibility() {
+                    var facsTab = tabs.querySelector('button[data-tab="facsimile"]');
+                    if (!facsTab) return;
+                    var facs = wrapper.querySelector('pb-facsimile.facsimile');
+                    var facsLoaded = facs && facs.hasAttribute('loaded');
+                    facsTab.style.display = facsLoaded ? '' : 'none';
+                    if (!facsLoaded && facsTab.classList.contains('active')) {
+                        setActive('text');
+                    }
+                }
+
+                document.body.setAttribute('data-active-tab', 'text');
+
+                var facs = wrapper.querySelector('pb-facsimile.facsimile');
+                if (facs) {
+                    new MutationObserver(refreshTabVisibility)
+                        .observe(facs, { attributes: true, attributeFilter: ['loaded'] });
+                }
+                window.addEventListener('load', refreshTabVisibility);
+            })();
+            //]]>
+            </script>
 
             <footer class="hidden-print">
                 <pb-view class="footer-button footer-button-prev" src="document1" subscribe="transcription" view="single" xpath="//teiHeader">

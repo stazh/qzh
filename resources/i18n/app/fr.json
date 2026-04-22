@@ -80,6 +80,10 @@
   "to": "à",
   "view-switch": "Changer de la présentation normalisée à la diplomatique.",
   "view-normalized": "Normalisé",
+  "view-tab-text": "Texte",
+  "view-tab-facsimile": "Facsimilé",
+  "view-tab-register": "Registre",
+  "view-normalized-mobile": "Texte normalisé",
   "volume": "Unité éditorial",
   "work-id": "Numéro",
   "register": {

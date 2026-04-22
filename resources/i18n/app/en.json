@@ -81,6 +81,10 @@
   "to": "to",
   "view-switch": "Switch between normalized and diplomatic view",
   "view-normalized": "Normalized text with register",
+  "view-tab-text": "Text",
+  "view-tab-facsimile": "Facsimile",
+  "view-tab-register": "Register",
+  "view-normalized-mobile": "Normalized text",
   "volume": "Volume",
   "work-id": "Part Number",
   "register": {
