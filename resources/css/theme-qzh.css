@@ -1460,10 +1460,19 @@ pb-toggle-feature[name="mode"] .label-desktop {
     }
 
     /* -- pb-components: Viewport-Grenzen respektieren -- */
-    pb-paginate, pb-timeline, pb-browse-docs {
+    pb-paginate, pb-browse-docs {
         max-width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         display: block;
+    }
+
+    /* pb-timeline: kein Clipping — sonst werden Tooltips („1584: 15" etc.) abgeschnitten.
+       html/body { overflow-x: hidden } schützt den Viewport bei überbreiter Timeline. */
+    pb-timeline {
+        max-width: 100%;
+        display: block;
+        overflow: visible;
     }
 
     pb-search, pb-select, pb-custom-form {
@@ -1502,8 +1511,8 @@ pb-toggle-feature[name="mode"] .label-desktop {
     }
 
     .timeline {
-        overflow-x: auto;
         max-width: 100%;
+        overflow: visible;
     }
 
     #document-list {
@@ -1511,13 +1520,13 @@ pb-toggle-feature[name="mode"] .label-desktop {
         overflow-x: hidden;
     }
 
-    /* -- Suchseite (search.html): Formular über Resultaten stapeln -- */
-    .search-page .main-grid {
+    /* -- Such-/Startseite (search.html, start.html): Formular über Resultaten stapeln -- */
+    .main-grid {
         display: flex;
         flex-direction: column;
     }
 
-    .search-page .main-grid > aside.main-grid__item {
+    .main-grid > aside.main-grid__item {
         order: -1;
     }
 
