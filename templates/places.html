@@ -200,24 +200,25 @@
     <script data-template="templates:include" data-template-path="templates/matomo.html"/>
 
     <script>
-            window.addEventListener('load', function() {
+            document.addEventListener('DOMContentLoaded', function() {
                 const map = document.querySelector('pb-leaflet-map');
-                map.addEventListener('pb-ready', function() {
+
+                function loadPlaces() {
                     const endpoint = document.querySelector("pb-page").getEndpoint();
-                    const einheit = map.getAttribute("data-editionseinheit")
-                    // console.log(`editionseinheit ${einheit}`)
-                    
+                    const einheit = map.getAttribute("data-editionseinheit");
                     const url = `${endpoint}/api/places-all/${einheit}`;
-                    // console.log(`fetching places from: ${url}`);
-                    
-                    fetch(url)                
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(json) {
-                        pbEvents.emit("pb-update-map", "map", json)
-                    });
-                });
+                    fetch(url)
+                        .then(function(response) { return response.json(); })
+                        .then(function(json) {
+                            pbEvents.emit("pb-update-map", "map", json);
+                        });
+                }
+
+                if (map._isReady) {
+                    loadPlaces();
+                } else {
+                    map.addEventListener('pb-ready', loadPlaces, { once: true });
+                }
 
                 pbEvents.subscribe('pb-leaflet-marker-click', 'map', function(ev) {
                     const label = ev.detail.label;
