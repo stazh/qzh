@@ -411,6 +411,20 @@ paper-button:focus-visible {
     cursor: pointer;
 }
 
+/* Erweiterte Suche: Collapse-Trigger auf allen Viewports gleich dargestellt. */
+pb-collapse.advanced-search {
+    margin: 0.5rem 0;
+    border-top: 1px solid var(--paper-grey-300, #ddd);
+    border-bottom: 1px solid var(--paper-grey-300, #ddd);
+}
+
+pb-collapse.advanced-search h4.advanced-search__trigger {
+    cursor: pointer;
+    margin: 0;
+    padding: 0.75rem 0;
+    font-weight: 600;
+}
+
 ul.control-list {
     list-style-type: none;
     padding: 0;
@@ -1467,12 +1481,15 @@ pb-toggle-feature[name="mode"] .label-desktop {
         display: block;
     }
 
-    /* pb-timeline: kein Clipping — sonst werden Tooltips („1584: 15" etc.) abgeschnitten.
-       html/body { overflow-x: hidden } schützt den Viewport bei überbreiter Timeline. */
+    /* pb-timeline: Mobile-Wrapper scrollt horizontal, Balken behalten Desktop-Breite. */
+    .timeline-wrapper {
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+    }
+
     pb-timeline {
-        max-width: 100%;
         display: block;
-        overflow: visible;
     }
 
     pb-search, pb-select, pb-custom-form {
