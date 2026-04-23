@@ -123,12 +123,16 @@ declare function app:parent-collection($node as node(), $model as map(*)) {
         ()
     else
         let $parts := tokenize($model?root, "/")
+        let $parent := string-join(subsequence($parts, 1, count($parts) - 1), "/")
         return
-            element { node-name($node) } {
-                $node/@*,
-                attribute data-collection { string-join(subsequence($parts, 1, count($parts) - 1)) },
-                templates:process($node/node(), $model)
-            }
+            if ($parent = "") then
+                ()
+            else
+                element { node-name($node) } {
+                    $node/@*,
+                    attribute data-collection { $parent },
+                    templates:process($node/node(), $model)
+                }
 };
 
 declare
