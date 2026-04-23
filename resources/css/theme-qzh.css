@@ -1481,11 +1481,38 @@ pb-toggle-feature[name="mode"] .label-desktop {
         display: block;
     }
 
-    /* pb-timeline: Mobile-Wrapper scrollt horizontal, Balken behalten Desktop-Breite. */
+    /* pb-timeline: Mobile-Wrapper scrollt horizontal, Balken behalten Desktop-Breite.
+       Horizontaler Scrollbalken dauerhaft sichtbar als Hinweis auf Scrollbarkeit.
+       Kein scrollbar-width: thin — Safari schaltet damit auf Overlay-Scrollbar,
+       die das custom Webkit-Styling überstimmt. */
     .timeline-wrapper {
-        overflow-x: auto;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+
+    .timeline-wrapper::-webkit-scrollbar {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 8px;
+        background-color: var(--paper-grey-200, #eee);
+    }
+
+    .timeline-wrapper::-webkit-scrollbar-track {
+        background: var(--paper-grey-200, #eee);
+        border-radius: 4px;
+    }
+
+    .timeline-wrapper::-webkit-scrollbar-thumb {
+        background-color: var(--paper-grey-500, #9e9e9e);
+        border-radius: 4px;
+        min-width: 30px;
+    }
+
+    /* Firefox: Standard-Scrollbar sichtbar */
+    @supports (scrollbar-color: auto) {
+        .timeline-wrapper {
+            scrollbar-color: var(--paper-grey-500, #9e9e9e) var(--paper-grey-200, #eee);
+        }
     }
 
     pb-timeline {
