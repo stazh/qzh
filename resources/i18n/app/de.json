@@ -81,6 +81,10 @@
   "to": "bis",
   "view-switch": "Zwischen quellennaher und normalisierter Ansicht wechseln",
   "view-normalized": "normalisierter Text mit Register",
+  "view-tab-text": "Text",
+  "view-tab-facsimile": "Faksimile",
+  "view-tab-register": "Register",
+  "view-normalized-mobile": "normalisierter Text",
   "volume": "Editionseinheit",
   "work-id":"Stücknummer",
   "register": {
