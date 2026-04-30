@@ -281,7 +281,10 @@ declare function query:filter($hits as element()*) {
                             else
                                 $context[not(ancestor-or-self::tei:TEI//tei:history/tei:origin/tei:origPlace)]
                         case "filter-archive" return
-                            $context[starts-with(ancestor-or-self::tei:TEI//tei:teiHeader//tei:msDesc/tei:msIdentifier/tei:idno, $value)]
+                            $context[
+                                some $idno in ancestor-or-self::tei:TEI//tei:teiHeader//tei:msDesc/tei:msIdentifier/tei:idno
+                                satisfies query:normalize-archive($idno) = $value
+                            ]
                         case "filter-filiation" return
                             for $node in $context
                             let $idno := $node/ancestor-or-self::tei:TEI//tei:teiHeader//tei:msDesc/tei:msIdentifier/tei:idno
@@ -674,6 +677,25 @@ function query:pubdate-range($node as node(), $model as map(*)) {
             "max": max($dates)
         }
 };
+(:~
+ : Map an idno string to a canonical archive code.
+ : Returns the empty sequence for idnos that don't begin with a known archive prefix
+ : (e.g. descriptive entries like "Original", "Abschrift", "Quelle", …).
+ :)
+declare function query:normalize-archive($idno as xs:string?) as xs:string? {
+    let $upper := upper-case(normalize-space($idno))
+    return
+        if (starts-with($upper, "STAZH")) then "StAZH"
+        else if (starts-with($upper, "ZBZ") or starts-with($upper, "ZB ") or starts-with($upper, "ZB,")) then "ZBZ"
+        else if (starts-with($upper, "TAI")) then
+            (: TAI ist eine Edition; das eigentliche Archiv steht hinter dem ";" :)
+            if (contains($upper, "BGE")) then "BGE"
+            else if (contains($upper, "ZBZ") or contains($upper, "ZB ")) then "ZBZ"
+            else ()
+        else if (starts-with($upper, "UNIVERSITÄTSBIBLIOTHEK BASEL")) then "UB Basel"
+        else ()
+};
+
 declare
     %templates:replace
 function query:list-archives($node as node(), $model as map(*), $filter-archive as xs:string?) {
@@ -683,21 +705,20 @@ function query:list-archives($node as node(), $model as map(*), $filter-archive 
             $model?hits ! root(.)
         else
             collection($config:data-root)
-    let $items := for $idno in distinct-values(
-                    for-each($context//tei:teiHeader//tei:msDesc/tei:msIdentifier/tei:idno, function($id) {
-                        replace($id, "^\s*(\w+).*$", "$1")
-                    })
-            )            
-            order by $idno
-            return 
-                <paper-item value="{$idno}">
+    let $items := for $archive in distinct-values(
+                    $context//tei:teiHeader//tei:msDesc/tei:msIdentifier/tei:idno
+                        ! query:normalize-archive(.)
+            )
+            order by $archive
+            return
+                <paper-item value="{$archive}">
                 {
-                    if ($idno = $filter-archive) then
+                    if ($archive = $filter-archive) then
                         attribute selected { "selected" }
                     else
                         ()
                 }
-                {$idno}
+                {$archive}
                 </paper-item>
     return
         ( $items)

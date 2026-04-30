@@ -38,6 +38,8 @@
   "editiontext": "Editionstext",
   "family-organisation": "Familie/Organisation",
   "filliation": "Überlieferung",
+  "advancedSearch": "Erweiterte Suche",
+  "advancedSearchTooltip": "Weitere Suchfilter: Textgattung (Titel, Signatur, Regest, Kommentar, Anmerkungen, Siegel), Archiv, Thematische Auswahl, Siegel, Filiation, Material.",
   "filters": "Felder und Facetten",
   "from": "von",
   "genre": "Textgattung",

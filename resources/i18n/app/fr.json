@@ -38,6 +38,8 @@
   "editiontext": "Texte édité",
   "family-organisation": "Famille/Organisation",
   "filliation": "Tradition",
+  "advancedSearch": "Recherche avancée",
+  "advancedSearchTooltip": "Filtres supplémentaires : genre du texte (titre, cote, régeste, commentaire, notes, sceau), archive, choix thématique, sceau, filiation, matériau.",
   "filters": "Recherche dans un champ",
   "from": "de",
   "genre": "Genre",

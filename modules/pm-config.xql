@@ -4,12 +4,12 @@ xquery version "3.1";
 module namespace pm-config="http://www.tei-c.org/tei-simple/pm-config";
 
 import module namespace pm-qzh-web="http://www.tei-c.org/pm/models/qzh/web/module" at "../transform/qzh-web-module.xql";
-import module namespace pm-qzh-print="http://www.tei-c.org/pm/models/qzh/fo/module" at "../transform/qzh-print-module.xql";
+import module namespace pm-qzh-print="http://www.tei-c.org/pm/models/qzh/print/module" at "../transform/qzh-print-module.xql";
 import module namespace pm-qzh-latex="http://www.tei-c.org/pm/models/qzh/latex/module" at "../transform/qzh-latex-module.xql";
 import module namespace pm-qzh-epub="http://www.tei-c.org/pm/models/qzh/epub/module" at "../transform/qzh-epub-module.xql";
 import module namespace pm-docx-tei="http://www.tei-c.org/pm/models/docx/tei/module" at "../transform/docx-tei-module.xql";
 import module namespace pm-qzh-norm-web="http://www.tei-c.org/pm/models/qzh-norm/web/module" at "../transform/qzh-norm-web-module.xql";
-import module namespace pm-qzh-norm-print="http://www.tei-c.org/pm/models/qzh-norm/fo/module" at "../transform/qzh-norm-print-module.xql";
+import module namespace pm-qzh-norm-print="http://www.tei-c.org/pm/models/qzh-norm/print/module" at "../transform/qzh-norm-print-module.xql";
 import module namespace pm-qzh-norm-latex="http://www.tei-c.org/pm/models/qzh-norm/latex/module" at "../transform/qzh-norm-latex-module.xql";
 import module namespace pm-qzh-norm-epub="http://www.tei-c.org/pm/models/qzh-norm/epub/module" at "../transform/qzh-norm-epub-module.xql";
 

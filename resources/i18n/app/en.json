@@ -38,6 +38,8 @@
    "editiontext": "Edition Text",
   "family-organisation": "Family/Organisation",
   "filliation": "Filliation",
+  "advancedSearch": "Advanced search",
+  "advancedSearchTooltip": "Additional filters: text type (title, shelfmark, abstract, commentary, notes, seal), archive, thematic selection, seal, filiation, material.",
   "filters": "Filters and Facets",
   "from": "from",
   "genre": "Genre",
