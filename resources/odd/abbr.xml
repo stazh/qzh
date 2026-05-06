@@ -60,6 +60,9 @@
                         <desc xml:lang="it">folio</desc>
                         <desc xml:lang="en">folio</desc>
                     </valItem>
+                    <valItem ident="Id.">
+                        <desc xml:lang="de">Schweizerisches Idiotikon</desc>
+                    </valItem>
                        <valItem ident="Jh.">
                         <desc xml:lang="de">Jahrhundert</desc>
                     </valItem>
