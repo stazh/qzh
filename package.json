@@ -1,13 +1,14 @@
 {
   "dependencies": {
-    "@teipublisher/pb-components" : "1.42.0"
+    "@teipublisher/pb-components": "1.42.0",
+    "swagger-ui-dist": "^3.52.5"
   },
   "name": "qzh",
   "version": "0.1",
   "description": "Quellen zur Zürcher Geschichte",
   "devDependencies": {
     "cypress": "^15.2.0"
-  },  
+  },
   "scripts": {
     "e2e": "cypress run"
   }

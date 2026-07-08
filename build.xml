@@ -62,7 +62,31 @@
         </copy>        
         <copy todir="${app.build.dir}/resources/i18n">
             <fileset dir="node_modules/@teipublisher/pb-components/i18n" />
-        </copy>    
+        </copy>
+        <copy todir="${app.build.dir}/resources/lib/webcomponentsjs">
+            <fileset dir="node_modules/@webcomponents/webcomponentsjs">
+                <include name="webcomponents-loader.js"/>
+                <include name="webcomponents-bundle.js"/>
+                <include name="webcomponents-bundle.js.map"/>
+                <include name="bundles/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${app.build.dir}/resources/lib/web-animations-js">
+            <fileset dir="node_modules/web-animations-js">
+                <include name="web-animations-next-lite.min.js"/>
+                <include name="web-animations-next-lite.min.js.map"/>
+            </fileset>
+        </copy>
+        <copy todir="${app.build.dir}/resources/lib/swagger-ui">
+            <fileset dir="node_modules/swagger-ui-dist">
+                <include name="swagger-ui.css"/>
+                <include name="swagger-ui.css.map"/>
+                <include name="swagger-ui-bundle.js"/>
+                <include name="swagger-ui-bundle.js.map"/>
+                <include name="swagger-ui-standalone-preset.js"/>
+                <include name="swagger-ui-standalone-preset.js.map"/>
+            </fileset>
+        </copy>
       </target>
       
       <target name="xar" depends="clean,git.revision,npm.install,prepare">

@@ -4476,8 +4476,6 @@ class PbDemoSnippet extends LitElement {
     }
 
     const cpCss = `
-@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto&display=swap');
-
 body {
     margin: 10px 20px;
     font-size: 16px;
@@ -33084,6 +33082,16 @@ class PbFacsimile extends pbMixin(LitElement) {
 
     const uris = this._facsimiles.map(fac => {
       if (this.type === 'iiif') {
+        if (/^https?:\/\//.test(fac)) {
+          const canvasMatch = fac.match(/^(https?:\/\/[^/]+\/i3f\/v\d+\/)(?:[^/]+\/canvas\/)([^/]+)$/);
+
+          if (canvasMatch) {
+            return `${canvasMatch[1]}${canvasMatch[2]}/info.json`;
+          }
+
+          return `${fac}/info.json`;
+        }
+
         return `${this.baseUri}${fac}/info.json`;
       } else {
         return {

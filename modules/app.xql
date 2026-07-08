@@ -345,6 +345,21 @@ function app:meta-title($node as node(), $model as map(*)) {
     $model?title
 };
 
+declare function app:thumbnail-src($facs as xs:string?) as xs:string? {
+    if (empty($facs) or normalize-space($facs) = "") then
+        ()
+    else if (matches($facs, '^https?://')) then
+        let $normalized-facs :=
+            if (matches($facs, '^https?://[^/]+/i3f/v\d+/[^/]+/canvas/[^/]+$')) then
+                replace($facs, '^(https?://[^/]+/i3f/v\d+/)(?:[^/]+/canvas/)([^/]+)$', '$1$2')
+            else
+                $facs
+        return
+            $normalized-facs || '/full/178,/0/default.jpg'
+    else
+        $config:iiif-base-uri || $facs || '/full/178,/0/default.jpg'
+};
+
 (:~
  : Display a facsimile thumbnail in the collection list next to each document, if available,
  : and link it to the document
@@ -363,7 +378,7 @@ function app:short-header-link($node as node(), $model as map(*)) {
                 $node/@*,
                 attribute href { $href },
                 element img {
-                    attribute src { $config:iiif-base-uri || $thumbnail-src || '/full/178,/0/default.jpg'},
+                    attribute src { app:thumbnail-src($thumbnail-src) },
                     attribute class { 'document-thumbnail-image' },
                     templates:process($node/node(), $model)
                 }
