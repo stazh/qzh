@@ -198,7 +198,7 @@ Die Verzeichnung der Quellenstücke im der Archivdatenbank, sofern nicht bereits
         &lt;encodingDesc&gt;
             &lt;editorialDecl&gt;
                 &lt;p&gt;
-                    &lt;ref target="https://www.ssrq-sds-fds.ch/wiki/Transkriptionsrichtlinien"/&gt;
+                    &lt;ref target="https://schema.ssrq-sds-fds.ch/latest/base/transcription/"/&gt;
                 &lt;/p&gt;
             &lt;/editorialDecl&gt;
         &lt;/encodingDesc&gt;
