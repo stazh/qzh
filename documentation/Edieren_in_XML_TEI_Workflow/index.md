@@ -18,6 +18,8 @@ Verfasst von Michael Schaffner, Mai 2023
 
 Diese Anleitung richtet sich an Personen und Projekte, die ihre Transkriptionen in Absprache mit dem Staatsarchiv Zürich auf der Plattform «Quellen zur Zürcher Geschichte» publizieren (über QZH: https://qzh.sources-online.org/exist/apps/qzh/about.html). QZH basiert auf der Open Source-Software [TEI Publisher](https://teipublisher.com/index.html/ "TEI Publisher").
 
+Eine hilfreiche Vorschaufunktion zur Umsetzung der XML-Transkriptionen auf QZH findet sich hier: [QZH-Preview](https://stazh.github.io/qzh_preview_xml/)
+
 Im Sinne der Maschinenlesbarkeit und Langzeitarchivierung der Texte empfiehlt es sich, die Transkriptionen von Anfang gemäss den Richtlinien von XML/TEI anzufertigen. Die allgemeinen Guidelines von TEI (Text Encoding Initiative) sind hier dokumentiert: https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html (für weitere Infos vgl. unten, Abschnitte 3 und 4). Eine allgemeine Einführung in XML/TEI findet sich hier: https://tei-c.org/release/doc/tei-p5-doc/es/html/SG.html
 
 Für Projekte die mit MS Word (.docx) arbeiten, gibt es verschiedene Möglichkeiten der Konvertierung in XML/TEI. So ist es auf der Website des TEI Publishers möglich, Word-Files hochzuladen und anschliessend als xml-Dateien abzuspeichern: https://teipublisher.com/exist/apps/tei-publisher/index.html Eine alternative Konvertierungsmaschine ist die sogenannte [TEI Garage](https://teigarage.tei-c.org/ "TEI Garage").
