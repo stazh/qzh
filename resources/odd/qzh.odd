@@ -1181,6 +1181,7 @@
                     <model behaviour="inline"/>
                 </elementSpec>
                 <elementSpec ident="additional" mode="add">
+                    <model output="epub" behaviour="block"/>
                     <model behaviour="heading"/>
                 </elementSpec>
                 <elementSpec ident="textLang" mode="add">

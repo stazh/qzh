@@ -19,6 +19,7 @@ import module namespace pm-config="http://www.tei-c.org/tei-simple/pm-config" at
 import module namespace pages="http://www.tei-c.org/tei-simple/pages" at "pages.xql";
 import module namespace tpu="http://www.tei-c.org/tei-publisher/util" at "lib/util.xql";
 import module namespace nav="http://www.tei-c.org/tei-simple/navigation" at "../navigation.xql";
+import module namespace common="http://www.tei-c.org/tei-simple/xquery/functions/ssrq-common" at "../ext-common.xql";
 import module namespace counter="http://exist-db.org/xquery/counter" at "java:org.exist.xquery.modules.counter.CounterModule";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
@@ -42,6 +43,8 @@ declare namespace ep="http://www.idpf.org/2007/ops";
 :)
 declare function epub:generate-epub($config as map(*), $doc, $css, $filename) {
     let $docConfig := map:merge((tpu:parse-pi(root($doc), "div"), map { "view": "div" }))
+    (: the content of a section is always output completely, see epub:sections :)
+    let $docConfig := map:merge(($docConfig, map { "fill": 0 }))
     let $config := map:merge(($config, map { "docConfig": $docConfig }, map { "type": $docConfig?type }))
     let $xhtml := epub:body-xhtml-entries(root($doc), $config)
     let $entries :=
@@ -120,10 +123,18 @@ declare function epub:content-opf-entry($config as map(*), $text, $xhtml as elem
         <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="3.0">
             <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
                 <dc:title>{$config?metadata?title}</dc:title>
-                <dc:creator>{$config?metadata?creator}</dc:creator>
+                {
+                    if ($config?metadata?creator) then
+                        <dc:creator>{$config?metadata?creator}</dc:creator>
+                    else
+                        ()
+                }
                 <dc:identifier id="bookid">{$config?metadata?urn}</dc:identifier>
                 <dc:language>{$config?metadata?language}</dc:language>
-                <meta property="dcterms:modified">{current-dateTime()}</meta>
+                <meta property="dcterms:modified">{
+                    format-dateTime(adjust-dateTime-to-timezone(current-dateTime(), xs:dayTimeDuration("PT0S")),
+                        "[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z")
+                }</meta>
             </metadata>
             <manifest>
                 <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
@@ -199,7 +210,12 @@ declare function epub:title-xhtml-entry($language, $doc, $config) {
 :)
 declare function epub:title-xhtml-body($fileDesc as element()?, $config) {
     <div xmlns="http://www.w3.org/1999/xhtml" id="title">
-        { epub:fix-namespaces($pm-config:epub-transform($fileDesc, map { "root": $fileDesc }, $config?odd)) }
+        <h1>{$config?metadata?title}</h1>
+        {
+            for $node in ($fileDesc, $fileDesc//tei:msContents/tei:summary[normalize-space(.)])
+            return
+                epub:fix-namespaces($pm-config:epub-transform($node, map { "root": $node }, $config?odd))
+        }
     </div>
 };
 
@@ -210,14 +226,38 @@ declare function epub:title-xhtml-body($fileDesc as element()?, $config) {
     @return the serialized XHTML page, wrapped in an entry element
 :)
 declare function epub:body-xhtml-entries($doc as document-node(), $config) {
-    let $div := nav:get-section($config?docConfig, $doc)
-    let $entries := epub:body-xhtml($div, $config)
+    for $section in epub:sections($doc)
     return
-        $entries
+        epub:body-xhtml($section, $config)
+};
+
+(:~
+    The sections of a text, each of which becomes a file: the divisions in front, body and back. If one of these contains
+    anything else, it becomes one file as a whole.
+:)
+declare %private function epub:sections($doc as document-node()) as element()* {
+    for $part in $doc//tei:text/(tei:front|tei:body|tei:back)
+    return
+        if (epub:is-divided($part)) then
+            $part/tei:div
+        else
+            $part
+};
+
+declare %private function epub:is-divided($part as element()) as xs:boolean {
+    every $child in $part/* satisfies $child instance of element(tei:div)
+};
+
+declare %private function epub:section-for-node($node as element()) as element()? {
+    let $part := $node/ancestor::*[local-name(.) = ("front", "body", "back")][1]
+    return
+        if (epub:is-divided($part)) then
+            $node/ancestor-or-self::tei:div[last()]
+        else
+            $part
 };
 
 declare function epub:body-xhtml($node, $config) {
-    let $next := nav:get-next($config?docConfig, $node, "div")
     let $content := pages:get-content($config?docConfig, $node)
     let $title := nav:get-section-heading($config?docConfig, $content)/node()
     let $title :=
@@ -227,13 +267,8 @@ declare function epub:body-xhtml($node, $config) {
             "--no title---"
     let $body := $pm-config:epub-transform($content, map { "root": $node }, $config?odd)
     let $body-xhtml:= epub:assemble-xhtml(string-join($title), $config?metadata?language, epub:fix-namespaces($body))
-    return (
-        <entry name="{concat('OEBPS/', epub:generate-id($node), '.xhtml')}" type="xml">{$body-xhtml}</entry>,
-        if ($next) then
-            epub:body-xhtml($next, $config)
-        else
-            ()
-    )
+    return
+        <entry name="{concat('OEBPS/', epub:generate-id($node), '.xhtml')}" type="xml">{$body-xhtml}</entry>
 };
 
 (:~
@@ -257,7 +292,12 @@ declare function epub:nav-entry($config, $text) {
             <body>
                 <nav epub:type="toc">
                 {
-                    epub:toc-nav-div($config, nav:get-section($config?docConfig, $text)/..)
+                    let $sections := epub:toc-nav-div($config, ($text//tei:text)[1])
+                    return
+                        if ($sections) then
+                            $sections
+                        else
+                            <ol><li><a href="title.xhtml">{$config?metadata?title}</a></li></ol>
                 }
                 </nav>
             </body>
@@ -267,17 +307,15 @@ declare function epub:nav-entry($config, $text) {
 };
 
 declare function epub:toc-nav-div($config, $root as element()) {
+    let $divs := nav:get-subsections($config?docConfig, $root)
+    where exists($divs)
+    return
     <ol xmlns="http://www.w3.org/1999/xhtml">
     {
-        let $divs := nav:get-subsections($config?docConfig, $root)
         for $div in $divs
         let $headings := nav:get-section-heading($config?docConfig, $div)
-        let $html :=
-            if ($headings) then
-                normalize-space(string-join($headings//text()))
-            else
-                "[no title]"
-        let $file := epub:generate-id(nav:get-section-for-node($config?docConfig, $div))
+        let $html := epub:toc-label($headings)
+        let $file := epub:generate-id(epub:section-for-node($div))
         let $id := if ($div/@xml:id) then $div/@xml:id else epub:generate-id($div)
         return
             <li>
@@ -286,6 +324,15 @@ declare function epub:toc-nav-div($config, $root as element()) {
             </li>
     }
     </ol>
+};
+
+declare %private function epub:toc-label($headings as element()*) as xs:string {
+    head((
+        normalize-space(string-join($headings ! common:reading-text(.), " "))[. != ""],
+        (: the heading has been deleted :)
+        normalize-space(string-join($headings, " "))[. != ""],
+        "[no title]"
+    ))
 };
 
 (:~
@@ -316,7 +363,7 @@ declare function epub:toc-ncx-entry($config, $text) {
                 </navPoint>
                 {
                     counter:create("teipublisher-epub-toc")[2],
-                    epub:toc-ncx-div($config, nav:get-section($config?docConfig, $text)/.., 1),
+                    epub:toc-ncx-div($config, ($text//tei:text)[1], 1),
                     counter:destroy("teipublisher-epub-toc")[2]
                 }
             </navMap>
@@ -329,12 +376,8 @@ declare function epub:toc-ncx-div($config, $root as element(), $start as xs:int)
     let $divs := nav:get-subsections($config?docConfig, $root)
     for $div at $count in $divs
     let $headings := nav:get-section-heading($config?docConfig, $div)
-    let $html :=
-        if ($headings) then
-            normalize-space(string-join($headings//text()))
-        else
-            "[no title]"
-    let $file := epub:generate-id(nav:get-section-for-node($config?docConfig, $div))
+    let $html := epub:toc-label($headings)
+    let $file := epub:generate-id(epub:section-for-node($div))
     let $id := if ($div/@xml:id) then $div/@xml:id else epub:generate-id($div)
     return
         <navPoint id="navpoint-{$id}" playOrder="{counter:next-value('teipublisher-epub-toc') + $start}" xmlns="http://www.daisy.org/z3986/2005/ncx/">
@@ -361,11 +404,21 @@ declare function epub:assemble-xhtml($title, $language, $body) {
                 <title>{$title}</title>
                 <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
             </head>
-            <body>
+            <body xml:space="preserve">
                 {
+                    (: xml:space prevents indentation, which would add spaces between inline elements :)
                     if ($footnotes) then (
                         epub:strip-footnotes($body),
-                        <section epub:type="footnotes">{$footnotes}</section>
+                        <section epub:type="footnotes">
+                        {
+                            for $footnote in $footnotes
+                            return
+                                element { node-name($footnote) } {
+                                    $footnote/@*,
+                                    epub:strip-footnotes($footnote/node())
+                                }
+                        }
+                        </section>
                     ) else
                         $body
                 }
@@ -400,9 +453,16 @@ declare function epub:fix-namespaces($nodes as item()*) {
     return
         typeswitch ($node)
             case element() return
-                element { QName("http://www.w3.org/1999/xhtml", local-name($node)) } {
-                    $node/@*, for $child in $node/node() return epub:fix-namespaces($child)
-                }
+                (: Web components are unknown to e-readers: keep the text, drop the content of popovers :)
+                if (matches(local-name($node), "^(pb|paper|iron)-")) then
+                    epub:fix-namespaces(($node/*[@slot = "default"], $node[not(*/@slot = "default")])[1]/node()[not(@slot = "alternate")])
+                (: Links within the website lead nowhere in an EPUB: keep the text :)
+                else if (local-name($node) = "a" and $node/@href[not(matches(normalize-space(.), "^(#.|[a-z]+:)"))]) then
+                    epub:fix-namespaces($node/node())
+                else
+                    element { QName("http://www.w3.org/1999/xhtml", local-name($node)) } {
+                        $node/@*, for $child in $node/node() return epub:fix-namespaces($child)
+                    }
             default return
                 $node
 };
