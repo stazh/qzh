@@ -39,10 +39,9 @@ window.addEventListener("DOMContentLoaded", () => {
   function findPopovers(id, callback) {
     blocks.forEach((content) => {
       content.querySelectorAll("pb-popover[data-ref]").forEach((popover) => {
-        // data-ref contains a space-separated list of refs
-        // each may have a suffix, so we have to match against the start of the substring
-        const re = new RegExp(`(^|\\s+)${id}`);
-        if (re.test(popover.getAttribute("data-ref"))) {
+        // data-ref contains a space-separated list of refs. Compare them as a whole,
+        // otherwise "Bucher, Hans" would also match "Bucher, Hans Jakob"
+        if (popover.getAttribute("data-ref").split(/\s+/).includes(id)) {
           callback(popover);
         }
       });

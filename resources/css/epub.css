@@ -1,15 +1,23 @@
 /*********************** Fonts ***********************/
 
 @font-face {
+  font-family: "Junicode";
   src: url('Fonts/Junicode.ttf') format('truetype');
 }
 @font-face {
+  font-family: "Junicode";
+  font-weight: bold;
   src: url('Fonts/Junicode-Bold.ttf') format('truetype');
 }
 @font-face {
+  font-family: "Junicode";
+  font-style: italic;
   src: url('Fonts/Junicode-Italic.ttf') format('truetype');
 }
 @font-face {
+  font-family: "Junicode";
+  font-weight: bold;
+  font-style: italic;
   src: url('Fonts/Junicode-BoldItalic.ttf') format('truetype');
 }
 

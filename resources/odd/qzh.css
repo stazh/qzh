@@ -114,6 +114,12 @@ iron-icon {
     cursor: pointer;
 }
 
+/* names linking to the register keep the colour of their category */
+.semantic a,
+.semantic a > * {
+    color: inherit;
+}
+
 .place {
     color: #055005;
 }

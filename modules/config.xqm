@@ -240,10 +240,10 @@ declare variable $config:epub-config := function ($doc as document-node(), $lang
     return
         map {
             "metadata": map {
-                "title": nav:get-metadata($properties, $root, "title"),
+                "title": normalize-space(nav:get-metadata($properties, $root, "title")),
                 "creator": string-join(nav:get-metadata($properties, $root, "author"), ", "),
                 "urn": util:uuid(),
-                "language": nav:get-metadata($properties, $root, "language")
+                "language": ($root/@xml:lang/string(), "de")[1]
             },
             "odd": $properties?odd,
             "output-root": $config:odd-root,
