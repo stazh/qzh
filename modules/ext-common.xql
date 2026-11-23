@@ -479,3 +479,258 @@ declare function pmf:persName-list($namen as element(tei:persName)*) {
     ) else
         $namen
 };
+
+(:
+ : Personen- und Ortsregister
+ :)
+
+(:~ Höchstzahl der Namen, mit denen ein Ort angezeigt wird :)
+declare variable $pmf:MAX_PLACE_NAMES := 5;
+
+(:
+ : Werte, die für den laufenden Request gemerkt werden, damit das Register nicht für jeden Namen neu gelesen wird.
+ : Globale Variablen eignen sich dafür nicht: eXist wertet sie bei jedem Request aus, auch wenn sie niemand braucht.
+ :)
+declare %private function pmf:recall($name as xs:string) as item()* {
+    if (request:exists()) then
+        request:get-attribute("qzh.register." || $name)
+    else
+        ()
+};
+
+declare %private function pmf:remember($name as xs:string, $value as item()*) as item()* {
+    let $stored :=
+        if (request:exists()) then
+            request:set-attribute("qzh.register." || $name, $value)
+        else
+            ()
+    return
+        $value
+};
+
+(:~
+ : Registereinträge ("person" oder "place") nach dem Wert von @xml:id. fn:id() genügt hier nicht: Schlüssel wie
+ : "Bucher, N." sind keine gültigen IDs und werden von fn:id() nie gefunden.
+ :)
+declare %private function pmf:register($register as xs:string) as map(*) {
+    let $known := pmf:recall($register)
+    return
+        if (exists($known)) then
+            $known
+        else
+            pmf:remember($register, map:merge(
+                for $entry in doc($config:data-root || "/" || $register || "/" || $register || ".xml")//(tei:person|tei:place)
+                return
+                    map:entry(string($entry/@xml:id), $entry)
+            ))
+};
+
+(:~ Normalisierte Ortsnamen nach Ortsschlüssel :)
+declare %private function pmf:place-norms() as map(*) {
+    let $known := pmf:recall("place-norms")
+    return
+        if (exists($known)) then
+            $known
+        else
+            pmf:remember("place-norms", map:merge(
+                for $name in doc($config:data-root || "/place/place-additions.xml")//tei:text/tei:placeName[@ref]
+                group by $ref := string($name/@ref)
+                return
+                    map:entry($ref, normalize-space($name[1]))
+            ))
+};
+
+(:~ Wert für data-ref: ohne Leerzeichen, da data-ref eine Liste von Schlüsseln enthalten kann :)
+declare function pmf:register-key($ref as xs:string?) as xs:string {
+    encode-for-uri(normalize-space($ref))
+};
+
+(:~ Wert für data-ref bei Personen ohne Registereintrag :)
+declare function pmf:unidentified-key($name as xs:string?) as xs:string {
+    "unid-" || pmf:register-key($name)
+};
+
+declare %private function pmf:register-link($register as xs:string, $name as xs:string?, $key as xs:string) as xs:string {
+    "../" || $register || "/all/" || encode-for-uri(translate($name, "/", " ")) || "?key=" || encode-for-uri($key)
+};
+
+(:~ Link auf die Registerliste ("people" oder "places"), geöffnet beim Anfangsbuchstaben von $name :)
+declare function pmf:register-search-link($register as xs:string, $name as xs:string?) as xs:string {
+    let $sort-name := replace(normalize-space($name), "^von ", "")
+    return
+        "../" || $register || "/all/?category=" || encode-for-uri(upper-case(substring($sort-name, 1, 1)))
+};
+
+(:~ Lesetext, z. B. eines Namens: ohne Anmerkungen, aufgelöste statt abgekürzte und neue statt getilgte Formen :)
+declare function pmf:reading-text($element as element()) as xs:string {
+    normalize-space(string-join(pmf:reading($element/node())))
+};
+
+declare %private function pmf:reading($nodes as node()*) as xs:string* {
+    for $node in $nodes
+    return
+        typeswitch ($node)
+            case text() return
+                string($node)
+            case element(tei:note) | element(tei:del) return
+                ()
+            case element(tei:abbr) return
+                if ($node/../self::tei:choice/tei:expan or $node/following-sibling::*[1][self::tei:expan]) then
+                    ()
+                else
+                    pmf:reading($node/node())
+            case element() return
+                pmf:reading($node/node())
+            default return
+                ()
+};
+
+(:~
+ : Besteht ein Name nur aus Text, Zeilenumbrüchen und Abkürzungen? Andere Auszeichnungen erzeugen selbst Links (z. B. auf
+ : Anmerkungen oder Orte), ein solcher Name kann nicht als Ganzes verlinkt werden.
+ :)
+declare function pmf:is-plain-name($name as element()) as xs:boolean {
+    every $element in $name//* satisfies local-name($element) = ("lb", "choice", "abbr", "expan")
+};
+
+declare function pmf:person($ref as xs:string?) as element(tei:person)? {
+    if ($ref) then
+        pmf:register("person")(normalize-space($ref))
+    else
+        ()
+};
+
+(:~
+ : Anzeigename einer Person. Personen ohne GND sind in den Täuferquellen mit ihrem normalisierten Namen referenziert
+ : (ref="Bucher, N."), dann ist dieser Schlüssel der Name.
+ :)
+declare function pmf:person-label($person as element(tei:person)) as xs:string {
+    let $key := string($person/@xml:id)
+    return
+        if ($key = "" or matches($key, "^(GND|LOC|QZH)_")) then
+            normalize-space($person/tei:persName[@type = "full"][1])
+        else
+            $key
+};
+
+(:~ Wie person-label, bei normalisierten Namen ergänzt um die Schreibweisen der Quellen :)
+declare function pmf:person-title($person as element(tei:person)) as xs:string {
+    let $label := pmf:person-label($person)
+    let $spellings := normalize-space($person/tei:persName[@type = "full"][1])
+    return
+        if ($spellings = ("", $label)) then
+            $label
+        else
+            $label || " (" || $spellings || ")"
+};
+
+declare function pmf:person-link($person as element(tei:person)) as xs:string {
+    pmf:register-link("people", pmf:person-label($person), $person/@xml:id)
+};
+
+(:~
+ : Personen eines Stücks für die Registerleiste: zuerst jene aus dem Register, danach die übrigen (ohne @ref oder
+ : ohne Registereintrag). Registereinträge ohne Namen werden ausgelassen.
+ :)
+declare function pmf:register-persons($root as node()) as element(tei:person)* {
+    let $names := $root//tei:text//tei:persName
+    return (
+        for $person in distinct-values($names/@ref ! normalize-space(.)) ! pmf:person(.)
+        where $person/tei:persName[normalize-space(.)]
+        order by pmf:person-label($person)
+        return
+            $person,
+        for $name in $names[not(pmf:person(@ref))]
+        group by $label := pmf:reading-text($name)
+        where $label
+        order by $label
+        return
+            <person xmlns="http://www.tei-c.org/ns/1.0" n="{pmf:unidentified-key($label)}" type="unidentified">
+                <persName type="full">{$label}</persName>
+            </person>
+    )
+};
+
+declare function pmf:place($ref as xs:string?) as element(tei:place)? {
+    if ($ref) then
+        pmf:register("place")(normalize-space($ref))
+    else
+        ()
+};
+
+(:~ Normalisierter Name eines Ortes, falls in place-additions.xml hinterlegt :)
+declare function pmf:place-norm($place as element(tei:place)) as xs:string? {
+    pmf:place-norms()(string($place/@xml:id))
+};
+
+(:~ Hauptname eines Ortes: der normalisierte Name, sonst der erste Name in @n :)
+declare function pmf:place-name($place as element(tei:place)) as xs:string? {
+    let $norm := pmf:place-norm($place)
+    return
+        if ($norm) then
+            $norm
+        else
+            let $n := normalize-space($place/@n)
+            let $names := $place/tei:placeName ! normalize-space(.)
+            return
+                ($names[. = $n or starts-with($n, . || ", ")], $names)[. != ""][1]
+};
+
+(:~
+ : Alle Namen eines Ortes, zuerst der Hauptname. Die übrigen folgen in der Reihenfolge des Registers (@n). Sind es mehr,
+ : als angezeigt werden, kommen die am häufigsten genannten zuerst.
+ :)
+declare %private function pmf:place-names($place as element(tei:place)) as xs:string* {
+    let $main := pmf:place-name($place)
+    let $n := ", " || normalize-space($place/@n) || ", "
+    let $others :=
+        for $name in distinct-values($place/tei:placeName ! normalize-space(.))[not(. = ("", $main))]
+        order by string-length(substring-before($n, ", " || $name || ", "))
+        return
+            $name
+    return (
+        $main,
+        if (count($others) < $pmf:MAX_PLACE_NAMES) then
+            $others
+        else
+            let $mentions := map:merge(
+                for $mention in collection($config:data-root)//tei:text//tei:placeName[@ref = $place/@xml:id]
+                group by $spelling := normalize-space($mention)
+                return
+                    map:entry($spelling, count($mention))
+            )
+            for $name at $pos in $others
+            order by ($mentions($name), 0)[1] descending, $pos
+            return
+                $name
+    )
+};
+
+(:~ Anzeigename eines Ortes: Hauptname und weitere Schreibweisen, höchstens $pmf:MAX_PLACE_NAMES :)
+declare function pmf:place-label($place as element(tei:place)) as xs:string {
+    let $known := pmf:recall("place-label." || $place/@xml:id)
+    return
+        if (exists($known)) then
+            $known
+        else
+            let $names := pmf:place-names($place)
+            return
+                pmf:remember("place-label." || $place/@xml:id, string-join((
+                    subsequence($names, 1, $pmf:MAX_PLACE_NAMES),
+                    if (count($names) > $pmf:MAX_PLACE_NAMES) then "…" else ()
+                ), ", "))
+};
+
+declare function pmf:place-link($place as element(tei:place)) as xs:string {
+    pmf:register-link("places", pmf:place-name($place), $place/@xml:id)
+};
+
+(:~ Orte eines Stücks für die Registerleiste. Registereinträge ohne Namen werden ausgelassen. :)
+declare function pmf:register-places($root as node()) as element(tei:place)* {
+    for $place in distinct-values($root//tei:text//(tei:placeName|tei:origPlace)/@ref ! normalize-space(.)) ! pmf:place(.)
+    let $name := pmf:place-name($place)
+    where $name
+    order by $name
+    return
+        $place
+};

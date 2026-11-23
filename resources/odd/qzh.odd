@@ -484,16 +484,19 @@
         </model>
                 </elementSpec>
                 <elementSpec ident="persName" mode="add">
+                    <model predicate="not(node())" behaviour="omit">
+            <desc>Leere Registermarken der Täuferquellen, die keinem Namen im Text zugeordnet sind</desc>
+        </model>
                     <model predicate="parent::respStmt and ../preceding-sibling::respStmt" behaviour="inline">
             <outputRendition xml:space="preserve" scope="before">
             content: ', ';
             </outputRendition>
         </model>
                     <model predicate="parent::respStmt" behaviour="inline"/>
-                    <model predicate="@ref and id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/person/person.xml&#34;))" behaviour="inline" cssClass="semantic person">
-            <param name="alternate" value="id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/person/person.xml&#34;))"/>
+                    <model predicate="ec:person(@ref)" behaviour="inline" cssClass="semantic person">
+            <param name="alternate" value="ec:person(@ref)"/>
             <param name="default" value="."/>
-            <param name="ref" value="@ref"/>
+            <param name="ref" value="ec:register-key(@ref)"/>
             <pb:template xmlns="" xml:space="preserve">
                             <pb-popover data-ref="[[ref]]">
                                 <span slot="default">[[default]]</span>
@@ -501,18 +504,28 @@
                             </pb-popover>
                         </pb:template>
         </model>
-                    <model predicate="@ref" behaviour="link" cssClass="semantic person">
-            <param name="uri" value="'https://www.ssrq-sds-fds.ch/persons-db-edit/?query=' || replace(@ref, ' ', '-')"/>
-        </model>
-                    <model behaviour="inline" cssClass="semantic person">
-            <desc>Fallback für persName ohne @ref: Hervorhebung und Tooltip</desc>
-            <param name="content" value="."/>
+                    <model predicate="ec:is-plain-name(.)" behaviour="inline" cssClass="semantic person">
+            <desc>Person ohne @ref oder ohne Registereintrag: Tooltip und Link auf das Personenregister</desc>
+            <param name="default" value="."/>
             <param name="alternate" value="ec:label('person-unidentified')"/>
-            <param name="ref" value="'unid-' || encode-for-uri(normalize-space(.))"/>
+            <param name="ref" value="ec:unidentified-key(ec:reading-text(.))"/>
+            <param name="link" value="ec:register-search-link('people', ec:reading-text(.))"/>
             <pb:template xmlns="" xml:space="preserve">
                             <pb-popover data-ref="[[ref]]">
-                                [[content]]
-                                <template slot="alternate">[[alternate]]</template>
+                                <span slot="default"><a href="[[link]]" target="_blank">[[default]]</a></span>
+                                <span slot="alternate">[[alternate]]</span>
+                            </pb-popover>
+                        </pb:template>
+        </model>
+                    <model behaviour="inline" cssClass="semantic person">
+            <desc>Wie oben, aber ohne Link: der Name enthält selbst Links, z. B. auf Anmerkungen oder Orte</desc>
+            <param name="default" value="."/>
+            <param name="alternate" value="ec:label('person-unidentified')"/>
+            <param name="ref" value="ec:unidentified-key(ec:reading-text(.))"/>
+            <pb:template xmlns="" xml:space="preserve">
+                            <pb-popover data-ref="[[ref]]">
+                                <span slot="default">[[default]]</span>
+                                <span slot="alternate">[[alternate]]</span>
                             </pb-popover>
                         </pb:template>
         </model>
@@ -535,10 +548,13 @@
         </model>
                 </elementSpec>-->
                 <elementSpec ident="placeName" mode="add">
-                    <model predicate="@ref and id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/place/place.xml&#34;))" behaviour="inline" cssClass="semantic place">
-            <param name="alternate" value="id(replace(@ref, ' ', '-'), doc(&#34;/db/apps/qzh-data/place/place.xml&#34;))"/>
+                    <model predicate="not(node())" behaviour="omit">
+            <desc>Leere Registermarken der Täuferquellen, die keinem Namen im Text zugeordnet sind</desc>
+        </model>
+                    <model predicate="ec:place(@ref)" behaviour="inline" cssClass="semantic place">
+            <param name="alternate" value="ec:place(@ref)"/>
             <param name="default" value="."/>
-            <param name="ref" value="@ref"/>
+            <param name="ref" value="ec:register-key(@ref)"/>
             <pb:template xmlns="" xml:space="preserve">
                             <pb-popover data-ref="[[ref]]">
                                 <span slot="default">[[default]]</span>
@@ -546,8 +562,14 @@
                             </pb-popover>
                         </pb:template>
         </model>
-                    <model predicate="@ref" behaviour="link" cssClass="semantic place">
-            <param name="uri" value="'https://www.ssrq-sds-fds.ch/places-db-edit/views/view-place.xq?id=' || replace(@ref, ' ', '-')"/>
+                    <model predicate="ec:is-plain-name(.)" behaviour="inline" cssClass="semantic place">
+            <desc>Ort ohne @ref oder ohne Registereintrag: Link auf das Ortsregister</desc>
+            <param name="content" value="."/>
+            <param name="link" value="ec:register-search-link('places', ec:reading-text(.))"/>
+            <pb:template xmlns="" xml:space="preserve"><a href="[[link]]" target="_blank">[[content]]</a></pb:template>
+        </model>
+                    <model behaviour="inline" cssClass="semantic place">
+            <desc>Wie oben, aber ohne Link: der Name enthält selbst Links, z. B. auf Anmerkungen oder Orte</desc>
         </model>
                 </elementSpec>
                 <elementSpec ident="origPlace" mode="add">
@@ -1169,12 +1191,12 @@
                 </elementSpec>
                 <elementSpec ident="teiHeader" mode="change">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
-            <param name="persons" value="let $register := doc(&#34;/db/apps/qzh-data/person/person.xml&#34;) let $identified := for $p in root(.)//text//persName[@ref] group by $k := $p/@ref return id($p[1]/@ref, $register) let $unidentified := for $p in root(.)//text//persName[not(@ref)] group by $name := normalize-space($p) order by $name ascending return &lt;person xmlns=&#34;http://www.tei-c.org/ns/1.0&#34; n=&#34;unid-{encode-for-uri($name)}&#34; type=&#34;unidentified&#34;&gt;&lt;persName type=&#34;full&#34;&gt;{$name}&lt;/persName&gt;&lt;/person&gt; return (for $p in $identified order by $p/persName[@type=&#34;full&#34;] ascending return $p, $unidentified)"/>
-            <param name="places" value="let $register := doc(&#34;/db/apps/qzh-data/place/place.xml&#34;) let $additions := doc(&#34;/db/apps/qzh-data/place/place-additions.xml&#34;)//text/placeName[@ref] let $norm-map := map:merge(for $a in $additions group by $k := $a/@ref/string() return map:entry($k, normalize-space($a[1]))) let $entries:=     for $p in root(.)//text//(placeName[@ref]|origPlace[@ref])          group by $k := $p/@ref   return     id($p[1]/@ref,$register)   return  for $p in $entries   let $sort-name := ($norm-map($p/@xml:id/string()), normalize-space($p/@n))[normalize-space(.)][1]  order by $sort-name ascending   return    $p"/>
+            <param name="persons" value="ec:register-persons(root(.))"/>
+            <param name="places" value="ec:register-places(root(.))"/>
             <param name="organizations" value=" let $register := doc(&#34;/db/apps/qzh-data/organization/organization.xml&#34;)  let $entries:=      for $p in root(.)//text//orgName[@ref]             group by $k := $p/@ref    return          id($p[1]/@ref, $register)      return   for $p in $entries          order by $p/orgName ascending             return                 $p                    "/>
             <param name="taxonomies" value="let $register := doc(&#34;/db/apps/qzh-data/taxonomy/taxonomy.xml&#34;) let $entries:=     for $p in root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]         group by $k := $p/@ref             return                 id($p[1]/@ref, $register)  return  for $p in $entries      order by $p/desc ascending          return                 $p"/>
-            <param name="emptyPlace" value="if(root(.)//text//(placeName[@ref]|origPlace[@ref])) then () else (&#34;hidden&#34;) "/>
-            <param name="emptyPerson" value="if(root(.)//text//persName) then () else (&#34;hidden&#34;) "/>
+            <param name="emptyPlace" value="if(exists(ec:register-places(root(.)))) then () else (&#34;hidden&#34;) "/>
+            <param name="emptyPerson" value="if(exists(ec:register-persons(root(.)))) then () else (&#34;hidden&#34;) "/>
             <param name="emptyOrg" value="if(root(.)//text//orgName[@ref]) then () else (&#34;hidden&#34;) "/>
             <param name="emptyTerm" value="if(root(.)//keywords//term[starts-with(@ref, &#34;key&#34;)]) then () else (&#34;hidden&#34;) "/>
             <pb:template xmlns="" xml:space="preserve"><div class="context register">
@@ -1280,7 +1302,7 @@
             <elementSpec ident="person" mode="add">
                     <model predicate="$parameters?header='context' and @type='unidentified'" behaviour="pass-through">
             <param name="ref" value="@n"/>
-            <param name="value" value="./persName[@type='full']/string()"/>
+            <param name="value" value="&lt;a href=&#34;{ec:register-search-link('people', persName[@type='full'])}&#34; target=&#34;_blank&#34;&gt;{persName[@type='full']/string()}&lt;/a&gt;"/>
             <pb:template xmlns="" xml:space="preserve"><li data-ref="[[ref]]">
         <paper-checkbox class="select-facet" title="i18n(highlight-facet)"/>
         <div>[[value]]</div>
@@ -1288,8 +1310,8 @@
         </model>
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
             <param name="content" value="."/>
-            <param name="ref" value="@xml:id"/>
-            <param name="value" value="( &lt;a href=&#34;../people/all/{./persName[@type='full']/string()}?key={@xml:id}&#34; target=&#34;_blank&#34;&gt;{./persName[@type='full']/string()}&lt;/a&gt;, if (string-length(./note) &gt; 0) then( &lt;span&gt; ({./note/string()})&lt;/span&gt;) else () )"/>
+            <param name="ref" value="ec:register-key(@xml:id)"/>
+            <param name="value" value="( &lt;a href=&#34;{ec:person-link(.)}&#34; target=&#34;_blank&#34;&gt;{ec:person-label(.)}&lt;/a&gt;, if (string-length(./note) &gt; 0) then( &lt;span&gt; ({./note/string()})&lt;/span&gt;) else () )"/>
             <pb:template xmlns="" xml:space="preserve"><li data-ref="[[ref]]">
         <paper-checkbox class="select-facet" title="i18n(highlight-facet)"/>
         <div>[[value]]</div>
@@ -1300,8 +1322,8 @@
                 <param name="content" value="(ec:label('person'), ' ')"/>
             </model>
             <model behaviour="link">
-                <param name="link" value="'../people/all/' || persName[@type='full']/string() || '?key=' || @xml:id"/>
-                <param name="content" value="persName[@type='full']/string()"/>
+                <param name="link" value="ec:person-link(.)"/>
+                <param name="content" value="ec:person-label(.)"/>
                 <param name="target" value="'_new'"/>
             </model>
         </modelSequence>
@@ -1309,8 +1331,8 @@
                 <elementSpec ident="place" mode="add">
                     <model predicate="$parameters?header='context'" behaviour="pass-through">
             <param name="content" value="."/>
-            <param name="ref" value="@xml:id"/>
-            <param name="value" value="(&lt;a href=&#34;../places/all/{placeName[@type=&#34;main&#34;]/string()}?key={@xml:id}&#34;&gt;{placeName[@type=&#34;main&#34;]/string()}&lt;/a&gt;, &lt;span&gt;{&#34; &#34; || placeName[@type=&#34;add&#34;]/string()}&lt;/span&gt;)"/>
+            <param name="ref" value="ec:register-key(@xml:id)"/>
+            <param name="value" value="(&lt;a href=&#34;{ec:place-link(.)}&#34;&gt;{ec:place-label(.)}&lt;/a&gt;, &lt;span&gt;{&#34; &#34; || placeName[@type=&#34;add&#34;]/string()}&lt;/span&gt;)"/>
             <pb:template xmlns="" xml:space="preserve"><li data-ref="[[ref]]">
   <paper-checkbox class="select-facet" title="i18n(highlight-facet)"/>
   <div>[[value]]</div>
@@ -1321,8 +1343,8 @@
                 <param name="content" value="(ec:label('place'), ' ')"/>
             </model>
             <model behaviour="link">
-                <param name="link" value="'../places/all/' || (placeName[@type=&#34;main&#34;])[1]/string() || '?key=' || @xml:id"/>
-                <param name="content" value="string-join(placeName[@type=&#34;main&#34;]/string(), &#34;, &#34;)"/>
+                <param name="link" value="ec:place-link(.)"/>
+                <param name="content" value="ec:place-label(.)"/>
                 <param name="target" value="'_new'"/>
             </model>
             <model behaviour="inline">

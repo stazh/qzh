@@ -18,6 +18,7 @@ import module namespace search="http://existsolutions.com/ssrq/search" at "qzh-s
 import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace pages="http://www.tei-c.org/tei-simple/pages" at "lib/pages.xql";
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
+import module namespace common="http://www.tei-c.org/tei-simple/xquery/functions/ssrq-common" at "ext-common.xql";
 import module namespace tpu="http://www.tei-c.org/tei-publisher/util" at "lib/util.xql";
 import module namespace pm-config="http://www.tei-c.org/tei-simple/pm-config" at "pm-config.xql";
 import module namespace dapi="http://teipublisher.com/api/documents" at "lib/api/document.xql";
@@ -186,7 +187,7 @@ declare function api:places-all($request as map(*)) {
                         map {
                             "latitude":$tokenized[1],
                             "longitude":$tokenized[2],
-                            "label":string-join($place/tei:placeName/text(), ", "),
+                            "label":common:place-label($place),
                             "id":$place/@xml:id/string()
                         }
                 ) else()
@@ -219,6 +220,8 @@ declare function api:people($request as map(*)) {
                                     doc($config:data-root || "/person/person.xml")//tei:person
                                 )
                             )
+    (: Skip entries without a name: they stem from empty persName elements in the sources :)
+    let $people := $people[tei:persName[@type='full'][normalize-space(.)]]
     (: Deduplicate non-identified persons: group by name + source document so that
        e.g. "Anndli Käller" from QZH 085 appears only once instead of once per mention :)
     let $people := 
@@ -526,14 +529,6 @@ declare function api:sort($people as array(*)*, $dir as xs:string) {
             reverse($sorted)
 };
 
-declare %private function api:place-primary-name(
-    $place as element(tei:place),
-    $norm-map as map(*)
-) as xs:string {
-    let $norm := $norm-map($place/@xml:id/string())
-    return if ($norm) then $norm else normalize-space($place/@n)
-};
-
 declare function api:places($request as map(*)) {
     let $search := normalize-space($request?parameters?search)
     let $letterParam := $request?parameters?category
@@ -557,15 +552,12 @@ declare function api:places($request as map(*)) {
                                     doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
                                 )
                             )
-    let $norm-map :=
-        let $path := $config:data-root || "/place/place-additions.xml"
-        return if (doc-available($path)) then
-            map:merge(
-                for $a in doc($path)//tei:text/tei:placeName[@ref]
-                group by $k := $a/@ref/string()
-                return map:entry($k, normalize-space($a[1]))
-            )
-        else map {}
+    (: Skip entries without a name: they stem from empty placeName elements in the sources :)
+    let $places := $places[tei:placeName[normalize-space(.)]]
+    let $names := map:merge(
+        for $place in $places
+        return map:entry($place/@xml:id/string(), common:place-name($place))
+    )
     (: Deduplicate non-identified places: group by name + source document so that
        the same place within one source appears only once instead of once per mention :)
     let $places :=
@@ -575,7 +567,7 @@ declare function api:places($request as map(*)) {
             return
                 if ($isNonLOC) then
                     let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
-                    let $name := api:place-primary-name($p, $norm-map)
+                    let $name := $names($id)
                     return $source || "||" || $name
                 else
                     $id
@@ -588,14 +580,14 @@ declare function api:places($request as map(*)) {
     let $sorted := sort($places, "?lang=de-DE", function($place) {
         let $id := $place/@xml:id/string()
         let $source := replace($id, ("_" || substring-after(substring-after($id, "_"), "_")), "")
-        return lower-case(api:place-primary-name($place, $norm-map)) || " " || $source
+        return lower-case($names($id)) || " " || $source
     })
     
     let $letter := 
         if (count($places) < $limit) then 
             "Alle"
         else if (not($letterParam) or $letterParam = '') then
-            substring(api:place-primary-name($sorted[1], $norm-map), 1, 1) => upper-case()
+            substring($names($sorted[1]/@xml:id/string()), 1, 1) => upper-case()
         else
             $letterParam
     let $log := util:log("info","api:places  $letter:"||$letter )            
@@ -605,18 +597,18 @@ declare function api:places($request as map(*)) {
             $sorted
         else
             filter($sorted, function($entry) {
-                starts-with(lower-case(api:place-primary-name($entry, $norm-map)), lower-case($letter))
+                starts-with(lower-case($names($entry/@xml:id/string())), lower-case($letter))
             })
     return
         map {
-            "items": api:output-place($byLetter, $letter, $search, $norm-map),
+            "items": api:output-place($byLetter, $letter, $search, $names),
             "categories":
                 if (count($places) < $limit) then
                     []
                 else array {
                     for $index in 1 to string-length('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
                     let $alpha := substring('ABCDEFGHIJKLMNOPQRSTUVWXYZ', $index, 1)
-                    let $hits := count(filter($sorted, function($entry) { starts-with(lower-case(api:place-primary-name($entry, $norm-map)), lower-case($alpha))}))
+                    let $hits := count(filter($sorted, function($entry) { starts-with(lower-case($names($entry/@xml:id/string())), lower-case($alpha))}))
                     where $hits > 0
                     return
                         map {
@@ -631,13 +623,14 @@ declare function api:places($request as map(*)) {
         }
 };
 
-declare function api:output-place($list, $category as xs:string, $search as xs:string?, $norm-map as map(*)) {
+declare function api:output-place($list, $category as xs:string, $search as xs:string?, $names as map(*)) {
     array {
         for $place in $list
-        let $primaryName := api:place-primary-name($place, $norm-map)
+        let $primaryName := $names($place/@xml:id/string())
         let $categoryParam := if ($category = "Alle") then upper-case(substring($primaryName, 1, 1)) else $category
         let $params := "category=" || $categoryParam || "&amp;search=" || $search || "&amp;key=" || $place/@xml:id
-        let $label := $primaryName
+        (: The normalized name stands alone, otherwise further spellings help to recognize the place :)
+        let $label := (common:place-norm($place), common:place-label($place))[1]
         let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/")
         let $coords := tokenize($place/tei:location/tei:geo)
         let $isNonIdentified := starts-with($place/@xml:id, "QZH_")
@@ -647,7 +640,7 @@ declare function api:output-place($list, $category as xs:string, $search as xs:s
                 attribute class { "place" },
                 element span {
                     element a {
-                        attribute href { $label || "?" || $params },
+                        attribute href { $primaryName || "?" || $params },
                         $label
                     },
                     if ($isNonIdentified and $sourceTitle) then <span> ({$sourceTitle})</span>

@@ -393,11 +393,12 @@ declare
     %templates:default("key","")
 function app:load-person($node as node(), $model as map(*), $key as xs:string) {
     let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = xmldb:decode($key)][1]
-    let $log := util:log("info", "app:load-person $name: " || $person/tei:persName[@type="full"]/text() || " - $key:" || $key)
+    let $name := $person ! common:person-title(.)
+    let $log := util:log("info", "app:load-person $name: " || $name || " - $key:" || $key)
     
     return 
         map {
-                "title": $person/tei:persName[@type="full"]/text(),
+                "title": $name,
                 "key":$key,
                 "date":$person/tei:note[@type="date"]/text()
         }    
@@ -440,7 +441,7 @@ declare
 function app:load-place($node as node(), $model as map(*), $name as xs:string, $key as xs:string) {
     let $log := util:log("info", "app:load-place $name: " || $name || " - $key:" || $key)
     let $place := doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place[@xml:id = xmldb:decode($key)]
-    let $name := string-join($place/tei:placeName/text(), ", ") (:multiple names are separated with comma:)
+    let $name := $place ! common:place-label(.)
 
     (:let $type := substring-before($place/tei:trait[@type="type"][1]/tei:label/text(), "/"):)
     (:let $title := if(string-length($type) >0 ) then ( $name || " (" || $type || ")" ) else ($name):)
@@ -586,10 +587,8 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
     return
         if($type = "person") 
         then ( 
-            let $person := doc($config:data-root || "/person/person.xml")//tei:person[@xml:id = $key]
-            return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  $person/tei:persName[@type="full"][1]/text()}:</h3>
+                    <h3><pb-i18n key="mentions-of"/>{" " || $model?title}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 (: Is there a more elegant solution instead of the nested substring-before and substring-after? :)
@@ -615,10 +614,8 @@ function app:mentions($node as node(), $model as map(*), $type as xs:string) {
                 </div>
         ) else if ($type = "place")
         then (
-            let $places := doc($config:data-root || "/place/place.xml")//tei:listPlace/tei:place
-            return
                 <div>
-                    <h3><pb-i18n key="mentions-of"/>{" " ||  string-join($places[@xml:id = $key]/tei:placeName/text(), ", ")}:</h3> <!-- multiple names are separated with comma -->
+                    <h3><pb-i18n key="mentions-of"/>{" " || $model?title}:</h3>
                     <div class="mentions">{
                             for $col in $config:data-collections
                                 (:example:)
